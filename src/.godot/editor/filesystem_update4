@@ -1,0 +1,16 @@
+res://item_classes/item.gd
+res://common/shaders/outline.gdshader
+res://assets.gd
+res://mech_gfx/mech_gfx_part.gd
+res://items_workshop/item_inspector/tabs/joints.gd
+res://items_workshop/item_inspector/tabs/animations.gd
+res://item_classes/item_def.gd
+res://mech_gfx/mech_gfx.gd
+res://items_workshop/items_workshop.gd
+res://mech_build.gd
+res://items_workshop/item_inspector/item_inspector.gd
+res://items_workshop/item_inspector/item_inspector.tscn
+res://items_workshop/items_workshop.tscn
+res://mech_gfx/animations/jump.gd
+res://mech_gfx/animations/backflip.gd
+res://mech_gfx/mech_gfx.tscn

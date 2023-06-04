@@ -1,0 +1,79 @@
+extends TabBar
+signal animation_preview_requested(item: ItemDef)
+signal ornament_changed(item: ItemDef)
+
+
+
+@onready var points_editor: Control = %PointsEditor
+@onready var mech_movement_options: OptionButton = %MechMovementOptions
+
+
+
+var item: ItemDef
+
+
+
+func _ready() -> void:
+
+	clear()
+
+	for movement in MechGFX.Movement:
+		mech_movement_options.add_item(movement.capitalize())
+
+
+
+func set_item(value: ItemDef) -> void:
+
+	if value == null:
+		clear()
+		return
+
+	item = value
+
+	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
+
+	__add_animation_ornament_points()
+	__add_animation_projectile_points()
+
+
+
+func clear() -> void:
+	points_editor.clear()
+	mech_movement_options.select(-1)
+
+
+
+func __add_animation_ornament_points() -> void:
+	for ornament in item.ornaments:
+
+		var point = points_editor.add_point(
+			ornament.place,
+			Color(0, 0.5, 1),
+			"",
+			ornament.texture
+		)
+
+		point.moved.connect(
+			func(place: Vector2) -> void:
+				ornament.place = place
+				ornament_changed.emit(item)
+		)
+
+
+func __add_animation_projectile_points() -> void:
+	for projectile in item.projectiles:
+
+		var point = points_editor.add_point(
+			projectile.place,
+			Color(1, 0.5, 0),
+			projectile.gfx.capitalize()
+		)
+
+		point.moved.connect(
+			func(place: Vector2) -> void:
+				projectile.place = place
+		)
+
+
+func _on_preview_button_pressed() -> void:
+	animation_preview_requested.emit(item)

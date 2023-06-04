@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://clmqvuer8ehnq"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_u6s8v"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_h0ker"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor.tscn" id="3_7fv6s"]
+
+[node name="Animations" type="TabBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_u6s8v")
+script = ExtResource("2_h0ker")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PointsEditor" parent="MarginContainer/Control/VBoxContainer" instance=ExtResource("3_7fv6s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MechMovementOptions" type="OptionButton" parent="MarginContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PreviewButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Preview"
+
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PreviewButton" to="." method="_on_preview_button_pressed"]

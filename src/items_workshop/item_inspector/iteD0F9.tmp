@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk5c0ulwu1p7u"]
+
+[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="1_0w125"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_1ybki"]
+[ext_resource type="PackedScene" uid="uid://b06swf75jd67p" path="res://items_workshop/item_inspector/tabs/overview.tscn" id="3_udql7"]
+[ext_resource type="PackedScene" uid="uid://clmqvuer8ehnq" path="res://items_workshop/item_inspector/tabs/animations.tscn" id="5_vffsu"]
+[ext_resource type="PackedScene" uid="uid://dubsnfnufbcw3" path="res://items_workshop/item_inspector/tabs/joints.tscn" id="5_win8o"]
+
+[node name="ItemInspector" type="Control"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_0w125")
+point_scene = ExtResource("2_1ybki")
+
+[node name="EmptyText" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmptyText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drop an item here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Overview" parent="TabContainer" instance=ExtResource("3_udql7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Joints" parent="TabContainer" instance=ExtResource("5_win8o")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Animations" parent="TabContainer" instance=ExtResource("5_vffsu")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="joint_changed" from="TabContainer/Joints" to="." method="_on_joints_tab_joint_changed"]
+[connection signal="animation_preview_requested" from="TabContainer/Animations" to="." method="_on_animations_animation_preview_requested"]

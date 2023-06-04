@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://doo03nnqpthbc"]
+
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="1_6j2nq"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_5gpvw"]
+[ext_resource type="Texture2D" uid="uid://c02g31xeucxk0" path="res://assets/items/Anguish.png" id="3_h7iwn"]
+
+[node name="PointsEditor" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(380, 380)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6j2nq")
+point_scene = ExtResource("2_5gpvw")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Canvas" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Reference" type="TextureRect" parent="Canvas"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_h7iwn")
+
+[node name="Points" type="Control" parent="Canvas"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="gui_input" from="Screen" to="." method="_on_screen_gui_input"]

@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk5c0ulwu1p7u"]
+
+[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="1_75osh"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_nc7c7"]
+[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/items/Abomination.png" id="3_kmjuk"]
+[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://items_workshop/item_inspector/stats_display.tscn" id="4_jtnrl"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor.tscn" id="5_i5k4s"]
+
+[node name="ItemInspector" type="Control"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_75osh")
+point_scene = ExtResource("2_nc7c7")
+
+[node name="EmptyText" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="EmptyText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drop an item here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Overview" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Overview" type="MarginContainer" parent="TabContainer/Overview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Overview/Overview"]
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="TabContainer/Overview/Overview/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite" type="TextureRect" parent="TabContainer/Overview/Overview/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("3_kmjuk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Overview/Overview/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Overview/Overview/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Overview/Overview/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Type"
+
+[node name="TypeOptions" type="OptionButton" parent="TabContainer/Overview/Overview/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Overview/Overview/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Overview/Overview/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Element"
+
+[node name="ElementOptions" type="OptionButton" parent="TabContainer/Overview/Overview/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Overview/Overview/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsDisplay" parent="TabContainer/Overview/Overview/VBoxContainer" instance=ExtResource("4_jtnrl")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Joints" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Joints"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="TabContainer/Joints/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Joints/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="JointPointsEditor" parent="TabContainer/Joints/MarginContainer/Control/VBoxContainer" instance=ExtResource("5_i5k4s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Animations" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Animations"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="TabContainer/Animations/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Animations/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPointsEditor" parent="TabContainer/Animations/MarginContainer/Control/VBoxContainer" instance=ExtResource("5_i5k4s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="point_moved" from="TabContainer/Joints/MarginContainer/Control/VBoxContainer/JointPointsEditor" to="." method="_on_joint_point_moved"]
