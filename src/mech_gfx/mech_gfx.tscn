@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c01iq33mrndvq"]
 
-[ext_resource type="Script" path="res://mech_gfx/mech_gfx.gd" id="1_ic4hr"]
-[ext_resource type="PackedScene" uid="uid://int7phjoghjb" path="res://mech_gfx/mech_gfx_part.tscn" id="2_qxn4g"]
-[ext_resource type="Texture2D" uid="uid://cyu2cn36vlern" path="res://mech_gfx/legs_thrust.png" id="3_2kc4e"]
+[ext_resource type="Script" path="res://mech_gfx/mech_gfx.gd" id="1_fp7lg"]
+[ext_resource type="PackedScene" uid="uid://int7phjoghjb" path="res://mech_gfx/mech_gfx_part.tscn" id="2_8erkh"]
+[ext_resource type="Texture2D" uid="uid://cyu2cn36vlern" path="res://mech_gfx/legs_thrust.png" id="3_f3qm6"]
 
 [sub_resource type="Animation" id="Animation_7n3hq"]
 length = 0.001
@@ -105,7 +105,7 @@ _data = {
 }
 
 [node name="MechGFX" type="Node2D"]
-script = ExtResource("1_ic4hr")
+script = ExtResource("1_fp7lg")
 
 [node name="Parts" type="Node2D" parent="."]
 
@@ -115,16 +115,16 @@ unique_name_in_owner = true
 [node name="MechParts" type="Node2D" parent="Parts/Rotator"]
 unique_name_in_owner = true
 
-[node name="SideWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="SideWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="SideWeapon4" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="SideWeapon4" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="TopWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="TopWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="Leg2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="Leg2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
 [node name="Thrust2" type="Node2D" parent="Parts/Rotator/MechParts/Leg2"]
@@ -134,12 +134,12 @@ scale = Vector2(1e-05, 1e-05)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parts/Rotator/MechParts/Leg2/Thrust2"]
 position = Vector2(0, 60)
-texture = ExtResource("3_2kc4e")
+texture = ExtResource("3_f3qm6")
 
-[node name="Torso" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="Torso" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="Leg1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="Leg1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
 [node name="Thrust1" type="Node2D" parent="Parts/Rotator/MechParts/Leg1"]
@@ -149,27 +149,27 @@ scale = Vector2(1e-05, 1e-05)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parts/Rotator/MechParts/Leg1/Thrust1"]
 position = Vector2(0, 60)
-texture = ExtResource("3_2kc4e")
+texture = ExtResource("3_f3qm6")
 
-[node name="TopWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="TopWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="SideWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="SideWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="SideWeapon3" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="SideWeapon3" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="ChargeEngine" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="ChargeEngine" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="GrapplingHook" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="GrapplingHook" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="Hat" parent="Parts/Rotator/MechParts" instance=ExtResource("2_qxn4g")]
+[node name="Hat" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
-[node name="Drone" parent="Parts" instance=ExtResource("2_qxn4g")]
+[node name="Drone" parent="Parts" instance=ExtResource("2_8erkh")]
 unique_name_in_owner = true
 
 [node name="Origin" type="Line2D" parent="."]

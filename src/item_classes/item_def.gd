@@ -59,19 +59,24 @@ enum Joint {
 
 class ProjectileConfig:
 	var id: String
-	var place: Vector2
-	var gfx: String
+	var place: Vector2 = Vector2.ZERO
+	var gfx: MechGFX.Projectile = MechGFX.Projectile.ROCKET
 
-	func _init(source) -> void:
+	func _init(source = null) -> void:
+
+		if source == null:
+			id = str(randi())
+			return
+
 		id = source.id
 		place = Vector2(source.place[0], source.place[1])
-		gfx = source.gfx
+		gfx = MechGFX.Projectile[source.gfx]
 
 	func to_json() -> Dictionary:
 		return {
 			"id": id,
 			"place": [place.x, place.y],
-			"gfx": gfx
+			"gfx": MechGFX.Projectile.find_key(gfx)
 		}
 
 

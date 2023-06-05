@@ -6,6 +6,7 @@ signal ornament_changed(item: ItemDef)
 
 @onready var points_editor: Control = %PointsEditor
 @onready var mech_movement_options: OptionButton = %MechMovementOptions
+@onready var add_projectile_options: OptionButton = %AddProjectileOptions
 
 
 
@@ -22,6 +23,9 @@ func _ready() -> void:
 	for movement in MechGFX.Movement:
 		mech_movement_options.add_item(movement.capitalize())
 
+	for projectile in MechGFX.Projectile:
+		add_projectile_options.add_item(projectile.capitalize())
+
 
 
 func set_item(value: ItemDef) -> void:
@@ -32,6 +36,7 @@ func set_item(value: ItemDef) -> void:
 
 	item = value
 
+	points_editor.clear()
 	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
 
 	mech_movement_options.selected = item.mech_movement
@@ -70,7 +75,7 @@ func __add_animation_projectile_points() -> void:
 		var point = points_editor.add_point(
 			projectile.place,
 			Color(1, 0.5, 0),
-			projectile.gfx.capitalize()
+			MechGFX.Projectile.find_key(projectile.gfx).capitalize()
 		)
 
 		point.moved.connect(
@@ -85,3 +90,16 @@ func _on_preview_button_pressed() -> void:
 
 func _on_mech_movement_selected(index: int) -> void:
 	item.mech_movement = index as MechGFX.Movement
+
+
+func _on_add_projectile_button_pressed() -> void:
+
+	var projectile: ItemDef.ProjectileConfig = ItemDef.ProjectileConfig.new()
+
+	projectile.id = str(randi())
+	projectile.gfx = add_projectile_options.selected as MechGFX.Projectile
+
+	item.projectiles.append(projectile)
+	set_item(item)
+
+

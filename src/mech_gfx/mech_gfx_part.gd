@@ -1,10 +1,20 @@
 extends Node2D
 class_name MechGFXPart
+signal animation_finished()
+
+
+
+const __ROCKET_FIRING_INTERVAL: float = 0.1
+
+
+
+const ProjectileRocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 
 
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var blinking_props: Node2D = %BlinkingProps
+@onready var projectiles_container: Node = %Projectiles
 
 
 
@@ -15,6 +25,9 @@ const MARGIN: int = 1
 
 var size: Vector2i
 var item: Item
+var torso_joint: Vector2 :
+	get:
+		return item.def.joints[ItemDef.Joint.TORSO]
 
 
 
@@ -59,7 +72,7 @@ func set_item(value: Item) -> void:
 
 
 	if item.def.type != ItemDef.Type.TORSO:
-		sprite.position = size * 0.5 -item.def.joints[ItemDef.Joint.TORSO]
+		sprite.position = size * 0.5 -torso_joint
 
 	__prepare_animations()
 
@@ -77,11 +90,44 @@ func clear() -> void:
 		prop.queue_free()
 
 
-func play_animation() -> void:
+func play_animation(target_visual_center: Vector2) -> void:
+
+	for projectile in item.def.projectiles:
+
+		match projectile.gfx:
+			MechGFX.Projectile.ROCKET:
+				await __fire_rocket(projectile, target_visual_center)
+
 	set_process(true)
+
 	await get_tree().create_timer(1.5).timeout
+
 	set_process(false)
+
 	blinking_props.visible = false
+	animation_finished.emit()
+
+
+func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Signal:
+
+	var projectile = ProjectileRocketScene.instantiate()
+
+	projectiles_container.add_child(projectile)
+	projectile.position = global_position + (-torso_joint + config.place) * global_scale
+	projectile.scale = global_scale
+	projectile.fire(target)
+
+	# Recoil effect
+
+	var tween = create_tween()
+
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(sprite, "position:x", sprite.position.x, __ROCKET_FIRING_INTERVAL)
+
+	sprite.position.x -= 10
+
+	return tween.finished
 
 
 
@@ -94,7 +140,7 @@ func __prepare_animations() -> void:
 
 		var ornament_sprite = Sprite2D.new()
 
-		ornament_sprite.position = ornament.place - item.def.joints[ItemDef.Joint.TORSO]
+		ornament_sprite.position = ornament.place - torso_joint
 		ornament_sprite.texture = ornament.texture
 
 		match ornament.effect:

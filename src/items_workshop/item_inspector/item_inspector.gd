@@ -68,9 +68,10 @@ func _on_joints_tab_joint_changed(updated_item: ItemDef) -> void:
 	joint_changed.emit(updated_item)
 
 
-func _on_item_ornament_changed(updated_item: ItemDef) -> void:
+
+func _on_animations_animation_preview_requested(updated_item: ItemDef) -> void:
+	animation_preview_requested.emit(updated_item)
+
+
+func _on_animations_ornament_changed(updated_item: ItemDef) -> void:
 	ornament_changed.emit(updated_item)
-
-
-func _on_animation_preview_requested(item_def: ItemDef) -> void:
-	animation_preview_requested.emit(item_def)

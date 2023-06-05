@@ -12,11 +12,18 @@ enum Movement {
 	BACKFLIP,
 }
 
+enum Projectile {
+	ROCKET,
+	ROCKET_SMALL,
+}
 
 
-const JumpAnimation = preload("animations/jump.gd")
-const SwordAnimation = preload("animations/sword.gd")
-const BackflipAnimation = preload("animations/backflip.gd")
+
+const JumpAnimation = preload("movements/jump.gd")
+const SwordAnimation = preload("movements/sword.gd")
+const BackflipAnimation = preload("movements/backflip.gd")
+
+const ProjectileRocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 
 
 @onready var torso: MechGFXPart = %Torso
@@ -119,7 +126,9 @@ func use_item(slot: MechBuild.Slot) -> void:
 		Movement.BACKFLIP:
 			BackflipAnimation.play(self, animation_speed)
 
-	get_part_for_slot(slot).play_animation()
+	var part = get_part_for_slot(slot)
+
+	part.play_animation(part.global_position + Vector2(1000, 0))
 
 
 func reorganize() -> void:
