@@ -61,7 +61,7 @@ const BackflipAnimation = preload("animations/backflip.gd")
 
 
 var build: MechBuild
-var animation_speed: float = 1
+var animation_speed: float = 1.25
 
 
 
@@ -109,8 +109,15 @@ func use_item(slot: MechBuild.Slot) -> void:
 	var item: ItemDef = build.get_item(slot).def
 
 	match item.mech_movement:
+
+		Movement.JUMP:
+			JumpAnimation.play(self, animation_speed)
+
 		Movement.MELEE:
 			SwordAnimation.play(self, animation_speed, slot)
+
+		Movement.BACKFLIP:
+			BackflipAnimation.play(self, animation_speed)
 
 	get_part_for_slot(slot).play_animation()
 

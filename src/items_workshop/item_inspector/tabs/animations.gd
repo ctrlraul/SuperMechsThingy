@@ -17,6 +17,8 @@ func _ready() -> void:
 
 	clear()
 
+	mech_movement_options.clear()
+
 	for movement in MechGFX.Movement:
 		mech_movement_options.add_item(movement.capitalize())
 
@@ -31,6 +33,8 @@ func set_item(value: ItemDef) -> void:
 	item = value
 
 	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
+
+	mech_movement_options.selected = item.mech_movement
 
 	__add_animation_ornament_points()
 	__add_animation_projectile_points()
@@ -77,3 +81,7 @@ func __add_animation_projectile_points() -> void:
 
 func _on_preview_button_pressed() -> void:
 	animation_preview_requested.emit(item)
+
+
+func _on_mech_movement_selected(index: int) -> void:
+	item.mech_movement = index as MechGFX.Movement
