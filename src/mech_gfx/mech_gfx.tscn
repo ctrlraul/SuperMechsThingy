@@ -1,187 +1,81 @@
-[gd_scene load_steps=7 format=3 uid="uid://c01iq33mrndvq"]
+[gd_scene load_steps=4 format=3 uid="uid://c01iq33mrndvq"]
 
-[ext_resource type="Script" path="res://mech_gfx/mech_gfx.gd" id="1_fp7lg"]
-[ext_resource type="PackedScene" uid="uid://int7phjoghjb" path="res://mech_gfx/mech_gfx_part.tscn" id="2_8erkh"]
-[ext_resource type="Texture2D" uid="uid://cyu2cn36vlern" path="res://mech_gfx/legs_thrust.png" id="3_f3qm6"]
-
-[sub_resource type="Animation" id="Animation_7n3hq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Parts/Rotator/MechParts:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Parts/Rotator/MechParts:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Parts/Rotator/MechParts/Leg2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_8vyuh"]
-resource_name = "jump"
-length = 2.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Parts/Rotator/MechParts:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Parts/Rotator/MechParts:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 2.5),
-"transitions": PackedFloat32Array(1, 0.5, 2, 4),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -300), Vector2(0, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Parts/Rotator/MechParts/Leg2")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_leg_propulsion"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Parts/Rotator/MechParts/Leg2:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vkod8"]
-_data = {
-"RESET": SubResource("Animation_7n3hq"),
-"jump": SubResource("Animation_8vyuh")
-}
+[ext_resource type="Script" path="res://mech_gfx/mech_gfx.gd" id="1_lhjeg"]
+[ext_resource type="PackedScene" uid="uid://int7phjoghjb" path="res://mech_gfx/mech_gfx_part.tscn" id="2_d6s0a"]
+[ext_resource type="Texture2D" uid="uid://cyu2cn36vlern" path="res://mech_gfx/legs_thrust.png" id="3_glo56"]
 
 [node name="MechGFX" type="Node2D"]
-script = ExtResource("1_fp7lg")
+script = ExtResource("1_lhjeg")
 
-[node name="Parts" type="Node2D" parent="."]
-
-[node name="Rotator" type="Node2D" parent="Parts"]
+[node name="AnimPosition" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="MechParts" type="Node2D" parent="Parts/Rotator"]
+[node name="AnimRotation" type="Node2D" parent="AnimPosition"]
+unique_name_in_owner = true
+position = Vector2(0, -200)
+
+[node name="Parts" type="Node2D" parent="AnimPosition/AnimRotation"]
+unique_name_in_owner = true
+position = Vector2(0, 200)
+
+[node name="SideWeapon2" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="SideWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="SideWeapon4" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="SideWeapon4" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="TopWeapon2" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="TopWeapon2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="Leg2" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="Leg2" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
-unique_name_in_owner = true
-
-[node name="Thrust2" type="Node2D" parent="Parts/Rotator/MechParts/Leg2"]
-unique_name_in_owner = true
-show_behind_parent = true
-scale = Vector2(1e-05, 1e-05)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parts/Rotator/MechParts/Leg2/Thrust2"]
-position = Vector2(0, 60)
-texture = ExtResource("3_f3qm6")
-
-[node name="Torso" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
-unique_name_in_owner = true
-
-[node name="Leg1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
-unique_name_in_owner = true
-
-[node name="Thrust1" type="Node2D" parent="Parts/Rotator/MechParts/Leg1"]
+[node name="Thrust2" type="Node2D" parent="AnimPosition/AnimRotation/Parts/Leg2"]
 unique_name_in_owner = true
 show_behind_parent = true
 scale = Vector2(1e-05, 1e-05)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parts/Rotator/MechParts/Leg1/Thrust1"]
+[node name="Sprite2D" type="Sprite2D" parent="AnimPosition/AnimRotation/Parts/Leg2/Thrust2"]
 position = Vector2(0, 60)
-texture = ExtResource("3_f3qm6")
+texture = ExtResource("3_glo56")
 
-[node name="TopWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="Torso" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="SideWeapon1" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="Leg1" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="SideWeapon3" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="Thrust1" type="Node2D" parent="AnimPosition/AnimRotation/Parts/Leg1"]
+unique_name_in_owner = true
+show_behind_parent = true
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimPosition/AnimRotation/Parts/Leg1/Thrust1"]
+position = Vector2(0, 60)
+texture = ExtResource("3_glo56")
+
+[node name="TopWeapon1" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="ChargeEngine" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="SideWeapon1" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="GrapplingHook" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="SideWeapon3" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="Hat" parent="Parts/Rotator/MechParts" instance=ExtResource("2_8erkh")]
+[node name="ChargeEngine" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="Drone" parent="Parts" instance=ExtResource("2_8erkh")]
+[node name="GrapplingHook" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
 
-[node name="Origin" type="Line2D" parent="."]
-visible = false
-rotation = 0.785398
-scale = Vector2(3, 3)
-points = PackedVector2Array(-1, 0, 1, 0)
-width = 2.0
-default_color = Color(0, 1, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Hat" parent="AnimPosition/AnimRotation/Parts" instance=ExtResource("2_d6s0a")]
 unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_vkod8")
-}
+
+[node name="DroneSpot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="DroneContainer" type="Node" parent="."]
+
+[node name="Drone" parent="DroneContainer" instance=ExtResource("2_d6s0a")]
+unique_name_in_owner = true

@@ -1,128 +1,79 @@
-const JUMP_HEIGHT: float = 300
-const CROUCH_SCALE: float = 0.95
-const CENTER: float = 200
+class_name MechMovementBackflip
+
+
+const LEG_ROTATION: float = 90
+
 
 static func play(mech: MechGFX, speed: float) -> void:
 
-	if speed <= 0:
-		return
+	MechMovementBackflip.tween_swing_arms(mech, speed)
 
-	var leg_1 = mech.leg_1
-	var leg_2 = mech.leg_2
-	var side_weapon_1 = mech.side_weapon_1
-	var side_weapon_2 = mech.side_weapon_2
-	var side_weapon_3 = mech.side_weapon_3
-	var side_weapon_4 = mech.side_weapon_4
-	var parts = mech.mech_parts
-	var thrust_1 = mech.thrust_1
-	var thrust_2 = mech.thrust_2
+	await MechMovementJump.tween_crouch(mech, speed).finished
 
-	var crouch: float = leg_1.size.y * (1 - CROUCH_SCALE)
+	# 360
+	mech.create_tween().tween_property(
+		mech.anim_rotation,
+		"rotation",
+		-PI * 2,
+		MechMovementJump.JUMP_DURATION
+	)
+
+	MechMovementBackflip.tween_swing_legs(mech, speed)
+
+	await MechMovementJump.tween_leap(mech, speed).finished
+	await MechMovementJump.tween_fall(mech, speed).finished
+
+	mech.reorganize()
+
+	await MechMovementJump.tween_fall_impact(mech, speed).finished
+
+	mech.reorganize()
+
+
+static func tween_swing_arms(mech: MechGFX, speed: float) -> Tween:
+
+	var time: float = (MechMovementJump.CROUCH_DURATION + MechMovementJump.JUMP_DURATION) / speed
+	var melee_weapons = [
+		mech.side_weapon_1, mech.side_weapon_2,
+		mech.side_weapon_3, mech.side_weapon_4
+	].filter(
+		func(part):
+			return MechGFX.is_part_melee(part)
+	)
 
 	var t: Tween = mech.create_tween()
 
-	# Crouch
-	t.set_parallel(true)
-	t.tween_property(leg_1, "scale:y", 0.95, 0.5 / speed)
-	t.tween_property(leg_2, "scale:y", 0.95, 0.5 / speed)
-	t.tween_property(leg_1, "position:y", leg_1.position.y - crouch, 0.5 / speed)
-	t.tween_property(leg_2, "position:y", leg_2.position.y - crouch, 0.5 / speed)
-	t.tween_property(parts, "position:y", crouch * 2, 0.5 / speed)
+	if melee_weapons.size() > 0:
 
-	var t2: Tween = mech.create_tween()
+		t.tween_interval(time)
 
-	# Crouch
-	t2.set_parallel(true)
-	t2.set_trans(Tween.TRANS_QUAD)
-	t2.set_ease(Tween.EASE_OUT)
-	t2.tween_property(side_weapon_1, "rotation_degrees", 50, 0.4 / speed)
-	t2.tween_property(side_weapon_2, "rotation_degrees", 50, 0.4 / speed)
-	t2.tween_property(side_weapon_3, "rotation_degrees", 50, 0.4 / speed)
-	t2.tween_property(side_weapon_4, "rotation_degrees", 50, 0.4 / speed)
+		for part in melee_weapons:
+			var ti: Tween = mech.create_tween()
+			ti.set_trans(Tween.TRANS_QUAD)
+			ti.set_ease(Tween.EASE_OUT)
+			ti.tween_property(part, "rotation_degrees", 50, time * 0.1)
+			ti.set_ease(Tween.EASE_IN_OUT)
+			ti.tween_property(part, "rotation_degrees", -80, time * 0.15)
+			ti.tween_property(part, "rotation_degrees", 0, time * 0.75)
 
-	t2.set_ease(Tween.EASE_IN)
-	t2.set_parallel(false)
-	t2.tween_property(side_weapon_1, "rotation_degrees", 0, 0.1 / speed)
-	t2.set_parallel(true)
-	t2.tween_property(side_weapon_2, "rotation_degrees", -30, 0.2 / speed)
-	t2.tween_property(side_weapon_3, "rotation_degrees", -30, 0.2 / speed)
-	t2.tween_property(side_weapon_4, "rotation_degrees", -30, 0.2 / speed)
+	else:
+		t.tween_interval(0.01)
+
+	return t
 
 
-	await t.finished
+static func tween_swing_legs(mech: MechGFX, speed: float) -> Tween:
 
-
-	mech.reorganize()
-
-
-	parts.position.y -= CENTER
-	for part in parts.get_children():
-		part.position.y += CENTER
-
-	t = mech.create_tween()
-
-	# Leap
-	t.set_parallel(true)
-	t.set_ease(Tween.EASE_OUT)
-	t.set_trans(Tween.TRANS_QUAD)
-	t.tween_property(thrust_2, "scale", Vector2.ONE, 0.3 / speed)
-	t.tween_property(thrust_1, "scale", Vector2.ONE, 0.3 / speed)
-	t.tween_property(mech.rotator, "position:y", -JUMP_HEIGHT, 0.75 / speed)
-
-	t.set_trans(Tween.TRANS_LINEAR)
-	t.tween_property(parts, "rotation_degrees", -180, 0.75 / speed)
+	var time: float = MechMovementJump.JUMP_DURATION / speed
+	var t: Tween = mech.create_tween()
 
 	t.set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUAD)
-	t.tween_property(leg_1, "rotation_degrees", 80, 0.75 / speed)
-	t.tween_property(leg_2, "rotation_degrees", 80, 0.75 / speed)
-	t.tween_property(side_weapon_1, "rotation_degrees", -50, 0.75 / speed)
-	t.tween_property(side_weapon_2, "rotation_degrees", -50, 0.75 / speed)
-	t.tween_property(side_weapon_3, "rotation_degrees", -50, 0.75 / speed)
-	t.tween_property(side_weapon_4, "rotation_degrees", -50, 0.75 / speed)
+	t.tween_property(mech.leg_1, "rotation_degrees", LEG_ROTATION, time * 0.5)
+	t.parallel().tween_property(mech.leg_2, "rotation_degrees", LEG_ROTATION, time * 0.5)
 
-	await t.finished
+	t.set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(mech.leg_1, "rotation_degrees", 0, time * 0.5)
+	t.parallel().tween_property(mech.leg_2, "rotation_degrees", 0, time * 0.5)
 
-	t = mech.create_tween()
-
-	# Fall
-	t.set_parallel(true)
-	t.set_ease(Tween.EASE_IN)
-	t.set_trans(Tween.TRANS_QUAD)
-	t.tween_property(mech.rotator, "position:y", 0, 0.75 / speed)
-	t.tween_property(thrust_2, "scale", Vector2.ZERO, 0.3 / speed)
-	t.tween_property(thrust_1, "scale", Vector2.ZERO, 0.3 / speed)
-
-	t.tween_property(leg_1, "rotation_degrees", 0, 0.75 / speed)
-	t.tween_property(leg_2, "rotation_degrees", 0, 0.75 / speed)
-	t.tween_property(side_weapon_1, "rotation_degrees", 0, 0.75 / speed)
-	t.tween_property(side_weapon_2, "rotation_degrees", 0, 0.75 / speed)
-	t.tween_property(side_weapon_3, "rotation_degrees", 0, 0.75 / speed)
-	t.tween_property(side_weapon_4, "rotation_degrees", 0, 0.75 / speed)
-
-	t.set_trans(Tween.TRANS_LINEAR)
-	t.tween_property(parts, "rotation_degrees", -360, 0.75 / speed)
-
-	await t.finished
-
-	mech.rotator.position.y = 10
-	leg_1.position.y -= 10
-	leg_2.position.y -= 10
-
-	t = mech.create_tween()
-
-	# Fall
-	t.set_parallel(true)
-	t.tween_property(mech.rotator, "position:y", 0, 0.3 / speed)
-	t.tween_property(leg_1, "position:y", leg_1.position.y + 10, 0.3 / speed)
-	t.tween_property(leg_2, "position:y", leg_2.position.y + 10, 0.3 / speed)
-
-
-	await t.finished
-
-	parts.position.y += CENTER
-	for part in parts.get_children():
-		part.position.y -= CENTER
-
-	parts.rotation = 0
-	mech.reorganize()
+	return t

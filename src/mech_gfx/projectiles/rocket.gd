@@ -10,6 +10,7 @@ var __initial_position: Vector2
 var __target_position: Vector2
 
 var __progress_value: float = 0
+@warning_ignore("unused_private_class_variable")
 var __progress: float :
 	get:
 		return __progress_value

@@ -1,55 +1,82 @@
+class_name MechMovementJump
+
+
+const CROUCH_DURATION: float = 0.3
+const JUMP_DURATION: float = 1.2
+const FALL_IMPACT_DURATION: float = 0.2
+
+const CROUCHING_LEG_SCALE: float = 0.95
 const JUMP_HEIGHT: float = 400
-const CROUCH_SCALE: float = 0.95
+const FALL_IMPACT_DISPLACEMENT: float = 10
+
 
 static func play(mech: MechGFX, speed: float) -> void:
-
-	if speed <= 0:
-		return
-
-	var leg_1 = mech.leg_1
-	var leg_2 = mech.leg_2
-	var parts = mech.mech_parts
-	var thrust_1 = mech.thrust_1
-	var thrust_2 = mech.thrust_2
-
-	var crouch: float = leg_1.size.y * (1 - CROUCH_SCALE)
-
-	var t: Tween = mech.create_tween()
-
-	# Crouch
-	t.set_parallel(true)
-	t.tween_property(leg_1, "scale:y", 0.95, 0.5 / speed)
-	t.tween_property(leg_2, "scale:y", 0.95, 0.5 / speed)
-	t.tween_property(leg_1, "position:y", leg_1.position.y - crouch, 0.5 / speed)
-	t.tween_property(leg_2, "position:y", leg_2.position.y - crouch, 0.5 / speed)
-	t.tween_property(parts, "position:y", crouch * 2, 0.5 / speed)
-
-	await t.finished
-
+	await MechMovementJump.tween_crouch(mech, speed).finished
+	mech.reorganize()
+	await MechMovementJump.tween_leap(mech, speed).finished
+	await MechMovementJump.tween_fall(mech, speed).finished
+	await MechMovementJump.tween_fall_impact(mech, speed).finished
 	mech.reorganize()
 
-	t = mech.create_tween()
 
-	# Leap
+static func tween_crouch(mech: MechGFX, speed: float) -> Tween:
+
+	var tuck: float = mech.leg_1.size.y * (1 - CROUCHING_LEG_SCALE)
+	var time: float = CROUCH_DURATION / speed
+	var t: Tween = mech.create_tween()
+
+	t.set_parallel(true)
+	t.tween_property(mech.leg_1, "scale:y", CROUCHING_LEG_SCALE, time)
+	t.tween_property(mech.leg_2, "scale:y", CROUCHING_LEG_SCALE, time)
+	t.tween_property(mech.leg_1, "position:y", mech.leg_1.position.y - tuck, time)
+	t.tween_property(mech.leg_2, "position:y", mech.leg_2.position.y - tuck, time)
+	t.tween_property(mech.anim_position, "position:y", tuck * 2, time)
+
+	return t
+
+
+static func tween_leap(mech: MechGFX, speed: float) -> Tween:
+
+	var time: float = JUMP_DURATION * 0.5 / speed
+	var t: Tween = mech.create_tween()
+
 	t.set_parallel(true)
 	t.set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUAD)
-	t.tween_property(thrust_2, "scale", Vector2.ONE, 0.3 / speed)
-	t.tween_property(thrust_1, "scale", Vector2.ONE, 0.3 / speed)
-	t.tween_property(parts, "position:y", -JUMP_HEIGHT, 0.75 / speed)
+	t.tween_property(mech.thrust_2, "scale", Vector2.ONE, time * 0.5)
+	t.tween_property(mech.thrust_1, "scale", Vector2.ONE, time * 0.5)
+	t.tween_property(mech.anim_position, "position:y", -JUMP_HEIGHT, time)
 
-	await t.finished
+	return t
 
-	t = mech.create_tween()
 
-	# Fall
+static func tween_fall(mech: MechGFX, speed: float) -> Tween:
+
+	var time: float = JUMP_DURATION * 0.5 / speed
+	var t: Tween = mech.create_tween()
+
 	t.set_parallel(true)
 	t.set_ease(Tween.EASE_IN)
 	t.set_trans(Tween.TRANS_QUAD)
-	t.tween_property(parts, "position:y", 0, 0.75 / speed)
-	t.tween_property(thrust_2, "scale", Vector2.ZERO, 0.3 / speed)
-	t.tween_property(thrust_1, "scale", Vector2.ZERO, 0.3 / speed)
+	t.tween_property(mech.thrust_2, "scale", Vector2.ZERO, time * 0.5)
+	t.tween_property(mech.thrust_1, "scale", Vector2.ZERO, time * 0.5)
+	t.tween_property(mech.anim_position, "position:y", 0, time)
 
-	await t.finished
+	return t
 
-	mech.reorganize()
+
+static func tween_fall_impact(mech: MechGFX, speed: float) -> Tween:
+
+	var time: float = FALL_IMPACT_DURATION / speed
+	var t: Tween = mech.create_tween()
+
+	t.set_parallel(true)
+	t.tween_property(mech.leg_1, "position:y", mech.leg_1.position.y, time)
+	t.tween_property(mech.leg_2, "position:y", mech.leg_2.position.y, time)
+	t.tween_property(mech.anim_position, "position:y", mech.anim_position.position.y, time)
+
+	mech.leg_1.position.y -= FALL_IMPACT_DISPLACEMENT
+	mech.leg_2.position.y -= FALL_IMPACT_DISPLACEMENT
+	mech.anim_position.position.y += FALL_IMPACT_DISPLACEMENT
+
+	return t

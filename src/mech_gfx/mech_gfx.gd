@@ -1,5 +1,6 @@
 extends Node2D
 class_name MechGFX
+signal animation_finished()
 
 
 
@@ -14,61 +15,57 @@ enum Movement {
 
 enum Projectile {
 	ROCKET,
-	ROCKET_SMALL,
+	BIG_ROCKET,
 }
 
 
 
-const JumpAnimation = preload("movements/jump.gd")
-const SwordAnimation = preload("movements/sword.gd")
-const BackflipAnimation = preload("movements/backflip.gd")
-
 const ProjectileRocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 
 
-@onready var torso: MechGFXPart = %Torso
-@onready var leg_1: MechGFXPart = %Leg1
-@onready var leg_2: MechGFXPart = %Leg2
-@onready var side_weapon_1: MechGFXPart = %SideWeapon1
-@onready var side_weapon_2: MechGFXPart = %SideWeapon2
-@onready var side_weapon_3: MechGFXPart = %SideWeapon3
-@onready var side_weapon_4: MechGFXPart = %SideWeapon4
-@onready var top_weapon_1: MechGFXPart = %TopWeapon1
-@onready var top_weapon_2: MechGFXPart = %TopWeapon2
-@onready var drone: MechGFXPart = %Drone
-@onready var charge_engine: MechGFXPart = %ChargeEngine
-@onready var grappling_hook: MechGFXPart = %GrapplingHook
-@onready var hat: MechGFXPart = %Hat
 
+@onready var anim_position: Node2D = %AnimPosition
+@onready var anim_rotation: Node2D = %AnimRotation
+
+@onready var drone_spot: Node2D = %DroneSpot
+
+# Parts
+@onready var side_weapon_2: Node2D = %SideWeapon2
+@onready var side_weapon_4: Node2D = %SideWeapon4
+@onready var top_weapon_2: Node2D = %TopWeapon2
+@onready var leg_2: Node2D = %Leg2
+@onready var torso: Node2D = %Torso
+@onready var leg_1: Node2D = %Leg1
+@onready var top_weapon_1: Node2D = %TopWeapon1
+@onready var side_weapon_1: Node2D = %SideWeapon1
+@onready var side_weapon_3: Node2D = %SideWeapon3
+@onready var hat: Node2D = %Hat
+@onready var drone: Node2D = %Drone
+
+# Other GFX
+@onready var charge_engine: Node2D = %ChargeEngine
+@onready var grappling_hook: Node2D = %GrapplingHook
 @onready var thrust_1: Node2D = %Thrust1
 @onready var thrust_2: Node2D = %Thrust2
 
-@onready var rotator: Node2D = %Rotator
-@onready var mech_parts: Node2D = %MechParts
-
 @onready var parts = [
+	side_weapon_2,
+	side_weapon_4,
+	top_weapon_2,
+	leg_2,
 	torso,
 	leg_1,
-	leg_2,
-	side_weapon_1,
-	side_weapon_2,
-	side_weapon_3,
-	side_weapon_4,
 	top_weapon_1,
-	top_weapon_2,
-	drone,
-	charge_engine,
-	grappling_hook,
+	side_weapon_1,
+	side_weapon_3,
 	hat,
+	drone,
 ]
-
-
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 
 
 var build: MechBuild
-var animation_speed: float = 1.25
+var movement_speed: float = 1
 
 
 
@@ -100,44 +97,38 @@ func set_build(value: MechBuild) -> void:
 
 
 func play_jump() -> void:
-	JumpAnimation.play(self, animation_speed)
+	await MechMovementJump.play(self, movement_speed)
+	animation_finished.emit()
 
 
 func play_backflip() -> void:
-	BackflipAnimation.play(self, animation_speed)
+	await MechMovementBackflip.play(self, movement_speed)
+	animation_finished.emit()
 
 
-func play_sword(slot: MechBuild.Slot) -> void:
-	SwordAnimation.play(self, animation_speed, slot)
+func play_melee(slot: MechBuild.Slot) -> void:
+	await MechMovementMelee.play(self, movement_speed, slot)
+	animation_finished.emit()
 
 
-func use_item(slot: MechBuild.Slot) -> void:
+func play_for_slot(slot: MechBuild.Slot) -> void:
 
 	var item: ItemDef = build.get_item(slot).def
+	var part: MechGFXPart = get_part_for_slot(slot)
+	var target: Vector2 = part.global_position + Vector2(1000, 0)
 
 	match item.mech_movement:
+		Movement.JUMP: play_jump()
+		Movement.MELEE: play_melee(slot)
+		Movement.BACKFLIP: play_backflip()
 
-		Movement.JUMP:
-			JumpAnimation.play(self, animation_speed)
-
-		Movement.MELEE:
-			SwordAnimation.play(self, animation_speed, slot)
-
-		Movement.BACKFLIP:
-			BackflipAnimation.play(self, animation_speed)
-
-	var part = get_part_for_slot(slot)
-
-	part.play_animation(part.global_position + Vector2(1000, 0))
+	part.play_animation(target)
 
 
 func reorganize() -> void:
 
-	mech_parts.position *= 0
-	mech_parts.scale = Vector2.ONE
-
-	thrust_1.scale *= 0
-	thrust_2.scale *= 0
+	anim_position.position = Vector2.ZERO
+	anim_rotation.rotation = 0
 
 	for part in parts:
 		part.scale = Vector2.ONE
@@ -157,45 +148,6 @@ func get_part_for_slot(slot: MechBuild.Slot) -> MechGFXPart:
 			push_error("NOT IMPLEMENTED")
 
 	return null
-
-
-
-func __sword(part: MechGFXPart, step_towards_opponent: bool = false) -> void:
-
-	var S = 1.0 # speed
-
-	var swing: Tween = create_tween()
-	var step: Tween
-	var step2: Tween
-
-	if step_towards_opponent:
-		step = create_tween()
-		step.set_parallel(true)
-		step.tween_property(mech_parts, "position", Vector2(80, 0), 0.3 / S)
-		step.tween_property(leg_2, "position:x", leg_2.position.x - 80, 0.3 / S)
-		step.set_parallel(false)
-		step.tween_interval(0.5)
-		step.tween_property(mech_parts, "position", Vector2.ZERO, 0.4 / S)
-		step.set_parallel(true)
-		step.tween_property(leg_2, "position:x", leg_2.position.x, 0.4 / S)
-
-		step2 = create_tween()
-		step2.tween_property(leg_1, "position", leg_1.position + Vector2(40, -30), 0.15 / S)
-		step2.tween_property(leg_1, "position", leg_1.position + Vector2(80, 0), 0.15 / S)
-		step2.tween_interval(0.5)
-		step2.tween_property(leg_1, "position", leg_1.position + Vector2(40, -30), 0.2 / S)
-		step2.tween_property(leg_1, "position", leg_1.position, 0.2 / S)
-
-	swing.tween_property(part, "rotation_degrees", -100, 0.3 / S).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	swing.tween_property(part, "rotation_degrees", 80, 0.15 / S)
-	swing.tween_property(part, "rotation_degrees", 0, 0.8 / S).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-
-	if step_towards_opponent:
-		await step2.finished
-	else:
-		await swing.finished
-
-	reorganize()
 
 
 func __dismount() -> void:
@@ -231,3 +183,16 @@ func __arrange() -> void:
 
 	thrust_1.position = legs_to_thrust - legs_to_torso
 	thrust_2.position = legs_to_thrust - legs_to_torso
+
+
+
+static func is_frontal_slot(slot: MechBuild.Slot) -> bool:
+	return slot in [
+		MechBuild.Slot.SIDE_WEAPON_1,
+		MechBuild.Slot.SIDE_WEAPON_3,
+		MechBuild.Slot.TOP_WEAPON_1,
+	]
+
+
+static func is_part_melee(part: MechGFXPart) -> bool:
+	return part.item && part.item.def.mech_movement == Movement.MELEE

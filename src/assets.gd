@@ -55,3 +55,14 @@ func export_items() -> void:
 		item_dicts.append(item.to_json())
 
 	file.store_string(JSON.stringify(item_dicts))
+
+
+func save_items() -> void:
+
+	var file = FileAccess.open(ITEM_DEFINITIONS_PATH, FileAccess.WRITE)
+	var item_dicts: Array[Dictionary] = []
+
+	for item in item_defs.values():
+		item_dicts.append(item.to_json())
+
+	file.store_string(JSON.stringify(item_dicts))
