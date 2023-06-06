@@ -102,7 +102,6 @@ texture = ExtResource("3_kg1cl")
 offset = Vector2(14, 0)
 
 [node name="NozzleFireYellow" type="Sprite2D" parent="."]
-visible = false
 top_level = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_grsdc")
