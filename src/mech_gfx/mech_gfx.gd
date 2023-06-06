@@ -139,13 +139,19 @@ func reorganize() -> void:
 
 func get_part_for_slot(slot: MechBuild.Slot) -> MechGFXPart:
 
+	# can probably make this dynamic
+
 	match slot:
+		MechBuild.Slot.LEGS: return leg_1
 		MechBuild.Slot.SIDE_WEAPON_1: return side_weapon_1
 		MechBuild.Slot.SIDE_WEAPON_2: return side_weapon_2
 		MechBuild.Slot.SIDE_WEAPON_3: return side_weapon_3
 		MechBuild.Slot.SIDE_WEAPON_4: return side_weapon_4
+		MechBuild.Slot.TOP_WEAPON_1: return top_weapon_1
+		MechBuild.Slot.TOP_WEAPON_2: return top_weapon_2
+		MechBuild.Slot.DRONE: return drone
 		_:
-			push_error("NOT IMPLEMENTED")
+			assert(false, "NOT IMPLEMENTED")
 
 	return null
 
