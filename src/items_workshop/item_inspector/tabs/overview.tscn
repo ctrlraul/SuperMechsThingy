@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b06swf75jd67p"]
+[gd_scene load_steps=6 format=3 uid="uid://b06swf75jd67p"]
 
 [ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_10fwx"]
 [ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_7uomw"]
 [ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_6c03h"]
 [ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://items_workshop/item_inspector/stats_display.tscn" id="4_lbxtg"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_6g42o"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.388235)
+shadow_color = Color(0, 0, 0, 0.415686)
+
 [node name="Overview" type="TabBar"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -49,13 +55,29 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 texture = ExtResource("3_6c03h")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "image.png"
+label_settings = SubResource("LabelSettings_6g42o")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
