@@ -55,14 +55,14 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SpriteContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/SpriteContainer"]
 layout_mode = 2
 
-[node name="Sprite" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="Sprite" type="TextureRect" parent="MarginContainer/VBoxContainer/SpriteContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -70,7 +70,7 @@ texture = ExtResource("3_6c03h")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/SpriteContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -131,6 +131,8 @@ layout_mode = 2
 layout_mode = 2
 text = "Export"
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/SpriteContainer" to="." method="_on_sprite_container_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/SpriteContainer" to="." method="_on_sprite_container_mouse_exited"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/TypeOptions" to="." method="_on_type_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer2/ElementOptions" to="." method="_on_element_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]

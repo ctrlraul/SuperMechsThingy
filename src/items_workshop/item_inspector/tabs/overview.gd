@@ -70,3 +70,10 @@ func _on_element_selected(index: int) -> void:
 func _on_export_button_pressed() -> void:
 	Assets.export_item(item)
 
+
+func _on_sprite_container_mouse_entered() -> void:
+	sprite_name_label.visible = false
+
+
+func _on_sprite_container_mouse_exited() -> void:
+	sprite_name_label.visible = true
