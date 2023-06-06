@@ -131,8 +131,9 @@ func reorganize() -> void:
 	anim_rotation.rotation = 0
 
 	for part in parts:
-		part.scale = Vector2.ONE
-		part.rotation = 0
+		if part != drone: # don't overthink it
+			part.scale = Vector2.ONE
+			part.rotation = 0
 
 	__arrange()
 
@@ -156,6 +157,7 @@ func get_part_for_slot(slot: MechBuild.Slot) -> MechGFXPart:
 	return null
 
 
+
 func __dismount() -> void:
 	for part in parts:
 		part.set_item(null)
@@ -171,6 +173,7 @@ func __arrange() -> void:
 	var torso_to_side_weapon_4 = build.torso.def.joints[ItemDef.Joint.SIDE_WEAPON_4]
 	var torso_to_top_weapon_1 = build.torso.def.joints[ItemDef.Joint.TOP_WEAPON_1]
 	var torso_to_top_weapon_2 = build.torso.def.joints[ItemDef.Joint.TOP_WEAPON_2]
+	var torso_to_drone = build.torso.def.joints[ItemDef.Joint.DRONE]
 	var legs_to_torso: Vector2 = build.legs.def.joints[ItemDef.Joint.TORSO]
 	var legs_to_thrust: Vector2 = build.legs.def.joints[ItemDef.Joint.LEG_THRUST]
 
@@ -189,6 +192,9 @@ func __arrange() -> void:
 
 	thrust_1.position = legs_to_thrust - legs_to_torso
 	thrust_2.position = legs_to_thrust - legs_to_torso
+
+	drone_spot.position = torso.position + torso_to_drone - torso.size * 0.5
+	drone.position = drone_spot.global_position
 
 
 

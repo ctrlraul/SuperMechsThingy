@@ -75,6 +75,11 @@ unique_name_in_owner = true
 [node name="DroneSpot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="DroneScaler" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DroneContainer/Drone")
+update_position = false
+update_rotation = false
+
 [node name="DroneContainer" type="Node" parent="."]
 
 [node name="Drone" parent="DroneContainer" instance=ExtResource("2_0vqcc")]
