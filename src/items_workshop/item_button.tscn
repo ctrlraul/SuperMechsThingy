@@ -1,12 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://5a8mj8ir3se8"]
+[gd_scene load_steps=4 format=3 uid="uid://5a8mj8ir3se8"]
 
-[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="1_ct6lo"]
-[ext_resource type="Script" path="res://items_workshop/item_button.gd" id="2_yhmpy"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_0tfne"]
+[ext_resource type="Script" path="res://items_workshop/item_button.gd" id="2_j0vbb"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_1nv7r"]
 
 [node name="ItemButton" type="Button"]
 custom_minimum_size = Vector2(60, 60)
-icon = ExtResource("1_ct6lo")
+theme = ExtResource("1_0tfne")
 flat = true
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("2_yhmpy")
+script = ExtResource("2_j0vbb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_1nv7r")
+expand_mode = 1
+stretch_mode = 5
