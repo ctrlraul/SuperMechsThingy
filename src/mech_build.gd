@@ -82,6 +82,6 @@ func get_item(slot: Slot) -> Item:
 func has(item: ItemDef) -> bool:
 	# Room for optimization
 	for part in __parts.values():
-		if part.def == item:
+		if part && part.def == item:
 			return true
 	return false
