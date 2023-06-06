@@ -10,6 +10,16 @@ extends Node2D
 @onready var item_inspector: Control = %ItemInspector
 @onready var save_button: Button = %SaveButton
 
+# Slots
+@onready var torso_slot: ItemSlot = %TorsoSlot
+@onready var legs_slot: ItemSlot = %LegsSlot
+@onready var side_weapon_1_slot: ItemSlot = %SideWeapon1Slot
+@onready var side_weapon_2_slot: ItemSlot = %SideWeapon2Slot
+@onready var side_weapon_3_slot: ItemSlot = %SideWeapon3Slot
+@onready var side_weapon_4_slot: ItemSlot = %SideWeapon4Slot
+@onready var top_weapon_1_slot: ItemSlot = %TopWeapon1Slot
+@onready var top_weapon_2_slot: ItemSlot = %TopWeapon2Slot
+@onready var drone_slot: ItemSlot = %DroneSlot
 
 
 var mech_build: MechBuild = MechBuild.new()
@@ -124,3 +134,45 @@ func _on_export_button_pressed() -> void:
 
 func _on_save_button_pressed() -> void:
 	Assets.save_items()
+
+
+func _on_general_item_drop_area_item_button_dropped(item: ItemDef) -> void:
+
+	match item.type:
+
+		ItemDef.Type.TORSO: torso_slot.set_item(item)
+		ItemDef.Type.LEGS: legs_slot.set_item(item)
+		ItemDef.Type.DRONE: drone_slot.set_item(item)
+
+		ItemDef.Type.SIDE_WEAPON:
+
+			var equipped: bool = false
+			var side_weapon_slots: Array[ItemSlot] = [
+				side_weapon_1_slot, side_weapon_2_slot,
+				side_weapon_3_slot, side_weapon_4_slot,
+			]
+
+			for slot in side_weapon_slots:
+				if slot.item == null:
+					slot.set_item(item)
+					equipped = true
+					break
+
+			if !equipped:
+				side_weapon_1_slot.set_item(item)
+
+		ItemDef.Type.TOP_WEAPON:
+
+			var equipped: bool = false
+			var top_weapon_slots: Array[ItemSlot] = [
+				top_weapon_1_slot, top_weapon_2_slot
+			]
+
+			for slot in top_weapon_slots:
+				if slot.item == null:
+					slot.set_item(item)
+					equipped = true
+					break
+
+			if !equipped:
+				top_weapon_1_slot.set_item(item)

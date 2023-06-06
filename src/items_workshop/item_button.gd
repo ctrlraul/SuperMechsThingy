@@ -1,5 +1,5 @@
 extends Button
-
+class_name SMItemButton
 
 
 var item: ItemDef

@@ -43,17 +43,17 @@ func set_item(value: ItemDef) -> void:
 
 	if value == null:
 		clear()
+		return
 
+
+	item = value
+
+	if item.element < ELEMENT_COLORS.size():
+		$Background.color = ELEMENT_COLORS[item.element]
 	else:
+		$Background.color = OTHER_ELEMENT_COLOR
 
-		item = value
-
-		if item.element < ELEMENT_COLORS.size():
-			$Background.color = ELEMENT_COLORS[item.element]
-		else:
-			$Background.color = OTHER_ELEMENT_COLOR
-
-		$Sprite.texture = Assets.get_texture_for_item(item)
+	$Sprite.texture = Assets.get_texture_for_item(item)
 
 	item_equipped.emit(item, slot_id)
 
@@ -62,3 +62,4 @@ func clear() -> void:
 	item = null
 	$Background.color = OTHER_ELEMENT_COLOR
 	$Sprite.texture = null
+	item_equipped.emit(null, slot_id)

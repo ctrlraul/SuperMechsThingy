@@ -18,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 2
@@ -25,6 +26,7 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 57.0
 offset_bottom = 57.0
+mouse_filter = 2
 color = Color(1, 0, 1, 1)
 
 [node name="Sprite" type="TextureRect" parent="."]
@@ -33,6 +35,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 55.0
 offset_bottom = 55.0
+mouse_filter = 2
 texture = ExtResource("2_r73cn")
 expand_mode = 1
 stretch_mode = 5

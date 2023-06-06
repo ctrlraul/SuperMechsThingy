@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://qusjo0tcn8pi"]
+[gd_scene load_steps=7 format=3 uid="uid://qusjo0tcn8pi"]
 
 [ext_resource type="Script" path="res://items_workshop/items_workshop.gd" id="1_14ctr"]
 [ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_workshop/item_button.tscn" id="2_8455x"]
 [ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_k24p4"]
 [ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://items_workshop/item_slot.tscn" id="4_gp330"]
+[ext_resource type="Script" path="res://items_workshop/general_item_drop_area.gd" id="4_yoj7s"]
 [ext_resource type="PackedScene" uid="uid://dk5c0ulwu1p7u" path="res://items_workshop/item_inspector/item_inspector.tscn" id="5_0htov"]
 
 [node name="ItemsWorkshop" type="Node2D"]
@@ -29,6 +30,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="GeneralItemDropArea" type="Control" parent="UI/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_yoj7s")
+
 [node name="MarginContainer" type="MarginContainer" parent="UI/Theme"]
 layout_mode = 1
 anchors_preset = 15
@@ -36,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -43,6 +54,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Theme/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Items" type="Panel" parent="UI/Theme/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -70,10 +82,12 @@ layout_mode = 2
 [node name="Center" type="VBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Space" type="Control" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="SlotsContainer" type="GridContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
 unique_name_in_owner = true
@@ -83,50 +97,60 @@ size_flags_vertical = 4
 columns = 3
 
 [node name="TopWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 6
 
 [node name="DroneSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 4
 slot_id = 8
 
 [node name="TopWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 7
 
 [node name="SideWeapon3Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 4
 
 [node name="TorsoSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SideWeapon4Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 5
 
 [node name="SideWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 2
 
 [node name="LegsSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 1
 slot_id = 1
 
 [node name="SideWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="JumpButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
@@ -164,6 +188,7 @@ text = "Save"
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="item_button_dropped" from="UI/Theme/GeneralItemDropArea" to="." method="_on_general_item_drop_area_item_button_dropped"]
 [connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/JumpButton" to="." method="_on_jump_button_pressed"]
 [connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/SwordButton" to="." method="_on_sword_button_pressed"]
 [connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/BackflipButton" to="." method="_on_backflip_button_pressed"]
