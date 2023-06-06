@@ -39,3 +39,5 @@ mouse_filter = 2
 texture = ExtResource("2_r73cn")
 expand_mode = 1
 stretch_mode = 5
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

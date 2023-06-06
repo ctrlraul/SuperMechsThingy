@@ -30,41 +30,9 @@ func _ready() -> void:
 
 	save_button.visible = OS.has_feature("editor")
 
-	mech_build.set_item(
-		MechBuild.Slot.TORSO,
-		Item.new({
-			"uuid": "uuid",
-			"item_id": 1,
-			"level": 1,
-			"paint": 0
-		})
-	)
-
-	mech_build.set_item(
-		MechBuild.Slot.LEGS,
-		Item.new({
-			"uuid": "uuid",
-			"item_id": 7,
-			"level": 1,
-			"paint": 0
-		})
-	)
-
-	mech_build.set_item(
-		MechBuild.Slot.SIDE_WEAPON_1,
-		Item.new({
-			"uuid": "uuid",
-			"item_id": 65,
-			"level": 1,
-			"paint": 0
-		})
-	)
-
-	mech_gfx.set_build(mech_build)
-
-
-	for item_slot in %SlotsContainer.get_children():
-		item_slot.item_equipped.connect(_on_item_equipped)
+	for slot in %SlotsContainer.get_children():
+		slot.item_equipped.connect(_on_item_equipped)
+		slot.selected.connect(_on_item_slot_selected)
 
 	for item_button in item_buttons_container.get_children():
 		item_button.queue_free()
@@ -76,8 +44,6 @@ func _ready() -> void:
 
 	await get_tree().create_timer(0.5).timeout
 
-	mech_gfx.play_for_slot(MechBuild.Slot.SIDE_WEAPON_1)
-
 
 
 func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
@@ -88,6 +54,14 @@ func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
 		mech_build.set_item(slot_id, null)
 
 	mech_gfx.set_build(mech_build)
+
+	if item_inspector.item == null:
+		item_inspector.set_item(item)
+
+
+func _on_item_slot_selected(slot: ItemSlot) -> void:
+	if slot.item != null:
+		item_inspector.set_item(slot.item)
 
 
 func _on_jump_button_pressed() -> void:
