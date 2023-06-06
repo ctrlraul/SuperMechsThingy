@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b06swf75jd67p"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_10fwx"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_7uomw"]
-[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_6c03h"]
-[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://items_workshop/item_inspector/stats_display.tscn" id="4_lbxtg"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_bah23"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_6a14r"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_d8yhn"]
+[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://items_workshop/item_inspector/stats_display.tscn" id="4_6vkpo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6g42o"]
 font_size = 12
@@ -18,8 +18,8 @@ offset_right = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_10fwx")
-script = ExtResource("2_7uomw")
+theme = ExtResource("1_bah23")
+script = ExtResource("2_6a14r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -66,7 +66,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-texture = ExtResource("3_6c03h")
+texture = ExtResource("3_d8yhn")
 expand_mode = 1
 stretch_mode = 5
 
@@ -119,7 +119,7 @@ popup/item_0/id = 0
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StatsDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_lbxtg")]
+[node name="StatsDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_6vkpo")]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 3

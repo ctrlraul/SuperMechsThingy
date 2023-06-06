@@ -1,21 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://doo03nnqpthbc"]
 
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="1_37h7p"]
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_tdhdg"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_cfy8u"]
-[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_6rcma"]
-[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/icons/arrows_pointing_each_other.png" id="5_y5ry7"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_whpmy"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="2_af7br"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="3_rmk7c"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="4_dswoi"]
+[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/images/icons/arrows_pointing_each_other.png" id="5_encmm"]
 
 [node name="PointsEditor" type="Control"]
 clip_contents = true
-custom_minimum_size = Vector2(380, 380)
+custom_minimum_size = Vector2(360, 360)
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_tdhdg")
-script = ExtResource("1_37h7p")
-point_scene = ExtResource("2_cfy8u")
+theme = ExtResource("1_whpmy")
+script = ExtResource("2_af7br")
+point_scene = ExtResource("3_rmk7c")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0, 0.0352941, 0.0588235, 1)
 
 [node name="Canvas" type="Control" parent="."]
 unique_name_in_owner = true
@@ -47,7 +48,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_6rcma")
+texture = ExtResource("4_dswoi")
 
 [node name="Points" type="Control" parent="Canvas"]
 unique_name_in_owner = true
@@ -72,7 +73,7 @@ mouse_filter = 2
 [node name="ResetTransformsButton" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("5_y5ry7")
+icon = ExtResource("5_encmm")
 expand_icon = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

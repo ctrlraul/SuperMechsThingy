@@ -1,19 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://qusjo0tcn8pi"]
+[gd_scene load_steps=8 format=3 uid="uid://qusjo0tcn8pi"]
 
-[ext_resource type="Script" path="res://items_workshop/items_workshop.gd" id="1_14ctr"]
-[ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_workshop/item_button.tscn" id="2_8455x"]
-[ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_k24p4"]
-[ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://items_workshop/item_slot.tscn" id="4_gp330"]
-[ext_resource type="Script" path="res://items_workshop/general_item_drop_area.gd" id="4_yoj7s"]
-[ext_resource type="PackedScene" uid="uid://dk5c0ulwu1p7u" path="res://items_workshop/item_inspector/item_inspector.tscn" id="5_0htov"]
+[ext_resource type="Script" path="res://items_workshop/items_workshop.gd" id="1_185ls"]
+[ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_workshop/item_button.tscn" id="2_cwx4u"]
+[ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_q0fkc"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="4_awgag"]
+[ext_resource type="Script" path="res://items_workshop/general_item_drop_area.gd" id="5_xcasn"]
+[ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://items_workshop/item_slot.tscn" id="6_hlytu"]
+[ext_resource type="PackedScene" uid="uid://dk5c0ulwu1p7u" path="res://items_workshop/item_inspector/item_inspector.tscn" id="7_8w1xa"]
 
 [node name="ItemsWorkshop" type="Node2D"]
-script = ExtResource("1_14ctr")
-item_button_scene = ExtResource("2_8455x")
+script = ExtResource("1_185ls")
+item_button_scene = ExtResource("2_cwx4u")
 
 [node name="Preview" type="Node2D" parent="."]
 
-[node name="MechGFX" parent="Preview" instance=ExtResource("3_k24p4")]
+[node name="MechGFX" parent="Preview" instance=ExtResource("3_q0fkc")]
 unique_name_in_owner = true
 position = Vector2(0, 80)
 scale = Vector2(0.7, 0.7)
@@ -30,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_awgag")
 
 [node name="GeneralItemDropArea" type="Control" parent="UI/Theme"]
 layout_mode = 1
@@ -38,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_yoj7s")
+script = ExtResource("5_xcasn")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Theme"]
 layout_mode = 1
@@ -58,11 +60,11 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Items" type="Panel" parent="UI/Theme/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(332, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Items"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Items"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,20 +72,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ItemButtonsContainer" type="GridContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Items/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Items/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemButtonsContainer" type="GridContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Items/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 5
 
-[node name="ItemButton" parent="UI/Theme/MarginContainer/HBoxContainer/Items/ScrollContainer/ItemButtonsContainer" instance=ExtResource("2_8455x")]
+[node name="ItemButton" parent="UI/Theme/MarginContainer/HBoxContainer/Items/MarginContainer/ScrollContainer/ItemButtonsContainer" instance=ExtResource("2_cwx4u")]
 layout_mode = 2
 
 [node name="Center" type="VBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ExportButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Export"
+
+[node name="SaveButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Save"
 
 [node name="Space" type="Control" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
 layout_mode = 2
@@ -97,104 +118,88 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 columns = 3
 
-[node name="TopWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="TopWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 6
 
-[node name="DroneSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="DroneSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 4
 slot_id = 8
 
-[node name="TopWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="TopWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 7
 
-[node name="SideWeapon3Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="SideWeapon3Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 4
 
-[node name="TorsoSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="TorsoSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SideWeapon4Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="SideWeapon4Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 5
 
-[node name="SideWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="SideWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 2
 
-[node name="LegsSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="LegsSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 1
 slot_id = 1
 
-[node name="SideWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("4_gp330")]
+[node name="SideWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/SlotsContainer" instance=ExtResource("6_hlytu")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer/Center"]
 layout_mode = 2
-mouse_filter = 2
 alignment = 1
 
-[node name="JumpButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
+[node name="JumpButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Jump"
 
-[node name="SwordButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
+[node name="SwordButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Sword"
 
-[node name="BackflipButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
+[node name="BackflipButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Backflip
 "
 
-[node name="Control" type="Control" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ExportButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Export"
-
-[node name="SaveButton" type="Button" parent="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Save"
-
-[node name="ItemInspector" parent="UI/Theme/MarginContainer/HBoxContainer" instance=ExtResource("5_0htov")]
+[node name="ItemInspector" parent="UI/Theme/MarginContainer/HBoxContainer" instance=ExtResource("7_8w1xa")]
 unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="item_button_dropped" from="UI/Theme/GeneralItemDropArea" to="." method="_on_general_item_drop_area_item_button_dropped"]
-[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/JumpButton" to="." method="_on_jump_button_pressed"]
-[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/SwordButton" to="." method="_on_sword_button_pressed"]
-[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/BackflipButton" to="." method="_on_backflip_button_pressed"]
 [connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]
 [connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2/JumpButton" to="." method="_on_jump_button_pressed"]
+[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2/SwordButton" to="." method="_on_sword_button_pressed"]
+[connection signal="pressed" from="UI/Theme/MarginContainer/HBoxContainer/Center/HBoxContainer2/BackflipButton" to="." method="_on_backflip_button_pressed"]
 [connection signal="animation_preview_requested" from="UI/Theme/MarginContainer/HBoxContainer/ItemInspector" to="." method="_on_item_inspector_animation_preview_requested"]
 [connection signal="joint_changed" from="UI/Theme/MarginContainer/HBoxContainer/ItemInspector" to="." method="_on_item_joint_changed"]
 [connection signal="ornament_changed" from="UI/Theme/MarginContainer/HBoxContainer/ItemInspector" to="." method="_on_item_inspector_ornament_changed"]

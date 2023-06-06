@@ -1,19 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk5c0ulwu1p7u"]
+[gd_scene load_steps=7 format=3 uid="uid://dk5c0ulwu1p7u"]
 
-[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="1_ymcxc"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_p2bhk"]
-[ext_resource type="PackedScene" uid="uid://b06swf75jd67p" path="res://items_workshop/item_inspector/tabs/overview.tscn" id="3_ahhej"]
-[ext_resource type="PackedScene" uid="uid://dubsnfnufbcw3" path="res://items_workshop/item_inspector/tabs/joints.tscn" id="4_n3thu"]
-[ext_resource type="PackedScene" uid="uid://clmqvuer8ehnq" path="res://items_workshop/item_inspector/tabs/animations.tscn" id="5_prm08"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_x7dcs"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="2_qmrs4"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="3_0q16k"]
+[ext_resource type="PackedScene" uid="uid://b06swf75jd67p" path="res://items_workshop/item_inspector/tabs/overview.tscn" id="4_hecqi"]
+[ext_resource type="PackedScene" uid="uid://dubsnfnufbcw3" path="res://items_workshop/item_inspector/tabs/joints.tscn" id="5_6qijp"]
+[ext_resource type="PackedScene" uid="uid://clmqvuer8ehnq" path="res://items_workshop/item_inspector/tabs/animations.tscn" id="6_ip77g"]
 
 [node name="ItemInspector" type="Control"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 400.0
 grow_vertical = 2
-script = ExtResource("1_ymcxc")
-point_scene = ExtResource("2_p2bhk")
+theme = ExtResource("1_x7dcs")
+script = ExtResource("2_qmrs4")
+point_scene = ExtResource("3_0q16k")
 
 [node name="EmptyText" type="Panel" parent="."]
 visible = false
@@ -46,16 +49,16 @@ grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 
-[node name="Overview" parent="TabContainer" instance=ExtResource("3_ahhej")]
+[node name="Overview" parent="TabContainer" instance=ExtResource("4_hecqi")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Joints" parent="TabContainer" instance=ExtResource("4_n3thu")]
+[node name="Joints" parent="TabContainer" instance=ExtResource("5_6qijp")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Animations" parent="TabContainer" instance=ExtResource("5_prm08")]
+[node name="Animations" parent="TabContainer" instance=ExtResource("6_ip77g")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
