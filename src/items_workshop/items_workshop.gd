@@ -41,6 +41,7 @@ func _ready() -> void:
 		var item_button = item_button_scene.instantiate()
 		item_buttons_container.add_child(item_button)
 		item_button.set_item(item)
+		item_button.pressed.connect(func(): _on_item_button_selected(item_button))
 
 	await get_tree().create_timer(0.5).timeout
 
@@ -62,6 +63,10 @@ func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
 func _on_item_slot_selected(slot: ItemSlot) -> void:
 	if slot.item != null:
 		item_inspector.set_item(slot.item)
+
+
+func _on_item_button_selected(button: SMItemButton) -> void:
+	item_inspector.set_item(button.item)
 
 
 func _on_jump_button_pressed() -> void:
