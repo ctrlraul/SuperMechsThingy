@@ -19,6 +19,7 @@ position = Vector2(0, 80)
 scale = Vector2(0.7, 0.7)
 
 [node name="Camera2D" type="Camera2D" parent="Preview"]
+offset = Vector2(49, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
