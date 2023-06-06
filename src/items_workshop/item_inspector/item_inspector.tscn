@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Drop an item here"
+text = "Select or drop an item here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
