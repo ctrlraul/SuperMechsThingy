@@ -116,7 +116,7 @@ func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
 	var projectile = RocketScene.instantiate()
 
 	projectiles_container.add_child(projectile)
-	projectile.position = global_position + (-torso_joint + config.place) * global_scale - recoil
+	projectile.position = global_position + (-torso_joint + config.place) * global_scale
 	projectile.scale = global_scale
 	projectile.fire(target)
 
@@ -139,7 +139,7 @@ func __fire_big_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Twe
 	var projectile = BigRocketScene.instantiate()
 
 	projectiles_container.add_child(projectile)
-	projectile.position = global_position + (-torso_joint + config.place) * global_scale - recoil
+	projectile.position = global_position + (-torso_joint + config.place) * global_scale
 	projectile.scale = global_scale
 	projectile.fire(target)
 
