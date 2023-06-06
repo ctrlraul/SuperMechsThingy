@@ -26,8 +26,12 @@ func set_item(value: ItemDef) -> void:
 
 		for joint_value in ItemDef.get_joints_for_type(item.type):
 
+			var joint: Vector2
+
+			if joint_value in item.joints:
+				joint = item.joints[joint_value]
+
 			var joint_key: String = ItemDef.Joint.find_key(joint_value)
-			var joint: Vector2 = item.joints[joint_value]
 			var point = points_editor.add_point(joint, Color(1, 0, 1), joint_key.capitalize())
 
 			point.moved.connect(

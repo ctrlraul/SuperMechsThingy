@@ -28,7 +28,9 @@ var size: Vector2i
 var item: Item
 var torso_joint: Vector2 :
 	get:
-		return item.def.joints[ItemDef.Joint.TORSO]
+		if ItemDef.Joint.TORSO in item.def.joints:
+			return item.def.joints[ItemDef.Joint.TORSO]
+		return Vector2.ZERO
 
 
 
