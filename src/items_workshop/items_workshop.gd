@@ -47,6 +47,48 @@ func _ready() -> void:
 
 
 
+func __auto_equip(item: ItemDef) -> void:
+	match item.type:
+
+		ItemDef.Type.TORSO: torso_slot.set_item(item)
+		ItemDef.Type.LEGS: legs_slot.set_item(item)
+		ItemDef.Type.DRONE: drone_slot.set_item(item)
+
+		ItemDef.Type.SIDE_WEAPON:
+
+			var equipped: bool = false
+			var side_weapon_slots: Array[ItemSlot] = [
+				side_weapon_1_slot, side_weapon_2_slot,
+				side_weapon_3_slot, side_weapon_4_slot,
+			]
+
+			for slot in side_weapon_slots:
+				if slot.item == null:
+					slot.set_item(item)
+					equipped = true
+					break
+
+			if !equipped:
+				side_weapon_1_slot.set_item(item)
+
+		ItemDef.Type.TOP_WEAPON:
+
+			var equipped: bool = false
+			var top_weapon_slots: Array[ItemSlot] = [
+				top_weapon_1_slot, top_weapon_2_slot
+			]
+
+			for slot in top_weapon_slots:
+				if slot.item == null:
+					slot.set_item(item)
+					equipped = true
+					break
+
+			if !equipped:
+				top_weapon_1_slot.set_item(item)
+
+
+
 func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
 
 	if item != null:
@@ -99,12 +141,21 @@ func _on_item_inspector_ornament_changed(item) -> void:
 
 
 func _on_item_inspector_animation_preview_requested(item) -> void:
+
+	if !mech_build.torso:
+		torso_slot.set_item(Assets.get_first_torso())
+
+	if !mech_build.legs:
+		legs_slot.set_item(Assets.get_first_legs())
+
+	if !mech_build.has(item):
+		__auto_equip(item)
+
 	for id in MechBuild.Slot.values():
 		var build_item = mech_build.get_item(id)
 		if build_item && build_item.def == item:
 			mech_gfx.play_for_slot(id)
-			return
-	print("Item not equipped")
+			break
 
 
 func _on_export_button_pressed() -> void:
@@ -116,42 +167,4 @@ func _on_save_button_pressed() -> void:
 
 
 func _on_general_item_drop_area_item_button_dropped(item: ItemDef) -> void:
-
-	match item.type:
-
-		ItemDef.Type.TORSO: torso_slot.set_item(item)
-		ItemDef.Type.LEGS: legs_slot.set_item(item)
-		ItemDef.Type.DRONE: drone_slot.set_item(item)
-
-		ItemDef.Type.SIDE_WEAPON:
-
-			var equipped: bool = false
-			var side_weapon_slots: Array[ItemSlot] = [
-				side_weapon_1_slot, side_weapon_2_slot,
-				side_weapon_3_slot, side_weapon_4_slot,
-			]
-
-			for slot in side_weapon_slots:
-				if slot.item == null:
-					slot.set_item(item)
-					equipped = true
-					break
-
-			if !equipped:
-				side_weapon_1_slot.set_item(item)
-
-		ItemDef.Type.TOP_WEAPON:
-
-			var equipped: bool = false
-			var top_weapon_slots: Array[ItemSlot] = [
-				top_weapon_1_slot, top_weapon_2_slot
-			]
-
-			for slot in top_weapon_slots:
-				if slot.item == null:
-					slot.set_item(item)
-					equipped = true
-					break
-
-			if !equipped:
-				top_weapon_1_slot.set_item(item)
+	__auto_equip(item)

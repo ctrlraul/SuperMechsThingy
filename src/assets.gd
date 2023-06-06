@@ -38,6 +38,20 @@ func get_items() -> Array[ItemDef]:
 	return items_list
 
 
+func get_first_torso() -> ItemDef:
+	for item in item_defs.values():
+		if item.type == ItemDef.Type.TORSO:
+			return item
+	return null
+
+
+func get_first_legs() -> ItemDef:
+	for item in item_defs.values():
+		if item.type == ItemDef.Type.LEGS:
+			return item
+	return null
+
+
 func get_texture_for_item(item: ItemDef) -> Texture2D:
 	return load(ITEM_IMAGES_PATH.path_join(item.texture))
 
