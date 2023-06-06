@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://doo03nnqpthbc"]
+[gd_scene load_steps=6 format=3 uid="uid://doo03nnqpthbc"]
 
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="1_6j2nq"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_5gpvw"]
-[ext_resource type="Texture2D" uid="uid://c02g31xeucxk0" path="res://assets/items/Anguish.png" id="3_h7iwn"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="1_37h7p"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_tdhdg"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="2_cfy8u"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_6rcma"]
+[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/icons/arrows_pointing_each_other.png" id="5_y5ry7"]
 
 [node name="PointsEditor" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(380, 380)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_6j2nq")
-point_scene = ExtResource("2_5gpvw")
+theme = ExtResource("1_tdhdg")
+script = ExtResource("1_37h7p")
+point_scene = ExtResource("2_cfy8u")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -20,14 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Screen" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Canvas" type="Control" parent="."]
 unique_name_in_owner = true
@@ -52,7 +47,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_h7iwn")
+texture = ExtResource("3_6rcma")
 
 [node name="Points" type="Control" parent="Canvas"]
 unique_name_in_owner = true
@@ -66,4 +61,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="gui_input" from="Screen" to="." method="_on_screen_gui_input"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="ResetTransformsButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("5_y5ry7")
+expand_icon = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="MarginContainer/ResetTransformsButton" to="." method="_on_reset_transforms_button_pressed"]

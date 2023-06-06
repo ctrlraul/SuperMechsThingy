@@ -48,11 +48,11 @@ tab_alignment = 1
 
 [node name="Overview" parent="TabContainer" instance=ExtResource("3_ahhej")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="Joints" parent="TabContainer" instance=ExtResource("4_n3thu")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Animations" parent="TabContainer" instance=ExtResource("5_prm08")]

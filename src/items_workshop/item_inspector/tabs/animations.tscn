@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://clmqvuer8ehnq"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_nwvvn"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_1o65g"]
-[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor.tscn" id="3_wuqa4"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_ke3nh"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_nn4j4"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor.tscn" id="3_6en83"]
 
 [node name="Animations" type="TabBar"]
 anchors_preset = 15
@@ -11,8 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_nwvvn")
-script = ExtResource("2_1o65g")
+theme = ExtResource("1_ke3nh")
+script = ExtResource("2_nn4j4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -36,13 +36,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PreviewButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-layout_mode = 2
-text = "Preview"
-
-[node name="PointsEditor" parent="MarginContainer/Control/VBoxContainer" instance=ExtResource("3_wuqa4")]
+[node name="PointsEditor" parent="MarginContainer/Control/VBoxContainer" instance=ExtResource("3_6en83")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="PreviewButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Preview"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2

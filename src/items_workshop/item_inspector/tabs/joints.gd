@@ -4,6 +4,7 @@ signal joint_changed(item: ItemDef)
 
 
 @onready var points_editor: Control = %PointsEditor
+@onready var re_use_joints_drop_area: Panel = %ReUseJointsDropArea
 
 
 
@@ -18,6 +19,18 @@ func set_item(value: ItemDef) -> void:
 		return
 
 	item = value
+	re_use_joints_drop_area.item_type = item.type
+
+	__refresh_joints()
+
+
+func clear() -> void:
+	item = null
+	points_editor.clear()
+
+
+
+func __refresh_joints() -> void:
 
 	points_editor.clear()
 	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
@@ -40,11 +53,13 @@ func set_item(value: ItemDef) -> void:
 			)
 
 
-func clear() -> void:
-	item = null
-	points_editor.clear()
-
-
 func __emit_joint_changed(joint_value: ItemDef.Joint, place: Vector2) -> void:
 	item.joints[joint_value] = place
+	joint_changed.emit(item)
+
+
+
+func _on_re_use_joints_drop_area_joints_copied(joints: Dictionary) -> void:
+	item.joints = joints.duplicate()
+	__refresh_joints()
 	joint_changed.emit(item)
