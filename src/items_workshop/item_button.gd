@@ -7,7 +7,7 @@ var item: ItemDef
 
 
 func _get_drag_data(_position: Vector2):
-	return item
+	return DragData.new(self, item)
 
 
 func set_item(value: ItemDef) -> void:

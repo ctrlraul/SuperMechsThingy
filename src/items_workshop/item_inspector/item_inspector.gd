@@ -27,11 +27,11 @@ func _ready() -> void:
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is ItemDef
+	return data.data is ItemDef
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	set_item(data)
+	set_item(data.data)
 
 
 

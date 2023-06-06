@@ -71,7 +71,12 @@ func _ready() -> void:
 
 
 func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
-	mech_build.set_item(slot_id, Item.new(item))
+
+	if item != null:
+		mech_build.set_item(slot_id, Item.new(item))
+	else:
+		mech_build.set_item(slot_id, null)
+
 	mech_gfx.set_build(mech_build)
 
 

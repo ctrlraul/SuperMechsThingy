@@ -25,23 +25,28 @@ func _ready() -> void:
 	set_item(null)
 
 
+func _get_drag_data(_position: Vector2):
+	return DragData.new(self, item)
+
+
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is ItemDef && data.type == item_type
+	return data.data is ItemDef && data.data.type == item_type
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	set_item(data)
+	if data.source is ItemSlot:
+		data.source.set_item(item)
+	set_item(data.data)
 
 
 func set_item(value: ItemDef) -> void:
 
-	item = value
-
-	if item == null:
-		$Background.color = OTHER_ELEMENT_COLOR
-		$Sprite.texture = null
+	if value == null:
+		clear()
 
 	else:
+
+		item = value
 
 		if item.element < ELEMENT_COLORS.size():
 			$Background.color = ELEMENT_COLORS[item.element]
@@ -51,3 +56,9 @@ func set_item(value: ItemDef) -> void:
 		$Sprite.texture = Assets.get_texture_for_item(item)
 
 	item_equipped.emit(item, slot_id)
+
+
+func clear() -> void:
+	item = null
+	$Background.color = OTHER_ELEMENT_COLOR
+	$Sprite.texture = null
