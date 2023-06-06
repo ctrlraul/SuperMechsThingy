@@ -71,6 +71,11 @@ func export_items() -> void:
 	file.store_string(JSON.stringify(item_dicts))
 
 
+func export_item(item: ItemDef) -> void:
+	var file = FileAccess.open("user://%s.json" % item.display_name, FileAccess.WRITE)
+	file.store_string(JSON.stringify(item.to_json(), "\t"))
+
+
 func save_items() -> void:
 
 	var file = FileAccess.open(ITEM_DEFINITIONS_PATH, FileAccess.WRITE)

@@ -68,4 +68,5 @@ func _on_element_selected(index: int) -> void:
 
 
 func _on_export_button_pressed() -> void:
-	print(JSON.stringify(item.to_json(), "\t"))
+	Assets.export_item(item)
+
