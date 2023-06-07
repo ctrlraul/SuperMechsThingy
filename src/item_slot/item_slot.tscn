@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhdswejeu4hmu"]
+
+[ext_resource type="Script" path="res://item_slot/item_slot.gd" id="1_y471e"]
+[ext_resource type="Texture2D" uid="uid://cu08lgxw2iucq" path="res://item_slot/background.png" id="2_7bylq"]
+[ext_resource type="Texture2D" uid="uid://doko3ukpf1at2" path="res://item_slot/symbols/SIDE_WEAPON.png" id="3_itgym"]
+[ext_resource type="Texture2D" uid="uid://4rohljxk14aw" path="res://item_slot/backgrounds/PHYSICAL.png" id="4_ub2h7"]
+[ext_resource type="Texture2D" uid="uid://bij0adopl32p1" path="res://item_slot/borders/DIVINE.png" id="5_i8pcr"]
+[ext_resource type="PackedScene" uid="uid://di4ho04jays15" path="res://common_scenes/display_item/display_item.tscn" id="6_74pi5"]
+
+[node name="ItemSlot" type="Control"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_y471e")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7bylq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlotSymbol" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_itgym")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ElementColor" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ub2h7")
+expand_mode = 1
+
+[node name="TierBorder" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_i8pcr")
+expand_mode = 1
+
+[node name="DisplayItem" parent="." instance=ExtResource("6_74pi5")]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

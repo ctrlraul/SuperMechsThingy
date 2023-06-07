@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://di4ho04jays15"]
+
+[ext_resource type="Script" path="res://common_scenes/display_item/display_item.gd" id="1_0ubis"]
+[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_mtf58"]
+[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_y58vu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3geq"]
+shader = ExtResource("2_mtf58")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 2.0
+
+[node name="DisplayItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0ubis")
+
+[node name="Sprite" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_g3geq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_y58vu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PaintMask" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
