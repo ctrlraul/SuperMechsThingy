@@ -1,4 +1,3 @@
-extends Node
 class_name Stat
 
 var id: String
