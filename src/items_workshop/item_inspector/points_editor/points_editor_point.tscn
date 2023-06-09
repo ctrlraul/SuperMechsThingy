@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://csn4r5tegixac"]
 
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor/points_editor_point.gd" id="1_vbdwv"]
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_xi5lw"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_gvvtp"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor/points_editor_point.gd" id="2_0r56n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ldiqu"]
 font_size = 14
@@ -11,8 +11,8 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Point" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_xi5lw")
-script = ExtResource("1_vbdwv")
+theme = ExtResource("1_gvvtp")
+script = ExtResource("2_0r56n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

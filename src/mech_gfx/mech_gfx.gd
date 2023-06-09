@@ -16,6 +16,7 @@ enum Movement {
 enum Projectile {
 	ROCKET,
 	BIG_ROCKET,
+	BULLETS,
 }
 
 

@@ -15,4 +15,4 @@ class Paths:
 
 		const EXPORTED_ITEMS: String = "user://exports/"
 
-		const MISSING_TEXTURE: String = "res://assets/missing.png"
+		const MISSING_TEXTURE: String = "res://assets/images/missing.png"

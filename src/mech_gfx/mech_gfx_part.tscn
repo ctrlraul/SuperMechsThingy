@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://int7phjoghjb"]
 
-[ext_resource type="Script" path="res://mech_gfx/mech_gfx_part.gd" id="1_wias7"]
-[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_u3b0p"]
+[ext_resource type="Script" path="res://mech_gfx/mech_gfx_part.gd" id="1_hoh2u"]
+[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_clvyo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ro2a"]
-shader = ExtResource("2_u3b0p")
+shader = ExtResource("2_clvyo")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 1.5
 
 [node name="MechGFXPart" type="Node2D"]
-script = ExtResource("1_wias7")
+script = ExtResource("1_hoh2u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_7ro2a")
 
-[node name="BlinkingProps" type="Node2D" parent="."]
+[node name="BlinkingOrnaments" type="Node2D" parent="."]
 unique_name_in_owner = true
 visible = false
 
-[node name="Projectiles" type="Node" parent="."]
+[node name="Projectiles" type="Node2D" parent="."]
 unique_name_in_owner = true

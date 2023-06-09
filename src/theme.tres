@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cs33qvqc60ek3"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://cs33qvqc60ek3"]
 
-[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_h74vo"]
+[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_sg52w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choan"]
 content_margin_left = 8.0
@@ -63,6 +63,23 @@ color = Color(0, 0.164063, 0.269531, 1)
 thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo3ph"]
+bg_color = Color(0, 0.0666667, 0.12549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.0470588, 0.0980392, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq1mt"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0, 0.0666667, 0.12549, 1)
 border_width_left = 4
 border_width_top = 4
@@ -199,7 +216,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("1_h74vo")
+default_font = ExtResource("1_sg52w")
 BoxContainer/constants/separation = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_choan")
 Button/styles/focus = SubResource("StyleBoxFlat_52yc0")
@@ -209,6 +226,9 @@ Button/styles/pressed = SubResource("StyleBoxFlat_680e7")
 HSeparator/styles/separator = SubResource("StyleBoxLine_7rg65")
 InsetPanel/base_type = &"Panel"
 InsetPanel/styles/panel = SubResource("StyleBoxFlat_wo3ph")
+LineEdit/styles/focus = null
+LineEdit/styles/normal = SubResource("StyleBoxFlat_iq1mt")
+LineEdit/styles/read_only = null
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10

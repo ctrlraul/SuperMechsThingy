@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0081ywlqrldg"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_i3k8p"]
+[ext_resource type="Texture2D" uid="uid://b3cybq6auc480" path="res://assets/images/icons/trash_bin.png" id="1_ieiyq"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/projectiles_list_item.gd" id="2_dfjvr"]
+
+[node name="ProjectilesListItem" type="HBoxContainer"]
+offset_right = 300.0
+offset_bottom = 30.0
+theme = ExtResource("1_i3k8p")
+theme_override_constants/separation = 5
+script = ExtResource("2_dfjvr")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"InsetPanel"
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+pivot_offset = Vector2(8, 8)
+color = Color(1, 0, 1, 1)
+
+[node name="GfxOptions" type="OptionButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "Type"
+popup/item_0/id = 0
+
+[node name="DeleteButton" type="Button" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="DeleteButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ieiyq")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="item_selected" from="GfxOptions" to="." method="_on_gfx_options_item_selected"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]

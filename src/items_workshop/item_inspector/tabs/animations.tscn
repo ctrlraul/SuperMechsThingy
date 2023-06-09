@@ -1,18 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://clmqvuer8ehnq"]
+[gd_scene load_steps=6 format=3 uid="uid://clmqvuer8ehnq"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_cvmvh"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_ilku2"]
-[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="3_yi6em"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_wfll8"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_blpy6"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="3_7gekb"]
+[ext_resource type="PackedScene" uid="uid://d0081ywlqrldg" path="res://items_workshop/item_inspector/tabs/projectiles_list_item.tscn" id="4_g2osn"]
+[ext_resource type="PackedScene" uid="uid://ca3snx5xdcqkj" path="res://items_workshop/item_inspector/tabs/ornaments_list_item.tscn" id="5_u7pxw"]
 
 [node name="Animations" type="TabBar"]
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -807.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_cvmvh")
-script = ExtResource("2_ilku2")
+theme = ExtResource("1_wfll8")
+script = ExtResource("2_blpy6")
+projectiles_list_item_scene = ExtResource("4_g2osn")
+ornaments_list_item_scene = ExtResource("5_u7pxw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -21,58 +27,127 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
+clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PointsEditor" parent="MarginContainer/Control/VBoxContainer" instance=ExtResource("3_yi6em")]
+[node name="PointsEditor" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_7gekb")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PreviewButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+[node name="PreviewButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Preview"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Control/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Mech Movement"
 vertical_alignment = 1
 
-[node name="MechMovementOptions" type="OptionButton" parent="MarginContainer/Control/VBoxContainer/HBoxContainer2"]
+[node name="MechMovementOptions" type="OptionButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+[node name="Ornaments" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"InsetPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer"]
 layout_mode = 2
 
-[node name="AddProjectileButton" type="Button" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(160, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Add Projectile"
-alignment = 0
 
-[node name="AddProjectileOptions" type="OptionButton" parent="MarginContainer/Control/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Ornaments"
 
-[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PreviewButton" to="." method="_on_preview_button_pressed"]
-[connection signal="item_selected" from="MarginContainer/Control/VBoxContainer/HBoxContainer2/MechMovementOptions" to="." method="_on_mech_movement_selected"]
-[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/HBoxContainer/AddProjectileButton" to="." method="_on_add_projectile_button_pressed"]
+[node name="AddOrnamentButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "+"
+
+[node name="OrnamentsList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OrnamentsListItem" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer/OrnamentsList" instance=ExtResource("5_u7pxw")]
+layout_mode = 2
+
+[node name="Projectiles" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"InsetPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Projectiles"
+
+[node name="AddProjectileButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "+"
+
+[node name="ProjectilesList" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ProjectilesListItem" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer/ProjectilesList" instance=ExtResource("4_g2osn")]
+layout_mode = 2
+
+[node name="ProjectilesListItem2" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer/ProjectilesList" instance=ExtResource("4_g2osn")]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PreviewButton" to="." method="_on_preview_button_pressed"]
+[connection signal="item_selected" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MechMovementOptions" to="." method="_on_mech_movement_selected"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Ornaments/MarginContainer/HBoxContainer/HBoxContainer/AddOrnamentButton" to="." method="_on_add_ornament_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Projectiles/MarginContainer/HBoxContainer/HBoxContainer/AddProjectileButton" to="." method="_on_add_projectile_button_pressed"]

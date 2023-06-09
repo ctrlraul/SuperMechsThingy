@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkuy8ynppmimv"]
+
+[ext_resource type="Script" path="res://mech_gfx/projectiles/bullets.gd" id="1_2bwt1"]
+[ext_resource type="Texture2D" uid="uid://dj8jcuekacr1l" path="res://mech_gfx/projectiles/nozzle_fire_yellow.png" id="2_tohfg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ooxwe"]
+blend_mode = 1
+
+[node name="Bullets" type="Node2D"]
+script = ExtResource("1_2bwt1")
+
+[node name="MuzzleFireYellow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tohfg")
+offset = Vector2(47, 0)
+
+[node name="MuzzleFireYellow2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_ooxwe")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tohfg")
+offset = Vector2(47, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

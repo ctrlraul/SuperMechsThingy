@@ -1,19 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://doo03nnqpthbc"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_qyxun"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor/points_editor.gd" id="2_vmdyq"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor/points_editor_point.tscn" id="3_oaple"]
-[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="4_u7h1n"]
-[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/images/icons/arrows_pointing_each_other.png" id="5_ynoas"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_abs0o"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor/points_editor.gd" id="2_tr06g"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor/points_editor_point.tscn" id="3_rdro6"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="4_s2u68"]
+[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/images/icons/arrows_pointing_each_other.png" id="5_awpbt"]
 
 [node name="PointsEditor" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_qyxun")
-script = ExtResource("2_vmdyq")
-point_scene = ExtResource("3_oaple")
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_abs0o")
+script = ExtResource("2_tr06g")
+point_scene = ExtResource("3_rdro6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -48,7 +49,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_u7h1n")
+texture = ExtResource("4_s2u68")
 
 [node name="Points" type="Control" parent="Canvas"]
 unique_name_in_owner = true
@@ -85,7 +86,7 @@ offset_right = -3.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_ynoas")
+texture = ExtResource("5_awpbt")
 expand_mode = 1
 stretch_mode = 5
 

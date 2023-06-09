@@ -10,11 +10,12 @@ const __FIRING_INTERVAL: float = 0.1
 
 const RocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 const BigRocketScene = preload("res://mech_gfx/projectiles/big_rocket.tscn")
+const BulletsScene = preload("res://mech_gfx/projectiles/bullets.tscn")
 
 
 
 @onready var sprite: Sprite2D = %Sprite2D
-@onready var blinking_props: Node2D = %BlinkingProps
+@onready var blinking_ornaments: Node2D = %BlinkingOrnaments
 @onready var projectiles_container: Node = %Projectiles
 
 
@@ -40,7 +41,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	blinking_props.visible = Engine.get_frames_drawn() % 2 == 0
+	blinking_ornaments.visible = Engine.get_frames_drawn() % 4 == 0
 
 
 func set_item(value: Item) -> void:
@@ -73,7 +74,6 @@ func set_item(value: Item) -> void:
 
 	sprite.texture = ImageTexture.create_from_image(padded_image)
 
-
 	if item.def.type != ItemDef.Type.TORSO:
 		sprite.position = size * 0.5 -torso_joint
 
@@ -85,11 +85,11 @@ func clear() -> void:
 	size = Vector2i.ZERO
 	item = null
 	visible = false
-	blinking_props.visible = false
+	blinking_ornaments.visible = false
 
 	set_process(false)
 
-	for prop in blinking_props.get_children():
+	for prop in blinking_ornaments.get_children():
 		prop.queue_free()
 
 
@@ -105,9 +105,20 @@ func play_animation(target_visual_center: Vector2) -> void:
 			MechGFX.Projectile.BIG_ROCKET:
 				await __fire_big_rocket(projectile, target_visual_center).finished
 
+			MechGFX.Projectile.BULLETS:
+				__fire_bullets(projectile)
+
 			_:
 				var key = MechGFX.Projectile.find_key(projectile.gfx)
 				push_error("Animation for %s is not implemented" % key)
+
+	set_process(true)
+
+	await __time(1.5)
+
+	blinking_ornaments.visible = false
+
+	set_process(false)
 
 
 func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
@@ -156,9 +167,16 @@ func __fire_big_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Twe
 	return tween
 
 
+func __fire_bullets(config: ItemDef.ProjectileConfig) -> void:
+	var projectile = BulletsScene.instantiate()
+	projectiles_container.add_child(projectile)
+	projectile.position = -torso_joint + config.place
+	projectile.scale = global_scale
+
+
 func __prepare_animations() -> void:
 
-	for prop in blinking_props.get_children():
+	for prop in blinking_ornaments.get_children():
 		prop.queue_free()
 
 	for ornament in item.def.ornaments:
@@ -170,8 +188,8 @@ func __prepare_animations() -> void:
 
 		match ornament.effect:
 			ItemDef.OrnamentConfig.Effect.BLINK:
-				blinking_props.add_child(ornament_sprite)
+				blinking_ornaments.add_child(ornament_sprite)
 
 
-func __wait(seconds: float, callback: Callable) -> void:
-	get_tree().create_timer(seconds).timeout.connect(callback)
+func __time(seconds: float) -> Signal:
+	return get_tree().create_timer(seconds).timeout

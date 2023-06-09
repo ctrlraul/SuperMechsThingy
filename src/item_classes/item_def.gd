@@ -89,11 +89,16 @@ class OrnamentConfig:
 	}
 
 	var id: String
-	var place: Vector2
+	var place: Vector2 = Vector2.ZERO
 	var texture: Texture2D
-	var effect: Effect
+	var effect: Effect = Effect.NONE
 
-	func _init(source) -> void:
+	func _init(source = null) -> void:
+
+		if source == null:
+			id = str(randi())
+			return
+
 		id = source.id
 		place = Vector2(source.place[0], source.place[1])
 		texture = load(Config.Paths.ITEM_IMAGES.path_join(source.texture))
