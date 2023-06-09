@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwsga82lmunuf"
-path="res://.godot/imported/OTHER.png-58dee46b51cca3fe44506f25064f5c2e.ctex"
+uid="uid://cax8g86gf3gbu"
+path="res://.godot/imported/2.png-8754348181af18ce4a72f23560d26387.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/backgrounds/OTHER.png"
-dest_files=["res://.godot/imported/OTHER.png-58dee46b51cca3fe44506f25064f5c2e.ctex"]
+source_file="res://workshop/2.png"
+dest_files=["res://.godot/imported/2.png-8754348181af18ce4a72f23560d26387.ctex"]
 
 [params]
 

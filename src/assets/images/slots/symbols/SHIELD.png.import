@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2n1w3wklkpo"
-path="res://.godot/imported/EPIC.png-de51ac595f5fd803fffc56b60cd0ffb4.ctex"
+uid="uid://dax47da15dnpa"
+path="res://.godot/imported/SHIELD.png-0862e71f29bb5aa6dacd8b66b5773529.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/borders/EPIC.png"
-dest_files=["res://.godot/imported/EPIC.png-de51ac595f5fd803fffc56b60cd0ffb4.ctex"]
+source_file="res://assets/images/slots/symbols/SHIELD.png"
+dest_files=["res://.godot/imported/SHIELD.png-0862e71f29bb5aa6dacd8b66b5773529.ctex"]
 
 [params]
 

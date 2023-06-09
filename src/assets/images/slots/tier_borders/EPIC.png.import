@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp58tae0cqtlx"
-path="res://.godot/imported/CHARGE_ENGINE.png-8b98078a2ae80a737aee470437a39189.ctex"
+uid="uid://bb2n1w3wklkpo"
+path="res://.godot/imported/EPIC.png-f1119204fcc60a81511dae698b880752.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/CHARGE_ENGINE.png"
-dest_files=["res://.godot/imported/CHARGE_ENGINE.png-8b98078a2ae80a737aee470437a39189.ctex"]
+source_file="res://assets/images/slots/tier_borders/EPIC.png"
+dest_files=["res://.godot/imported/EPIC.png-f1119204fcc60a81511dae698b880752.ctex"]
 
 [params]
 

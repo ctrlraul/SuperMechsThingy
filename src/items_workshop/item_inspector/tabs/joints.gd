@@ -33,7 +33,7 @@ func clear() -> void:
 func __refresh_joints() -> void:
 
 	points_editor.clear()
-	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
+	points_editor.set_reference_texture(Assets.get_item_texture_for_def(item))
 
 	if item is ItemDef:
 

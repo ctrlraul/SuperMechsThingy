@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doko3ukpf1at2"
-path="res://.godot/imported/SIDE_WEAPON.png-5f83f264e6f7a85803d169bc6e12e043.ctex"
+uid="uid://ixp4qr2uq0sk"
+path="res://.godot/imported/EXPLOSIVE.png-897d1993e5004b12df99a7c45873be90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/SIDE_WEAPON.png"
-dest_files=["res://.godot/imported/SIDE_WEAPON.png-5f83f264e6f7a85803d169bc6e12e043.ctex"]
+source_file="res://assets/images/slots/element_backgrounds/EXPLOSIVE.png"
+dest_files=["res://.godot/imported/EXPLOSIVE.png-897d1993e5004b12df99a7c45873be90.ctex"]
 
 [params]
 

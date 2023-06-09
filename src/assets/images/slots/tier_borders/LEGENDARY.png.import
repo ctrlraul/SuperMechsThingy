@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1ob2g3tl6j4k"
-path="res://.godot/imported/GRAPPLING_HOOK.png-ed653b4eb2c0e78c0c79b2f840ba9722.ctex"
+uid="uid://bv0irdvl2pgik"
+path="res://.godot/imported/LEGENDARY.png-1b0a26ca4d212918f17056df41e2be76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/GRAPPLING_HOOK.png"
-dest_files=["res://.godot/imported/GRAPPLING_HOOK.png-ed653b4eb2c0e78c0c79b2f840ba9722.ctex"]
+source_file="res://assets/images/slots/tier_borders/LEGENDARY.png"
+dest_files=["res://.godot/imported/LEGENDARY.png-1b0a26ca4d212918f17056df41e2be76.ctex"]
 
 [params]
 

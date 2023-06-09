@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc4o1fudlsliv"
-path="res://.godot/imported/RARE.png-235a2b2d893cee760801856231b59922.ctex"
+uid="uid://cea0tr4m7gwwv"
+path="res://.godot/imported/PERK.png-fed34acfcf5787d37ec577bc204574ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/borders/RARE.png"
-dest_files=["res://.godot/imported/RARE.png-235a2b2d893cee760801856231b59922.ctex"]
+source_file="res://assets/images/slots/symbols/PERK.png"
+dest_files=["res://.godot/imported/PERK.png-fed34acfcf5787d37ec577bc204574ed.ctex"]
 
 [params]
 

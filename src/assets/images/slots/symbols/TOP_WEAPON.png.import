@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e12d3wlsrqv5"
-path="res://.godot/imported/LEGS.png-0c18fbb87c52906dd6ca4f89a013ec58.ctex"
+uid="uid://cd45ha4cuow53"
+path="res://.godot/imported/TOP_WEAPON.png-5dfb08a4e639ccdfd7cd836a98bf38a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/LEGS.png"
-dest_files=["res://.godot/imported/LEGS.png-0c18fbb87c52906dd6ca4f89a013ec58.ctex"]
+source_file="res://assets/images/slots/symbols/TOP_WEAPON.png"
+dest_files=["res://.godot/imported/TOP_WEAPON.png-5dfb08a4e639ccdfd7cd836a98bf38a0.ctex"]
 
 [params]
 

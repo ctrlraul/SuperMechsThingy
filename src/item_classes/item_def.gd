@@ -96,14 +96,14 @@ class OrnamentConfig:
 	func _init(source) -> void:
 		id = source.id
 		place = Vector2(source.place[0], source.place[1])
-		texture = load(Assets.ITEM_IMAGES_PATH.path_join(source.texture))
+		texture = load(Config.Paths.ITEM_IMAGES.path_join(source.texture))
 		effect = Effect[source.effect]
 
 	func to_json() -> Dictionary:
 		return {
 			"id": id,
 			"place": [place.x, place.y],
-			"texture": texture.resource_path.replace(Assets.ITEM_IMAGES_PATH, ""),
+			"texture": texture.resource_path.replace(Config.Paths.ITEM_IMAGES, ""),
 			"effect": Effect.find_key(effect)
 		}
 
@@ -111,7 +111,7 @@ class OrnamentConfig:
 
 var id: int = 0
 var display_name: String = "[null]"
-var texture: String = "res://assets/missing.png"
+var texture: String = Config.Paths.MISSING_TEXTURE
 var type: Type = Type.MODULE
 var perk_type: PerkType = PerkType.NONE
 var element: Element = Element.OTHER

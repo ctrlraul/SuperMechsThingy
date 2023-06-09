@@ -29,7 +29,5 @@ func is_finished() -> bool:
 
 func __check() -> void:
 	__done += 1
-	print("wa?")
 	if __done == __total:
-		print("Wowow!")
 		finished.emit()

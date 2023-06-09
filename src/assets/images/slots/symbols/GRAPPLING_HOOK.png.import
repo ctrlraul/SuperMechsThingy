@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bij0adopl32p1"
-path="res://.godot/imported/DIVINE.png-4e9ba8026bbb7d3fc864dbbb37d96163.ctex"
+uid="uid://b1ob2g3tl6j4k"
+path="res://.godot/imported/GRAPPLING_HOOK.png-595e062627acd06c4297d65fc413058a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/borders/DIVINE.png"
-dest_files=["res://.godot/imported/DIVINE.png-4e9ba8026bbb7d3fc864dbbb37d96163.ctex"]
+source_file="res://assets/images/slots/symbols/GRAPPLING_HOOK.png"
+dest_files=["res://.godot/imported/GRAPPLING_HOOK.png-595e062627acd06c4297d65fc413058a.ctex"]
 
 [params]
 

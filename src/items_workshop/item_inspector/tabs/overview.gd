@@ -4,7 +4,7 @@ extends TabBar
 
 @onready var name_label: Label = %NameLabel
 @onready var id_label: Label = %IDLabel
-@onready var sprite: TextureRect = %Sprite
+@onready var display_item: Control = %DisplayItem
 @onready var sprite_name_label: Label = %SpriteNameLabel
 @onready var type_options: OptionButton = %TypeOptions
 @onready var element_options: OptionButton = %ElementOptions
@@ -39,8 +39,8 @@ func set_item(value: ItemDef) -> void:
 	name_label.text = item.display_name
 	id_label.text = str(item.id)
 
-	sprite.texture = Assets.get_texture_for_item(item)
-	sprite_name_label.text = sprite.texture.resource_path.get_file()
+	display_item.set_item_def(item)
+	sprite_name_label.text = item.texture
 
 	stats_display.set_stats(item.stats)
 
@@ -54,6 +54,8 @@ func clear() -> void:
 
 	name_label.text = ""
 	stats_display.clear()
+
+	display_item.clear()
 
 	type_options.select(-1)
 	element_options.select(-1)

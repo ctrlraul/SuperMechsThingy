@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://di4ho04jays15"]
 
-[ext_resource type="Script" path="res://common_scenes/display_item/display_item.gd" id="1_0ubis"]
-[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_mtf58"]
-[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_y58vu"]
+[ext_resource type="Script" path="res://common_scenes/display_item/display_item.gd" id="1_ccof2"]
+[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_l31ih"]
+[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_wlhv4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g3geq"]
-shader = ExtResource("2_mtf58")
+shader = ExtResource("2_l31ih")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 2.0
 
@@ -19,10 +19,11 @@ offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_0ubis")
+script = ExtResource("1_ccof2")
 
 [node name="Sprite" type="TextureRect" parent="."]
 unique_name_in_owner = true
+texture_filter = 4
 material = SubResource("ShaderMaterial_g3geq")
 layout_mode = 1
 anchors_preset = 15
@@ -31,7 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_y58vu")
+texture = ExtResource("3_wlhv4")
 expand_mode = 1
 stretch_mode = 5
 

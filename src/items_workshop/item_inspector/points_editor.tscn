@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://doo03nnqpthbc"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_whpmy"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="2_af7br"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="3_rmk7c"]
-[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="4_dswoi"]
-[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/images/icons/arrows_pointing_each_other.png" id="5_encmm"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_2p77h"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor.gd" id="2_qjegs"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="3_yt0ix"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="4_lfb27"]
+[ext_resource type="Texture2D" uid="uid://bnadw66g0g8l" path="res://assets/images/icons/arrows_pointing_each_other.png" id="5_t8hxo"]
 
 [node name="PointsEditor" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_whpmy")
-script = ExtResource("2_af7br")
-point_scene = ExtResource("3_rmk7c")
+theme = ExtResource("1_2p77h")
+script = ExtResource("2_qjegs")
+point_scene = ExtResource("3_yt0ix")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -48,7 +48,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_dswoi")
+texture = ExtResource("4_lfb27")
 
 [node name="Points" type="Control" parent="Canvas"]
 unique_name_in_owner = true
@@ -73,7 +73,7 @@ mouse_filter = 2
 [node name="ResetTransformsButton" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("5_encmm")
+icon = ExtResource("5_t8hxo")
 expand_icon = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

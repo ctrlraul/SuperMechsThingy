@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4rohljxk14aw"
-path="res://.godot/imported/PHYSICAL.png-8da61f5691912b8113afcc74a0347138.ctex"
+uid="uid://c0dsrrig5fhfr"
+path="res://.godot/imported/COMMON.png-048a645ba81457fc9ee977cc1b6b0fe5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/backgrounds/PHYSICAL.png"
-dest_files=["res://.godot/imported/PHYSICAL.png-8da61f5691912b8113afcc74a0347138.ctex"]
+source_file="res://assets/images/slots/tier_borders/COMMON.png"
+dest_files=["res://.godot/imported/COMMON.png-048a645ba81457fc9ee977cc1b6b0fe5.ctex"]
 
 [params]
 

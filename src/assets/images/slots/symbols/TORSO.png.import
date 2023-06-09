@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv0irdvl2pgik"
-path="res://.godot/imported/LEGENDARY.png-7b79d24faf852e2f2eacd5506a71f1a4.ctex"
+uid="uid://hbqg7irhtbdf"
+path="res://.godot/imported/TORSO.png-48404ecd8c9126dedb5c4947dda04363.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/borders/LEGENDARY.png"
-dest_files=["res://.godot/imported/LEGENDARY.png-7b79d24faf852e2f2eacd5506a71f1a4.ctex"]
+source_file="res://assets/images/slots/symbols/TORSO.png"
+dest_files=["res://.godot/imported/TORSO.png-48404ecd8c9126dedb5c4947dda04363.ctex"]
 
 [params]
 

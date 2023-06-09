@@ -5,24 +5,6 @@ signal selected(slot: ItemSlot)
 
 
 
-const __BACKGROUNDS = {
-	ItemDef.Element.PHYSICAL: preload("backgrounds/PHYSICAL.png"),
-	ItemDef.Element.EXPLOSIVE: preload("backgrounds/EXPLOSIVE.png"),
-	ItemDef.Element.ELECTRIC: preload("backgrounds/ELECTRIC.png"),
-	ItemDef.Element.OTHER: preload("backgrounds/OTHER.png"),
-}
-
-const __BORDERS = {
-	ItemDef.Tier.COMMON: preload("borders/COMMON.png"),
-	ItemDef.Tier.RARE: preload("borders/RARE.png"),
-	ItemDef.Tier.EPIC: preload("borders/EPIC.png"),
-	ItemDef.Tier.LEGENDARY: preload("borders/LEGENDARY.png"),
-	ItemDef.Tier.MYTHICAL: preload("borders/MYTHICAL.png"),
-	ItemDef.Tier.DIVINE: preload("borders/DIVINE.png"),
-}
-
-
-
 @export var item_type: ItemDef.Type
 @export var slot_id: MechBuild.Slot
 
@@ -84,9 +66,8 @@ func set_item(value: Item) -> void:
 
 	item = value
 
-	element_color.texture = __BACKGROUNDS[item.def.element]
-	tier_border.texture = __BORDERS[item.def.tier]
-
+	element_color.texture = Assets.get_slot_background_for_element(item.def.element)
+	tier_border.texture = Assets.get_slot_border_for_tier(item.def.tier)
 	display_item.set_item(item)
 
 	item_equipped.emit(item, slot_id)
@@ -98,8 +79,7 @@ func clear() -> void:
 
 	element_color.texture = null
 	tier_border.texture = null
-
-	display_item.clear()
+	display_item.set_item(null)
 
 	item_equipped.emit(null, slot_id)
 
@@ -107,10 +87,7 @@ func clear() -> void:
 
 func __set_slot_symbol() -> void:
 
-	$SlotSymbol.texture = load(
-		"res://item_slot/symbols/%s.png" %
-		ItemDef.Type.find_key(item_type)
-	)
+	$SlotSymbol.texture = Assets.get_slot_symbol_for_type(item_type)
 
 	if item_type == ItemDef.Type.SIDE_WEAPON || item_type == ItemDef.Type.TOP_WEAPON:
 		$SlotSymbol.flip_h = !MechGFX.is_frontal_slot(slot_id)

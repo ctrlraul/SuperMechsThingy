@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ixp4qr2uq0sk"
-path="res://.godot/imported/EXPLOSIVE.png-d521d87340d4481eb7e96ae25100746f.ctex"
+uid="uid://bp58tae0cqtlx"
+path="res://.godot/imported/CHARGE_ENGINE.png-6ef3e42be78c7d46026ef157af8bc0ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/backgrounds/EXPLOSIVE.png"
-dest_files=["res://.godot/imported/EXPLOSIVE.png-d521d87340d4481eb7e96ae25100746f.ctex"]
+source_file="res://assets/images/slots/symbols/CHARGE_ENGINE.png"
+dest_files=["res://.godot/imported/CHARGE_ENGINE.png-6ef3e42be78c7d46026ef157af8bc0ce.ctex"]
 
 [params]
 

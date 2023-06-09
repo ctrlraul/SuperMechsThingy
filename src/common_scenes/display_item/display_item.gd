@@ -2,8 +2,12 @@ extends Control
 
 
 
-const OUTLINE: int = 2
-const MARGIN: int = 1
+const MARGIN: int = 2
+
+
+
+@export var image_scale: float = 1
+@export var outline_thickness: int = 2
 
 
 
@@ -24,26 +28,46 @@ func set_item(value: Item) -> void:
 
 	item = value
 
-	var texture: Texture2D = Assets.get_texture_for_item(item.def)
-	var texture_size: Vector2i = texture.get_size() * 0.4
+	var texture: Texture2D = Assets.get_item_texture_for_def(item.def)
+	var texture_size: Vector2 = texture.get_size()
 	var image: Image = texture.get_image()
+	var node_size: Vector2 = size * 1.5
+	var scaled_size: Vector2 = node_size
 
-	image.resize(texture_size.x, texture_size.y, Image.INTERPOLATE_TRILINEAR)
+	if texture_size.x > texture_size.y:
+		scaled_size.y = node_size.x * texture_size.y / texture_size.x
+	else:
+		scaled_size.x = node_size.y * texture_size.x / texture_size.y
+
+	image.resize(
+		int(scaled_size.x),
+		int(scaled_size.y),
+		Image.INTERPOLATE_BILINEAR
+	)
 
 	var padded_image = Image.create(
-		texture_size.x + OUTLINE * 2 + MARGIN,
-		texture_size.y + OUTLINE * 2 + MARGIN,
+		int(scaled_size.x + outline_thickness * 2 + MARGIN),
+		int(scaled_size.y + outline_thickness * 2 + MARGIN),
 		false,
 		image.get_format()
 	)
 
 	padded_image.blit_rect(
 		image,
-		Rect2i(Vector2.ZERO, texture_size),
-		Vector2.ONE * OUTLINE + Vector2.ONE * MARGIN
+		Rect2i(Vector2.ZERO, scaled_size),
+		Vector2.ONE * outline_thickness + Vector2.ONE * MARGIN
 	)
 
 	sprite.texture = ImageTexture.create_from_image(padded_image)
+	sprite.material.set_shader_parameter("line_thickness", outline_thickness)
+
+
+func set_item_def(value: ItemDef) -> void:
+	if value == null:
+		clear()
+	else:
+		set_item(Item.new(value))
+
 
 
 func clear() -> void:

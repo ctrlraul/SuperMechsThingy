@@ -5,12 +5,21 @@ signal ornament_changed(item: ItemDef)
 
 
 
+const ANIMATABLE_ITEM_TYPES: Array[ItemDef.Type] = [
+	ItemDef.Type.LEGS,
+	ItemDef.Type.SIDE_WEAPON,
+	ItemDef.Type.TOP_WEAPON,
+	ItemDef.Type.DRONE,
+]
+
+
+
 @export var point_scene: PackedScene
 
 
 
 @onready var empty_text: Panel = $EmptyText
-@onready var tab_container: TabContainer = $TabContainer
+@onready var tab_container: TabContainer = %TabContainer
 
 @onready var overview_tab = %Overview
 @onready var joints_tab = %Joints
@@ -27,11 +36,14 @@ func _ready() -> void:
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data.data is ItemDef
+	return data.data is Item || data.data is ItemDef
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	set_item(data.data)
+	if data.data is Item:
+		set_item(data.data.def)
+	elif data.data is ItemDef:
+		set_item(data.data)
 
 
 
@@ -41,13 +53,23 @@ func set_item(value: ItemDef) -> void:
 		__clear()
 		return
 
+	var animations_tab_index: int = tab_container.get_children().find(animations_tab)
+
 	item = value
 	empty_text.visible = false
 	tab_container.visible = true
 
 	overview_tab.set_item(item)
 	joints_tab.set_item(item)
-	animations_tab.set_item(item)
+
+	if item.type in ANIMATABLE_ITEM_TYPES:
+		tab_container.set_tab_disabled(animations_tab_index, false)
+		animations_tab.set_item(item)
+
+	else:
+		tab_container.set_tab_disabled(animations_tab_index, true)
+		if tab_container.current_tab == animations_tab_index:
+			tab_container.current_tab = 0
 
 
 

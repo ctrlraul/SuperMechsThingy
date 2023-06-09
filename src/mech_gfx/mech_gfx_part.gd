@@ -53,7 +53,7 @@ func set_item(value: Item) -> void:
 
 	visible = true
 
-	var texture: Texture2D = Assets.get_texture_for_item(item.def)
+	var texture: Texture2D = Assets.get_item_texture_for_def(item.def)
 	var image: Image = texture.get_image()
 
 	size = texture.get_size()

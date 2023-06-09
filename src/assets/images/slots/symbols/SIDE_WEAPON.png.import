@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cea0tr4m7gwwv"
-path="res://.godot/imported/PERK.png-9e4a79acd76940da466da6fee9564f15.ctex"
+uid="uid://doko3ukpf1at2"
+path="res://.godot/imported/SIDE_WEAPON.png-780c5016b82f450d56e8d46c5e8452c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/PERK.png"
-dest_files=["res://.godot/imported/PERK.png-9e4a79acd76940da466da6fee9564f15.ctex"]
+source_file="res://assets/images/slots/symbols/SIDE_WEAPON.png"
+dest_files=["res://.godot/imported/SIDE_WEAPON.png-780c5016b82f450d56e8d46c5e8452c6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b77wgnkkb84ci"
-path="res://.godot/imported/DRONE.png-5d23b2320e10ecbd70bc88d267ce483e.ctex"
+uid="uid://cefbgq8ad26t2"
+path="res://.godot/imported/MYTHICAL.png-2de16a7b71e4f152a090cc7b8753a560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/DRONE.png"
-dest_files=["res://.godot/imported/DRONE.png-5d23b2320e10ecbd70bc88d267ce483e.ctex"]
+source_file="res://assets/images/slots/tier_borders/MYTHICAL.png"
+dest_files=["res://.godot/imported/MYTHICAL.png-2de16a7b71e4f152a090cc7b8753a560.ctex"]
 
 [params]
 

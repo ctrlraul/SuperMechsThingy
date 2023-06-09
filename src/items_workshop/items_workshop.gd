@@ -37,8 +37,9 @@ func _ready() -> void:
 	for item_button in item_buttons_container.get_children():
 		item_button.queue_free()
 
-	for item in Assets.get_items():
+	for item_def in Assets.get_items():
 		var item_button = item_button_scene.instantiate()
+		var item = Item.new(item_def)
 		item_buttons_container.add_child(item_button)
 		item_button.set_item(item)
 		item_button.pressed.connect(func(): _on_item_button_selected(item_button))
@@ -47,8 +48,8 @@ func _ready() -> void:
 
 
 
-func __auto_equip(item: ItemDef) -> void:
-	match item.type:
+func __auto_equip(item: Item) -> void:
+	match item.def.type:
 
 		ItemDef.Type.TORSO: torso_slot.set_item(item)
 		ItemDef.Type.LEGS: legs_slot.set_item(item)
@@ -89,26 +90,22 @@ func __auto_equip(item: ItemDef) -> void:
 
 
 
-func _on_item_equipped(item: ItemDef, slot_id: MechBuild.Slot) -> void:
+func _on_item_equipped(item: Item, slot_id: MechBuild.Slot) -> void:
 
-	if item != null:
-		mech_build.set_item(slot_id, Item.new(item))
-	else:
-		mech_build.set_item(slot_id, null)
-
+	mech_build.set_item(slot_id, item)
 	mech_gfx.set_build(mech_build)
 
 	if item_inspector.item == null:
-		item_inspector.set_item(item)
+		item_inspector.set_item(item.def)
 
 
 func _on_item_slot_selected(slot: ItemSlot) -> void:
 	if slot.item != null:
-		item_inspector.set_item(slot.item)
+		item_inspector.set_item(slot.item.def)
 
 
 func _on_item_button_selected(button: SMItemButton) -> void:
-	item_inspector.set_item(button.item)
+	item_inspector.set_item(button.item.def)
 
 
 func _on_jump_button_pressed() -> void:
@@ -143,13 +140,13 @@ func _on_item_inspector_ornament_changed(item) -> void:
 func _on_item_inspector_animation_preview_requested(item) -> void:
 
 	if !mech_build.torso:
-		torso_slot.set_item(Assets.get_first_torso())
+		torso_slot.set_item(Item.new(Assets.get_first_torso()))
 
 	if !mech_build.legs:
-		legs_slot.set_item(Assets.get_first_legs())
+		legs_slot.set_item(Item.new(Assets.get_first_legs()))
 
 	if !mech_build.has(item):
-		__auto_equip(item)
+		__auto_equip(Item.new(item))
 
 	for id in MechBuild.Slot.values():
 		var build_item = mech_build.get_item(id)
@@ -166,5 +163,5 @@ func _on_save_button_pressed() -> void:
 	Assets.save_items()
 
 
-func _on_general_item_drop_area_item_button_dropped(item: ItemDef) -> void:
+func _on_general_item_drop_area_item_button_dropped(item: Item) -> void:
 	__auto_equip(item)

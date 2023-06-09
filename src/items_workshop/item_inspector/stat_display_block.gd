@@ -8,7 +8,7 @@ class_name StatDisplayBlock
 
 func set_stat(id: String, value) -> void:
 
-	icon.texture = Assets.get_texture_for_stat_id(id)
+	icon.texture = Assets.get_stat_texture_for_id(id)
 
 	if value is Array:
 		value_label.text = "%s-%s" % value

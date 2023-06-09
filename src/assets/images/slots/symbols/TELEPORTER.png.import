@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b10jvq51efsol"
-path="res://.godot/imported/MODULE.png-faf184fc635c6f2bcd052644193dd729.ctex"
+uid="uid://dcuvhrikjla8i"
+path="res://.godot/imported/TELEPORTER.png-bb5b486b3daeffd4fb1c90ea6b825801.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://item_slot/symbols/MODULE.png"
-dest_files=["res://.godot/imported/MODULE.png-faf184fc635c6f2bcd052644193dd729.ctex"]
+source_file="res://assets/images/slots/symbols/TELEPORTER.png"
+dest_files=["res://.godot/imported/TELEPORTER.png-bb5b486b3daeffd4fb1c90ea6b825801.ctex"]
 
 [params]
 

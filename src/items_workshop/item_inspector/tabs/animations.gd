@@ -37,7 +37,7 @@ func set_item(value: ItemDef) -> void:
 	item = value
 
 	points_editor.clear()
-	points_editor.set_reference_texture(Assets.get_texture_for_item(item))
+	points_editor.set_reference_texture(Assets.get_item_texture_for_def(item))
 
 	mech_movement_options.selected = item.mech_movement
 

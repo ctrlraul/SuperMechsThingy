@@ -3,11 +3,13 @@ class_name SMItemButton
 
 
 
-@onready var texture_rect: TextureRect = %TextureRect
+@onready var element_color: TextureRect = %ElementColor
+@onready var tier_border: TextureRect = %TierBorder
+@onready var display_item: Control = %DisplayItem
 
 
 
-var item: ItemDef
+var item: Item
 
 
 
@@ -16,6 +18,8 @@ func _get_drag_data(_position: Vector2):
 
 
 
-func set_item(value: ItemDef) -> void:
+func set_item(value: Item) -> void:
 	item = value
-	texture_rect.texture = Assets.get_texture_for_item(item)
+	element_color.texture = Assets.get_slot_background_for_element(item.def.element)
+	tier_border.texture = Assets.get_slot_border_for_tier(item.def.tier)
+	display_item.set_item(item)
