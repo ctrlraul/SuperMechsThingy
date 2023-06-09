@@ -22,11 +22,17 @@ func set_stats(stats: Dictionary) -> void:
 		var block = block_scene.instantiate()
 		add_child(block)
 
-	var stat_ids: Array = stats.keys()
+	var all_stat_keys: Array = Assets.stats.keys()
+	var keys: Array = stats.keys()
+
+	keys.sort_custom(
+		func(a, b):
+			return all_stat_keys.find(a) < all_stat_keys.find(b)
+	)
 
 	for i in stats.size():
 		var block = get_child(i)
-		block.set_stat(stat_ids[i], stats[stat_ids[i]])
+		block.set_stat(keys[i], stats[keys[i]])
 
 
 func clear() -> void:

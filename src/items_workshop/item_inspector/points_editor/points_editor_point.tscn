@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://csn4r5tegixac"]
+[gd_scene load_steps=4 format=3 uid="uid://csn4r5tegixac"]
 
-[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor_point.gd" id="1_slblg"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/points_editor/points_editor_point.gd" id="1_vbdwv"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_xi5lw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ldiqu"]
 font_size = 14
@@ -10,7 +11,8 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Point" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_slblg")
+theme = ExtResource("1_xi5lw")
+script = ExtResource("1_vbdwv")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -63,14 +65,15 @@ color = Color(1, 0, 1, 1)
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -128.0
-offset_top = 5.0
+offset_top = 13.0
 offset_right = 128.0
-offset_bottom = 31.0
+offset_bottom = 39.0
 text = "Torso Joint"
 label_settings = SubResource("LabelSettings_ldiqu")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = 8
@@ -88,7 +91,6 @@ rotation = 0.785398
 pivot_offset = Vector2(8, 8)
 mouse_filter = 1
 mouse_default_cursor_shape = 13
-flat = true
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

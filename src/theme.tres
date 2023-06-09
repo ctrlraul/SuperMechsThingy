@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cs33qvqc60ek3"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cs33qvqc60ek3"]
+
+[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_h74vo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choan"]
 content_margin_left = 8.0
-content_margin_top = 4.0
+content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 bg_color = Color(0.270588, 0.270588, 0.270588, 1)
@@ -16,9 +18,9 @@ shadow_offset = Vector2(0, 2.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52yc0"]
 content_margin_left = 8.0
-content_margin_top = 4.0
+content_margin_top = 8.0
 content_margin_right = 8.0
-content_margin_bottom = 4.0
+content_margin_bottom = 8.0
 bg_color = Color(0, 0.164063, 0.269531, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -56,7 +58,39 @@ shadow_color = Color(0, 0, 0, 0.235294)
 shadow_size = 5
 shadow_offset = Vector2(0, 2.5)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7rg65"]
+color = Color(0, 0.164063, 0.269531, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo3ph"]
+bg_color = Color(0, 0.0666667, 0.12549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.0470588, 0.0980392, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcd56"]
+bg_color = Color(0, 0.117188, 0.199219, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.164706, 0.270588, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.235294)
+shadow_size = 5
+shadow_offset = Vector2(0, 2.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxqmy"]
 bg_color = Color(0, 0.117188, 0.199219, 1)
 border_width_left = 2
 border_width_top = 2
@@ -111,7 +145,9 @@ expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7xgo"]
 content_margin_left = 8.0
+content_margin_top = 8.0
 content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0, 0.117188, 0.199219, 1)
 border_width_left = 2
 border_width_top = 2
@@ -132,20 +168,60 @@ border_color = Color(0, 0.164706, 0.270588, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hempl"]
+bg_color = Color(0, 0.164063, 0.269531, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4rhs"]
+bg_color = Color(0, 0.222656, 0.351563, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gytyf"]
+bg_color = Color(0, 0.341176, 0.52549, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvkvi"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.419608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [resource]
+default_font = ExtResource("1_h74vo")
 BoxContainer/constants/separation = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_choan")
 Button/styles/focus = SubResource("StyleBoxFlat_52yc0")
 Button/styles/hover = SubResource("StyleBoxFlat_2blga")
 Button/styles/normal = SubResource("StyleBoxFlat_52yc0")
 Button/styles/pressed = SubResource("StyleBoxFlat_680e7")
+HSeparator/styles/separator = SubResource("StyleBoxLine_7rg65")
+InsetPanel/base_type = &"Panel"
+InsetPanel/styles/panel = SubResource("StyleBoxFlat_wo3ph")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 Panel/styles/panel = SubResource("StyleBoxFlat_qcd56")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_gxqmy")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_dvjy5")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_cbcor")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_ujvbj")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_w7xgo")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_1v3wt")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_hempl")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_b4rhs")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_gytyf")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_fvkvi")
+VScrollBar/styles/scroll_focus = null

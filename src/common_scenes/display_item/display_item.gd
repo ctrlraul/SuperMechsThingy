@@ -8,6 +8,7 @@ const MARGIN: int = 2
 
 @export var image_scale: float = 1
 @export var outline_thickness: int = 2
+@export var interpolation = Image.INTERPOLATE_LANCZOS
 
 
 
@@ -42,7 +43,7 @@ func set_item(value: Item) -> void:
 	image.resize(
 		int(scaled_size.x),
 		int(scaled_size.y),
-		Image.INTERPOLATE_BILINEAR
+		interpolation
 	)
 
 	var padded_image = Image.create(

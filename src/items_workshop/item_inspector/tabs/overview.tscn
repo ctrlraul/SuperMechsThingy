@@ -1,14 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://b06swf75jd67p"]
+[gd_scene load_steps=9 format=3 uid="uid://b06swf75jd67p"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_s43x3"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_l57xo"]
-[ext_resource type="PackedScene" uid="uid://di4ho04jays15" path="res://common_scenes/display_item/display_item.tscn" id="3_2uiln"]
-[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://items_workshop/item_inspector/stats_display.tscn" id="4_0ot3h"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_i0akg"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_wgffa"]
+[ext_resource type="FontVariation" uid="uid://bo5qt13y6gh74" path="res://assets/fonts/American Captain Eternal.tres" id="3_bv2m6"]
+[ext_resource type="PackedScene" uid="uid://di4ho04jays15" path="res://common_scenes/display_item/display_item.tscn" id="4_e4v30"]
+[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://common_scenes/stats_display/stats_display.tscn" id="5_0cg57"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wc1pq"]
+font = ExtResource("3_bv2m6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_6g42o"]
 font_size = 12
 font_color = Color(1, 1, 1, 0.388235)
 shadow_color = Color(0, 0, 0, 0.415686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkfjs"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Overview" type="TabBar"]
 anchors_preset = 15
@@ -18,8 +32,8 @@ offset_right = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_s43x3")
-script = ExtResource("2_l57xo")
+theme = ExtResource("1_i0akg")
+script = ExtResource("2_wgffa")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -32,104 +46,159 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="SpriteContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_type_variation = &"InsetPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DisplayItem" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer/MarginContainer" instance=ExtResource("4_e4v30")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+interpolation = 1
+
+[node name="MetaContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Item Name"
+text = "The Foo Item"
+label_settings = SubResource("LabelSettings_wc1pq")
 vertical_alignment = 1
 
-[node name="Hashtag" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="IDContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Hashtag" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
+self_modulate = Color(1, 1, 1, 0.47451)
 layout_mode = 2
 text = "#"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IDLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="IDLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpriteContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/SpriteContainer"]
-layout_mode = 2
-
-[node name="DisplayItem" parent="MarginContainer/VBoxContainer/SpriteContainer/MarginContainer" instance=ExtResource("3_2uiln")]
+[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 120)
+visible = false
 layout_mode = 2
-
-[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/SpriteContainer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 6
 text = "image.png"
 label_settings = SubResource("LabelSettings_6g42o")
-horizontal_alignment = 2
-vertical_alignment = 2
+
+[node name="TierOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tkfjs")
+item_count = 1
+selected = 0
+popup/item_0/text = "Tier"
+popup/item_0/id = 0
+
+[node name="ElementOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tkfjs")
+item_count = 1
+selected = 0
+popup/item_0/text = "Element"
+popup/item_0/id = 0
+
+[node name="TypeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tkfjs")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tkfjs")
+item_count = 1
+selected = 0
+popup/item_0/text = "Type"
+popup/item_0/id = 0
+
+[node name="Stats" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"InsetPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stats"
+
+[node name="AddStatButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+text = "+"
+
+[node name="StatsDisplay" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" instance=ExtResource("5_0cg57")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Type"
-
-[node name="TypeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-item_count = 1
-selected = 0
-popup/item_0/text = "Placeholder"
-popup/item_0/id = 0
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Element"
-
-[node name="ElementOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-item_count = 1
-selected = 0
-popup/item_0/text = "Placeholder"
-popup/item_0/id = 0
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="StatsDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_0ot3h")]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 3
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="ExportButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Export"
+text = "Export Item Data"
 
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/SpriteContainer" to="." method="_on_sprite_container_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/SpriteContainer" to="." method="_on_sprite_container_mouse_exited"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/TypeOptions" to="." method="_on_type_selected"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer2/ElementOptions" to="." method="_on_element_selected"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer" to="." method="_on_sprite_container_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer" to="." method="_on_sprite_container_mouse_exited"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/TierOptions" to="." method="_on_tier_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/ElementOptions" to="." method="_on_element_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/TypeOptions" to="." method="_on_type_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]

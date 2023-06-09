@@ -5,7 +5,6 @@ extends Node2D
 @export var item_button_scene: PackedScene
 
 
-@onready var item_buttons_container: GridContainer = %ItemButtonsContainer
 @onready var mech_gfx: MechGFX = %MechGFX
 @onready var item_inspector: Control = %ItemInspector
 @onready var save_button: Button = %SaveButton
@@ -33,18 +32,6 @@ func _ready() -> void:
 	for slot in %SlotsContainer.get_children():
 		slot.item_equipped.connect(_on_item_equipped)
 		slot.selected.connect(_on_item_slot_selected)
-
-	for item_button in item_buttons_container.get_children():
-		item_button.queue_free()
-
-	for item_def in Assets.get_items():
-		var item_button = item_button_scene.instantiate()
-		var item = Item.new(item_def)
-		item_buttons_container.add_child(item_button)
-		item_button.set_item(item)
-		item_button.pressed.connect(func(): _on_item_button_selected(item_button))
-
-	await get_tree().create_timer(0.5).timeout
 
 
 
@@ -104,10 +91,6 @@ func _on_item_slot_selected(slot: ItemSlot) -> void:
 		item_inspector.set_item(slot.item.def)
 
 
-func _on_item_button_selected(button: SMItemButton) -> void:
-	item_inspector.set_item(button.item.def)
-
-
 func _on_jump_button_pressed() -> void:
 	mech_gfx.play_jump()
 
@@ -165,3 +148,7 @@ func _on_save_button_pressed() -> void:
 
 func _on_general_item_drop_area_item_button_dropped(item: Item) -> void:
 	__auto_equip(item)
+
+
+func _on_items_index_item_selected(item: ItemDef) -> void:
+	item_inspector.set_item(item)

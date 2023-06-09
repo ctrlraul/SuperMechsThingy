@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk5c0ulwu1p7u"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_nhflc"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="2_4gnoi"]
-[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor_point.tscn" id="3_hwdbi"]
-[ext_resource type="PackedScene" uid="uid://b06swf75jd67p" path="res://items_workshop/item_inspector/tabs/overview.tscn" id="4_noe68"]
-[ext_resource type="PackedScene" uid="uid://dubsnfnufbcw3" path="res://items_workshop/item_inspector/tabs/joints.tscn" id="5_a14ml"]
-[ext_resource type="PackedScene" uid="uid://clmqvuer8ehnq" path="res://items_workshop/item_inspector/tabs/animations.tscn" id="6_eq5gq"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_drnc1"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/item_inspector.gd" id="2_uy0r7"]
+[ext_resource type="PackedScene" uid="uid://csn4r5tegixac" path="res://items_workshop/item_inspector/points_editor/points_editor_point.tscn" id="3_xde27"]
+[ext_resource type="PackedScene" uid="uid://b06swf75jd67p" path="res://items_workshop/item_inspector/tabs/overview.tscn" id="4_urjp6"]
+[ext_resource type="PackedScene" uid="uid://dubsnfnufbcw3" path="res://items_workshop/item_inspector/tabs/joints.tscn" id="5_h674g"]
+[ext_resource type="PackedScene" uid="uid://clmqvuer8ehnq" path="res://items_workshop/item_inspector/tabs/animations.tscn" id="6_lvtdb"]
 
 [node name="ItemInspector" type="Control"]
 custom_minimum_size = Vector2(400, 0)
@@ -14,9 +14,9 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 400.0
 grow_vertical = 2
-theme = ExtResource("1_nhflc")
-script = ExtResource("2_4gnoi")
-point_scene = ExtResource("3_hwdbi")
+theme = ExtResource("1_drnc1")
+script = ExtResource("2_uy0r7")
+point_scene = ExtResource("3_xde27")
 
 [node name="EmptyText" type="Panel" parent="."]
 visible = false
@@ -50,16 +50,16 @@ grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 
-[node name="Overview" parent="TabContainer" instance=ExtResource("4_noe68")]
+[node name="Overview" parent="TabContainer" instance=ExtResource("4_urjp6")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Joints" parent="TabContainer" instance=ExtResource("5_a14ml")]
+[node name="Joints" parent="TabContainer" instance=ExtResource("5_h674g")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Animations" parent="TabContainer" instance=ExtResource("6_eq5gq")]
+[node name="Animations" parent="TabContainer" instance=ExtResource("6_lvtdb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

@@ -1,8 +1,11 @@
 extends Node
 
+signal item_changed(item: ItemDef)
 
 
-var item_defs: Dictionary
+
+var items_list: Array[ItemDef] = []
+var items_dict: Dictionary
 var stats: Dictionary
 
 
@@ -11,7 +14,14 @@ func _ready() -> void:
 
 	for raw_item in load(Config.Paths.ITEM_DEFINITIONS).data:
 		var item: ItemDef = ItemDef.new(raw_item)
-		item_defs[item.id] = item
+		items_dict[item.id] = item
+		items_list.append(item)
+
+	items_list.sort_custom(
+		func(a, b) -> bool:
+			return a.type < b.type
+	)
+
 
 	for raw_stat in load(Config.Paths.STAT_DEFINITIONS).data:
 		var stat: Stat = Stat.new(raw_stat)
@@ -19,28 +29,26 @@ func _ready() -> void:
 
 
 
+func notify_item_changed(item: ItemDef) -> void:
+	item_changed.emit(item)
+
+
+
 # Query
 
 func get_item_def(id: int) -> ItemDef:
-	return item_defs[id]
-
-
-func get_items() -> Array[ItemDef]:
-	var items_list: Array[ItemDef] = []
-	for item in item_defs.values():
-		items_list.append(item)
-	return items_list
+	return items_dict[id]
 
 
 func get_first_torso() -> ItemDef:
-	for item in item_defs.values():
+	for item in items_list:
 		if item.type == ItemDef.Type.TORSO:
 			return item
 	return null
 
 
 func get_first_legs() -> ItemDef:
-	for item in item_defs.values():
+	for item in items_list:
 		if item.type == ItemDef.Type.LEGS:
 			return item
 	return null
@@ -54,7 +62,7 @@ func export_items() -> void:
 	var file = FileAccess.open(Config.Paths.EXPORTED_ITEMS, FileAccess.WRITE)
 	var item_dicts: Array[Dictionary] = []
 
-	for item in item_defs.values():
+	for item in items_list:
 		item_dicts.append(item.to_json())
 
 	file.store_string(JSON.stringify(item_dicts))
@@ -70,7 +78,7 @@ func save_items() -> void:
 	var file = FileAccess.open(Config.Paths.ITEM_DEFINITIONS, FileAccess.WRITE)
 	var item_dicts: Array[Dictionary] = []
 
-	for item in item_defs.values():
+	for item in items_list:
 		item_dicts.append(item.to_json())
 
 	file.store_string(JSON.stringify(item_dicts))
