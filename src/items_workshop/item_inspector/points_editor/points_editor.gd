@@ -24,16 +24,17 @@ var __panning: bool = false
 
 func set_reference_texture(texture: Texture2D) -> void:
 	reference.texture = texture
-	canvas.position = size * 0.5
 	points.position = -texture.get_size() * 0.5
 
 
+func clear_points() -> void:
+	NodeUtils.clear(points)
+
+
 func clear() -> void:
-
+	clear_points()
 	reference.texture = null
-
-	for point in points.get_children():
-		point.queue_free()
+	canvas.position = size * 0.5
 
 
 func add_point(place: Vector2, color: Color, label: String, image: Texture2D = null) -> PointsEditorPoint:

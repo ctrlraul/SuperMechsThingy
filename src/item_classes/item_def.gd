@@ -85,6 +85,7 @@ class OrnamentConfig:
 	enum Effect {
 		NONE,
 		BLINK,
+		GLOW,
 		RECOIL,
 	}
 

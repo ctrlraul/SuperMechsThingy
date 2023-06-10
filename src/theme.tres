@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=20 format=3 uid="uid://cs33qvqc60ek3"]
 
-[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_sg52w"]
+[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_mx3nn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choan"]
 content_margin_left = 8.0
@@ -216,7 +216,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("1_sg52w")
+default_font = ExtResource("1_mx3nn")
 BoxContainer/constants/separation = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_choan")
 Button/styles/focus = SubResource("StyleBoxFlat_52yc0")

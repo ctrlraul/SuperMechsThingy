@@ -1,4 +1,5 @@
 extends Node2D
+class_name ItemsWorkshop
 
 
 
@@ -19,6 +20,7 @@ extends Node2D
 @onready var top_weapon_1_slot: ItemSlot = %TopWeapon1Slot
 @onready var top_weapon_2_slot: ItemSlot = %TopWeapon2Slot
 @onready var drone_slot: ItemSlot = %DroneSlot
+
 
 
 var mech_build: MechBuild = MechBuild.new()

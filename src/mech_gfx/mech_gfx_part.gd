@@ -15,7 +15,9 @@ const BulletsScene = preload("res://mech_gfx/projectiles/bullets.tscn")
 
 
 @onready var sprite: Sprite2D = %Sprite2D
-@onready var blinking_ornaments: Node2D = %BlinkingOrnaments
+@onready var ornaments_container: Node2D = %OrnamentsContainer
+@onready var glowing_ornaments: Node2D = %Glowing
+@onready var blinking_ornaments: Node2D = %Blinking
 @onready var projectiles_container: Node = %Projectiles
 
 
@@ -36,18 +38,15 @@ var torso_joint: Vector2 :
 
 
 func _ready() -> void:
-	#sprite.material.set_shader_parameter("line_thickness", OUTLINE)
-	set_process(false)
+	Assets.item_changed.connect(_on_item_changed)
 
-
-func _process(_delta: float) -> void:
-	blinking_ornaments.visible = Engine.get_frames_drawn() % 4 == 0
 
 
 func set_item(value: Item) -> void:
 
+	clear()
+
 	if value == null:
-		clear()
 		return
 
 	item = value
@@ -85,12 +84,11 @@ func clear() -> void:
 	size = Vector2i.ZERO
 	item = null
 	visible = false
-	blinking_ornaments.visible = false
 
-	set_process(false)
+	ornaments_container.visible = false
 
-	for prop in blinking_ornaments.get_children():
-		prop.queue_free()
+	NodeUtils.clear(blinking_ornaments)
+	NodeUtils.clear(glowing_ornaments)
 
 
 func play_animation(target_visual_center: Vector2) -> void:
@@ -112,13 +110,16 @@ func play_animation(target_visual_center: Vector2) -> void:
 				var key = MechGFX.Projectile.find_key(projectile.gfx)
 				push_error("Animation for %s is not implemented" % key)
 
-	set_process(true)
+	var tween: Tween = create_tween()
 
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(glowing_ornaments, "modulate:a", 1, 0.5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(glowing_ornaments, "modulate:a", 0, 0.5).set_ease(Tween.EASE_IN)
+
+	ornaments_container.visible = true
 	await __time(1.5)
+	ornaments_container.visible = false
 
-	blinking_ornaments.visible = false
-
-	set_process(false)
 
 
 func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
@@ -176,8 +177,7 @@ func __fire_bullets(config: ItemDef.ProjectileConfig) -> void:
 
 func __prepare_animations() -> void:
 
-	for prop in blinking_ornaments.get_children():
-		prop.queue_free()
+	NodeUtils.clear(blinking_ornaments)
 
 	for ornament in item.def.ornaments:
 
@@ -187,9 +187,26 @@ func __prepare_animations() -> void:
 		ornament_sprite.texture = ornament.texture
 
 		match ornament.effect:
+
+			ItemDef.OrnamentConfig.Effect.NONE:
+				pass
+
 			ItemDef.OrnamentConfig.Effect.BLINK:
 				blinking_ornaments.add_child(ornament_sprite)
+				ornament_sprite.use_parent_material = true
+
+			ItemDef.OrnamentConfig.Effect.GLOW:
+				glowing_ornaments.add_child(ornament_sprite)
+
+			_:
+				assert(false, "Not Implemented")
 
 
 func __time(seconds: float) -> Signal:
 	return get_tree().create_timer(seconds).timeout
+
+
+
+func _on_item_changed(item_def: ItemDef) -> void:
+	if item && item.def == item_def:
+		set_item(item)

@@ -56,10 +56,11 @@ func _on_texture_path_text_submitted(new_text: String) -> void:
 	var new_texture = load("res://assets/images/items/".path_join(new_text))
 
 	if new_texture != null:
-		__ornament.texture =new_texture
+		__ornament.texture = new_texture
 	else:
 		new_texture = load(Config.Paths.MISSING_TEXTURE)
 		__ornament.texture = null
 
 	thumbnail.texture = new_texture
 
+	Assets.notify_item_changed(__item)

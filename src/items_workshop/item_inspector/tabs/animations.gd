@@ -22,13 +22,14 @@ var item: ItemDef
 
 func _ready() -> void:
 
+	Assets.item_changed.connect(_on_item_changed)
+
 	clear()
 
 	mech_movement_options.clear()
 
 	for movement in MechGFX.Movement:
 		mech_movement_options.add_item(movement.capitalize())
-
 
 
 
@@ -40,7 +41,7 @@ func set_item(value: ItemDef) -> void:
 
 	item = value
 
-	points_editor.clear()
+	points_editor.clear_points()
 	points_editor.set_reference_texture(Assets.get_item_texture_for_def(item))
 
 	mech_movement_options.selected = item.mech_movement
@@ -51,21 +52,21 @@ func set_item(value: ItemDef) -> void:
 
 
 func clear() -> void:
+
 	points_editor.clear()
 	mech_movement_options.select(-1)
 
-	for child in ornaments_list.get_children():
-		child.queue_free()
+	ornaments_list.visible = false
+	projectiles_list.visible = false
 
-	for child in projectiles_list.get_children():
-		child.queue_free()
+	NodeUtils.clear(ornaments_list)
+	NodeUtils.clear(projectiles_list)
 
 
 
 func __add_animation_ornament_points() -> void:
 
-	for child in ornaments_list.get_children():
-		child.queue_free()
+	NodeUtils.clear(ornaments_list)
 
 	for ornament in item.ornaments:
 
@@ -86,11 +87,12 @@ func __add_animation_ornament_points() -> void:
 				ornament_changed.emit(item)
 		)
 
+	ornaments_list.visible = ornaments_list.get_child_count() > 0
+
 
 func __add_animation_projectile_points() -> void:
 
-	for child in projectiles_list.get_children():
-		child.queue_free()
+	NodeUtils.clear(projectiles_list)
 
 	for projectile in item.projectiles:
 
@@ -108,6 +110,14 @@ func __add_animation_projectile_points() -> void:
 			func(place: Vector2) -> void:
 				projectile.place = place
 		)
+
+	projectiles_list.visible = projectiles_list.get_child_count() > 0
+
+
+
+func _on_item_changed(item_def: ItemDef) -> void:
+	if item_def == item:
+		set_item(item)
 
 
 func _on_preview_button_pressed() -> void:

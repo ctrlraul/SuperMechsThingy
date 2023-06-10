@@ -1,21 +1,21 @@
 [gd_scene load_steps=9 format=3 uid="uid://qusjo0tcn8pi"]
 
-[ext_resource type="Script" path="res://items_workshop/items_workshop.gd" id="1_ah12x"]
-[ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_workshop/items_index/item_button.tscn" id="2_rcuow"]
-[ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_wnt3s"]
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="4_dlfrs"]
-[ext_resource type="Script" path="res://items_workshop/general_item_drop_area.gd" id="5_fp11e"]
-[ext_resource type="PackedScene" uid="uid://hk5syjovd1ar" path="res://items_workshop/items_index/items_index.tscn" id="6_qj8ve"]
-[ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://item_slot/item_slot.tscn" id="7_nnbe2"]
-[ext_resource type="PackedScene" uid="uid://dk5c0ulwu1p7u" path="res://items_workshop/item_inspector/item_inspector.tscn" id="8_ojhd5"]
+[ext_resource type="Script" path="res://items_workshop/items_workshop.gd" id="1_ihuxv"]
+[ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_workshop/items_index/item_button.tscn" id="2_y3ng3"]
+[ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_7x2no"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="4_i4uwj"]
+[ext_resource type="Script" path="res://items_workshop/general_item_drop_area.gd" id="5_r3e1r"]
+[ext_resource type="PackedScene" uid="uid://hk5syjovd1ar" path="res://items_workshop/items_index/items_index.tscn" id="6_bvm1b"]
+[ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://item_slot/item_slot.tscn" id="7_jpk6y"]
+[ext_resource type="PackedScene" uid="uid://dk5c0ulwu1p7u" path="res://items_workshop/item_inspector/item_inspector.tscn" id="8_sqbw1"]
 
 [node name="ItemsWorkshop" type="Node2D"]
-script = ExtResource("1_ah12x")
-item_button_scene = ExtResource("2_rcuow")
+script = ExtResource("1_ihuxv")
+item_button_scene = ExtResource("2_y3ng3")
 
 [node name="Preview" type="Node2D" parent="."]
 
-[node name="MechGFX" parent="Preview" instance=ExtResource("3_wnt3s")]
+[node name="MechGFX" parent="Preview" instance=ExtResource("3_7x2no")]
 unique_name_in_owner = true
 position = Vector2(0, 80)
 scale = Vector2(0.7, 0.7)
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4_dlfrs")
+theme = ExtResource("4_i4uwj")
 
 [node name="GeneralItemDropArea" type="Control" parent="UI/Theme"]
 layout_mode = 1
@@ -41,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_fp11e")
+script = ExtResource("5_r3e1r")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Theme"]
 layout_mode = 1
@@ -63,7 +63,7 @@ mouse_filter = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Theme/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ItemsIndex" parent="UI/Theme/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_qj8ve")]
+[node name="ItemsIndex" parent="UI/Theme/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_bvm1b")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
@@ -112,53 +112,53 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 columns = 3
 
-[node name="TopWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="TopWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 6
 
-[node name="DroneSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="DroneSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 4
 slot_id = 8
 
-[node name="TopWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="TopWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 3
 slot_id = 7
 
-[node name="SideWeapon3Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="SideWeapon3Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 4
 
-[node name="TorsoSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="TorsoSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SideWeapon4Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="SideWeapon4Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 5
 
-[node name="SideWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="SideWeapon1Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
 slot_id = 2
 
-[node name="LegsSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="LegsSlot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 1
 slot_id = 1
 
-[node name="SideWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_nnbe2")]
+[node name="SideWeapon2Slot" parent="UI/Theme/MarginContainer/HBoxContainer/Center/PanelContainer/MarginContainer/VBoxContainer/SlotsContainer" instance=ExtResource("7_jpk6y")]
 unique_name_in_owner = true
 layout_mode = 2
 item_type = 2
@@ -187,7 +187,7 @@ layout_mode = 2
 text = "Backflip
 "
 
-[node name="ItemInspector" parent="UI/Theme/MarginContainer/HBoxContainer" instance=ExtResource("8_ojhd5")]
+[node name="ItemInspector" parent="UI/Theme/MarginContainer/HBoxContainer" instance=ExtResource("8_sqbw1")]
 unique_name_in_owner = true
 layout_mode = 2
 

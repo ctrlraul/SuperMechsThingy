@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ca3snx5xdcqkj"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_1bjx2"]
-[ext_resource type="Texture2D" uid="uid://b3cybq6auc480" path="res://assets/images/icons/trash_bin.png" id="2_8bqc8"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/ornaments_list_item.gd" id="2_gprva"]
-[ext_resource type="Texture2D" uid="uid://c661nyutblxj1" path="res://assets/images/items/Annihilation_Barrel.png" id="3_lp8xp"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_474or"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/ornaments_list_item.gd" id="2_6e28h"]
+[ext_resource type="Texture2D" uid="uid://b3cybq6auc480" path="res://assets/images/icons/trash_bin.png" id="3_7oxcj"]
+[ext_resource type="Texture2D" uid="uid://c661nyutblxj1" path="res://assets/images/items/Annihilation_Barrel.png" id="4_q5ep5"]
 
 [node name="OrnamentsListItem" type="VBoxContainer"]
 anchors_preset = 15
@@ -13,9 +13,9 @@ offset_right = -900.0
 offset_bottom = -655.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_1bjx2")
+theme = ExtResource("1_474or")
 theme_override_constants/separation = 5
-script = ExtResource("2_gprva")
+script = ExtResource("2_6e28h")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -70,7 +70,7 @@ offset_right = -3.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8bqc8")
+texture = ExtResource("3_7oxcj")
 expand_mode = 1
 stretch_mode = 5
 
@@ -82,7 +82,7 @@ theme_override_constants/separation = 5
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture = ExtResource("3_lp8xp")
+texture = ExtResource("4_q5ep5")
 expand_mode = 1
 stretch_mode = 5
 
