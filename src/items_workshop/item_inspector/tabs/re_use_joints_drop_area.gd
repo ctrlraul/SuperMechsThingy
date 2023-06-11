@@ -12,7 +12,7 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data.data is ItemDef && data.data.type == item_type:
 		return true
 
-	if data.data is Item:
+	if data.data is Item && data.data.def.type == item_type:
 		return true
 
 	return false

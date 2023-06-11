@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://int7phjoghjb"]
 
-[ext_resource type="Script" path="res://mech_gfx/mech_gfx_part.gd" id="1_56bqu"]
-[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_srqih"]
-[ext_resource type="Shader" path="res://mech_gfx/blink.gdshader" id="4_sh5uu"]
+[ext_resource type="Script" path="res://mech_gfx/mech_gfx_part.gd" id="1_jb47u"]
+[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_mkj2u"]
+[ext_resource type="Shader" path="res://mech_gfx/blink.gdshader" id="3_ldwhb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ro2a"]
-shader = ExtResource("2_srqih")
+shader = ExtResource("2_mkj2u")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bg0gb"]
-shader = ExtResource("4_sh5uu")
+shader = ExtResource("3_ldwhb")
 
 [node name="MechGFXPart" type="Node2D"]
-script = ExtResource("1_56bqu")
+script = ExtResource("1_jb47u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

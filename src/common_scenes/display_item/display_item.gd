@@ -2,11 +2,7 @@ extends Control
 
 
 
-const MARGIN: int = 2
-
-
-
-@export var image_scale: float = 1
+@export var margin: int = 1
 @export var outline_thickness: int = 2
 @export var interpolation = Image.INTERPOLATE_LANCZOS
 
@@ -40,6 +36,8 @@ func set_item(value: Item) -> void:
 	else:
 		scaled_size.x = node_size.y * texture_size.x / texture_size.y
 
+	var margin_scale = texture_size.x / scaled_size.x
+
 	image.resize(
 		int(scaled_size.x),
 		int(scaled_size.y),
@@ -47,8 +45,8 @@ func set_item(value: Item) -> void:
 	)
 
 	var padded_image = Image.create(
-		int(scaled_size.x + outline_thickness * 2 + MARGIN),
-		int(scaled_size.y + outline_thickness * 2 + MARGIN),
+		int(scaled_size.x + outline_thickness + 2 * margin / margin_scale),
+		int(scaled_size.y + outline_thickness + 2 * margin / margin_scale),
 		false,
 		image.get_format()
 	)
@@ -56,7 +54,7 @@ func set_item(value: Item) -> void:
 	padded_image.blit_rect(
 		image,
 		Rect2i(Vector2.ZERO, scaled_size),
-		Vector2.ONE * outline_thickness + Vector2.ONE * MARGIN
+		Vector2.ONE * outline_thickness + Vector2.ONE * margin / margin_scale
 	)
 
 	sprite.texture = ImageTexture.create_from_image(padded_image)

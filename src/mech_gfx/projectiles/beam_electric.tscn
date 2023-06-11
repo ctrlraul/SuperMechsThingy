@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bopsgqfrcngwr"]
+
+[ext_resource type="Script" path="res://mech_gfx/projectiles/beam.gd" id="1_5vxr8"]
+[ext_resource type="Texture2D" uid="uid://dfsgdk1it3p85" path="res://mech_gfx/projectiles/beam_electric_source_flat.png" id="2_j35gm"]
+[ext_resource type="Texture2D" uid="uid://f2iu8a36u2w4" path="res://mech_gfx/projectiles/beam_electric.png" id="3_5gcb7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n20eo"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vfvny"]
+blend_mode = 1
+
+[node name="BeamBlue" type="Node2D"]
+script = ExtResource("1_5vxr8")
+
+[node name="BeamSource" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_n20eo")
+texture = ExtResource("2_j35gm")
+offset = Vector2(2, 2)
+
+[node name="Beam" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_vfvny")
+scale = Vector2(1e-05, 1)
+texture = ExtResource("3_5gcb7")
+offset = Vector2(22, 0)

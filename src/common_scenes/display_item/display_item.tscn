@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://di4ho04jays15"]
 
-[ext_resource type="Script" path="res://common_scenes/display_item/display_item.gd" id="1_ccof2"]
-[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_l31ih"]
-[ext_resource type="Texture2D" uid="uid://cjt4hebckgych" path="res://assets/images/items/Abomination.png" id="3_wlhv4"]
+[ext_resource type="Script" path="res://common_scenes/display_item/display_item.gd" id="1_kk850"]
+[ext_resource type="Shader" path="res://common/shaders/outline.gdshader" id="2_q6b5c"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_hjdsb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g3geq"]
-shader = ExtResource("2_l31ih")
+shader = ExtResource("2_q6b5c")
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/line_thickness = 2.0
 
@@ -19,7 +19,7 @@ offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_ccof2")
+script = ExtResource("1_kk850")
 
 [node name="Sprite" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -32,7 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_wlhv4")
+texture = ExtResource("3_hjdsb")
 expand_mode = 1
 stretch_mode = 5
 

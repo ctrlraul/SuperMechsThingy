@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://hk5syjovd1ar"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_gw2wu"]
+[ext_resource type="Script" path="res://items_index/items_index.gd" id="2_qx3ie"]
+[ext_resource type="PackedScene" uid="uid://doicad55p0eob" path="res://items_index/items_index_tab.tscn" id="3_j44hj"]
+[ext_resource type="PackedScene" uid="uid://5a8mj8ir3se8" path="res://items_index/item_button.tscn" id="4_hokvm"]
+
+[node name="ItemsIndex" type="TabContainer"]
+offset_right = 294.0
+offset_bottom = 690.0
+size_flags_vertical = 3
+theme = ExtResource("1_gw2wu")
+tab_alignment = 1
+script = ExtResource("2_qx3ie")
+items_index_tab_scene = ExtResource("3_j44hj")
+item_button_scene = ExtResource("4_hokvm")
+
+[node name="Element 1" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Element 2" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Element 3" type="Control" parent="."]
+visible = false
+layout_mode = 2

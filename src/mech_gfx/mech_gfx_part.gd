@@ -11,6 +11,9 @@ const __FIRING_INTERVAL: float = 0.1
 const RocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 const BigRocketScene = preload("res://mech_gfx/projectiles/big_rocket.tscn")
 const BulletsScene = preload("res://mech_gfx/projectiles/bullets.tscn")
+const BeamBlueScene = preload("res://mech_gfx/projectiles/beam_electric.tscn")
+const BeamRedScene = preload("res://mech_gfx/projectiles/beam_explosive.tscn")
+const BeamPhysicalFlatScene = preload("res://mech_gfx/projectiles/beam_physical_flat.tscn")
 
 
 
@@ -97,14 +100,17 @@ func play_animation(target_visual_center: Vector2) -> void:
 
 		match projectile.gfx:
 
-			MechGFX.Projectile.ROCKET:
-				await __fire_rocket(projectile, target_visual_center).finished
+			MechGFX.Projectile.ROCKET: await __fire_rocket(projectile, target_visual_center)
 
-			MechGFX.Projectile.BIG_ROCKET:
-				await __fire_big_rocket(projectile, target_visual_center).finished
+			MechGFX.Projectile.BIG_ROCKET: await __fire_big_rocket(projectile, target_visual_center)
 
-			MechGFX.Projectile.BULLETS:
-				__fire_bullets(projectile)
+			MechGFX.Projectile.BULLETS: __fire_bullets(projectile)
+
+			MechGFX.Projectile.BEAM_BLUE: __fire_beam_blue_flat(projectile)
+
+			MechGFX.Projectile.BEAM_RED: __fire_beam_red_flat(projectile)
+
+			MechGFX.Projectile.BEAM_PHYSICAL_FLAT: __fire_beam_physical_flat(projectile)
 
 			_:
 				var key = MechGFX.Projectile.find_key(projectile.gfx)
@@ -122,14 +128,13 @@ func play_animation(target_visual_center: Vector2) -> void:
 
 
 
-func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
+func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Signal:
 
 	var recoil: Vector2 = Vector2(10, 0)
 	var projectile = RocketScene.instantiate()
 
 	projectiles_container.add_child(projectile)
-	projectile.position = global_position + (-torso_joint + config.place) * global_scale
-	projectile.scale = global_scale
+	projectile.position = -torso_joint + config.place
 	projectile.fire(target)
 
 	# Recoil effect
@@ -142,10 +147,10 @@ func __fire_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
 
 	sprite.position -= recoil
 
-	return tween
+	return tween.finished
 
 
-func __fire_big_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Tween:
+func __fire_big_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Signal:
 
 	var recoil: Vector2 = Vector2(10, 0)
 	var projectile = BigRocketScene.instantiate()
@@ -165,14 +170,31 @@ func __fire_big_rocket(config: ItemDef.ProjectileConfig, target: Vector2) -> Twe
 
 	sprite.position -= recoil
 
-	return tween
+	return tween.finished
 
 
 func __fire_bullets(config: ItemDef.ProjectileConfig) -> void:
 	var projectile = BulletsScene.instantiate()
 	projectiles_container.add_child(projectile)
 	projectile.position = -torso_joint + config.place
-	projectile.scale = global_scale
+
+
+func __fire_beam_blue_flat(config: ItemDef.ProjectileConfig) -> void:
+	var projectile = BeamBlueScene.instantiate()
+	projectiles_container.add_child(projectile)
+	projectile.position = -torso_joint + config.place
+
+
+func __fire_beam_red_flat(config: ItemDef.ProjectileConfig) -> void:
+	var projectile = BeamRedScene.instantiate()
+	projectiles_container.add_child(projectile)
+	projectile.position = -torso_joint + config.place
+
+
+func __fire_beam_physical_flat(config: ItemDef.ProjectileConfig) -> void:
+	var projectile = BeamPhysicalFlatScene.instantiate()
+	projectiles_container.add_child(projectile)
+	projectile.position = -torso_joint + config.place
 
 
 func __prepare_animations() -> void:

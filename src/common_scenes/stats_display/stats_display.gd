@@ -1,3 +1,4 @@
+class_name StatsDisplay
 extends GridContainer
 
 
@@ -22,17 +23,11 @@ func set_stats(stats: Dictionary) -> void:
 		var block = block_scene.instantiate()
 		add_child(block)
 
-	var all_stat_keys: Array = Assets.stats.keys()
-	var keys: Array = stats.keys()
-
-	keys.sort_custom(
-		func(a, b):
-			return all_stat_keys.find(a) < all_stat_keys.find(b)
-	)
+	var stat_list = stats.keys()
+	var values = stats.values()
 
 	for i in stats.size():
-		var block = get_child(i)
-		block.set_stat(keys[i], stats[keys[i]])
+		get_child(i).set_stat(stat_list[i], values[i])
 
 
 func clear() -> void:

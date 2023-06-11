@@ -1,0 +1,572 @@
+[gd_scene load_steps=25 format=3 uid="uid://bvunv18pd7poj"]
+
+[ext_resource type="Script" path="res://workshop/workshop.gd" id="1_2j0s2"]
+[ext_resource type="Texture2D" uid="uid://cax8g86gf3gbu" path="res://workshop/background.png" id="2_pbynv"]
+[ext_resource type="PackedScene" uid="uid://c01iq33mrndvq" path="res://mech_gfx/mech_gfx.tscn" id="3_tntnx"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="4_35em5"]
+[ext_resource type="Script" path="res://common/general_item_drop_area.gd" id="5_mvhyw"]
+[ext_resource type="Texture2D" uid="uid://d1afitfvumstr" path="res://workshop/kg.png" id="6_oo6yu"]
+[ext_resource type="FontVariation" uid="uid://bo5qt13y6gh74" path="res://assets/fonts/American Captain Eternal.tres" id="7_l0qwx"]
+[ext_resource type="PackedScene" uid="uid://bhdswejeu4hmu" path="res://item_slot/item_slot.tscn" id="8_j4dgr"]
+[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://common_scenes/stats_display/stats_display.tscn" id="9_dpd7i"]
+[ext_resource type="PackedScene" uid="uid://hk5syjovd1ar" path="res://items_index/items_index.tscn" id="10_f1hok"]
+[ext_resource type="Texture2D" uid="uid://hbqg7irhtbdf" path="res://assets/images/slots/symbols/TORSO.png" id="11_75xto"]
+[ext_resource type="Texture2D" uid="uid://e12d3wlsrqv5" path="res://assets/images/slots/symbols/LEGS.png" id="12_v1wle"]
+[ext_resource type="Texture2D" uid="uid://doko3ukpf1at2" path="res://assets/images/slots/symbols/SIDE_WEAPON.png" id="13_r2fp4"]
+[ext_resource type="Texture2D" uid="uid://cd45ha4cuow53" path="res://assets/images/slots/symbols/TOP_WEAPON.png" id="14_83o1d"]
+[ext_resource type="Texture2D" uid="uid://bc6qq46i2r2nh" path="res://assets/images/slots/symbols/DRONE_2.png" id="15_k0xyl"]
+[ext_resource type="Texture2D" uid="uid://dj6ua8nnm7qqo" path="res://assets/images/slots/symbols/GRAPPLING_HOOK_2.png" id="16_elvb1"]
+[ext_resource type="Texture2D" uid="uid://dvs1bkw7vsr2t" path="res://assets/images/slots/symbols/CHARGE_ENGINE_2.png" id="17_eu6qi"]
+[ext_resource type="Texture2D" uid="uid://bh3q8igs6v6y7" path="res://assets/images/slots/symbols/TELEPORTER_2.png" id="18_he31j"]
+[ext_resource type="Texture2D" uid="uid://dkrt3ice7pdm4" path="res://assets/images/slots/symbols/SHIELD_2.png" id="19_2rkrv"]
+[ext_resource type="Texture2D" uid="uid://cs6pqo8xr5j15" path="res://assets/images/slots/symbols/MODULE_2.png" id="20_lkdnb"]
+[ext_resource type="Texture2D" uid="uid://cea0tr4m7gwwv" path="res://assets/images/slots/symbols/PERK.png" id="21_t0o13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q477y"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.109804, 0.309804, 0.0705882, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_tybj5"]
+font = ExtResource("7_l0qwx")
+font_size = 17
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mssp5"]
+bg_color = Color(0.0234375, 0.0664063, 0.105469, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.320313, 0.320313, 0.332031, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 6
+
+[node name="Workshop" type="Node2D"]
+script = ExtResource("1_2j0s2")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575.375, 378)
+scale = Vector2(1.29225, 1.29718)
+texture = ExtResource("2_pbynv")
+
+[node name="MechGFX" parent="." instance=ExtResource("3_tntnx")]
+unique_name_in_owner = true
+position = Vector2(390, 390)
+scale = Vector2(0.7, 0.7)
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Theme" type="Control" parent="Interface"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_35em5")
+
+[node name="GeneralItemDropArea" type="Control" parent="Interface/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_mvhyw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Interface/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface/Theme/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Main" type="VBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control" type="HBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ReturnButton" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Control"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Return"
+
+[node name="Spacer" type="Control" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Weight" type="PanelContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_q477y")
+
+[node name="Control" type="HBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Weight"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Weight/Control"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture = ExtResource("6_oo6yu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Weight" type="Label" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Weight/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "0/1000"
+label_settings = SubResource("LabelSettings_tybj5")
+horizontal_alignment = 1
+
+[node name="Slots" type="HBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Modules" type="GridContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+columns = 2
+
+[node name="MODULE_1" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 13
+item_type = 9
+
+[node name="MODULE_2" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 14
+item_type = 9
+
+[node name="MODULE_3" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 15
+item_type = 9
+
+[node name="MODULE_4" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 16
+item_type = 9
+
+[node name="MODULE_5" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 17
+item_type = 9
+
+[node name="MODULE_6" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 18
+item_type = 9
+
+[node name="MODULE_7" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 19
+item_type = 9
+
+[node name="MODULE_8" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Modules" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 20
+item_type = 9
+
+[node name="Body" type="GridContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+columns = 3
+
+[node name="TOP_WEAPON_1" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 6
+item_type = 3
+
+[node name="DRONE" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 8
+item_type = 4
+
+[node name="TOP_WEAPON_2" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 7
+item_type = 3
+
+[node name="SIDE_WEAPON_3" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 4
+item_type = 2
+
+[node name="TORSO" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+
+[node name="SIDE_WEAPON_4" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 5
+item_type = 2
+
+[node name="SIDE_WEAPON_1" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 2
+item_type = 2
+
+[node name="LEGS" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 1
+item_type = 1
+
+[node name="SIDE_WEAPON_2" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Body" instance=ExtResource("8_j4dgr")]
+custom_minimum_size = Vector2(82, 82)
+layout_mode = 2
+slot_id = 3
+item_type = 2
+
+[node name="Specials" type="GridContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="GRAPPLING_HOOK" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Specials" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 11
+item_type = 7
+
+[node name="CHARGE_ENGINE" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Specials" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 9
+item_type = 5
+
+[node name="TELEPORTER" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Specials" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 10
+item_type = 6
+
+[node name="SHIELD" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Specials" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 12
+item_type = 8
+
+[node name="Perk" type="VBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots"]
+layout_mode = 2
+alignment = 2
+
+[node name="PERK" parent="Interface/Theme/MarginContainer/HBoxContainer/Main/Slots/Perk" instance=ExtResource("8_j4dgr")]
+layout_mode = 2
+slot_id = 21
+item_type = 10
+
+[node name="ItemLists" type="VBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Stats" type="PanelContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mssp5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists/Stats/MarginContainer"]
+layout_mode = 2
+
+[node name="MechName" type="Label" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mech #1"
+
+[node name="StatsDisplay" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists/Stats/MarginContainer/VBoxContainer" instance=ExtResource("9_dpd7i")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="BodyItemsIndex" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists" instance=ExtResource("10_f1hok")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="SpecialItemsIndex" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists" instance=ExtResource("10_f1hok")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="ModuleItemsIndex" parent="Interface/Theme/MarginContainer/HBoxContainer/ItemLists" instance=ExtResource("10_f1hok")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="TypeButtons" type="VBoxContainer" parent="Interface/Theme/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="BodyButton" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_75xto")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpecialsButton" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_v1wle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModulesButton" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_r2fp4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BodyButton2" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_83o1d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpecialsButton2" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_k0xyl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModulesButton2" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_elvb1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BodyButton3" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_eu6qi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpecialsButton3" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_he31j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModulesButton3" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_2rkrv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BodyButton4" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_lkdnb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModulesButton4" type="Button" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_t0o13")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="item_button_dropped" from="Interface/Theme/GeneralItemDropArea" to="." method="_on_general_item_drop_area_item_button_dropped"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/Main/Control/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton" to="." method="_on_body_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton" to="." method="_on_specials_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton" to="." method="_on_modules_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton2" to="." method="_on_body_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton2" to="." method="_on_specials_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton2" to="." method="_on_modules_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton3" to="." method="_on_body_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/SpecialsButton3" to="." method="_on_specials_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton3" to="." method="_on_modules_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/BodyButton4" to="." method="_on_body_button_pressed"]
+[connection signal="pressed" from="Interface/Theme/MarginContainer/HBoxContainer/TypeButtons/ModulesButton4" to="." method="_on_modules_button_pressed"]

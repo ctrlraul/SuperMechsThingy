@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://doicad55p0eob"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_mpems"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5rst"]
+content_margin_right = 10.0
+draw_center = false
+
+[node name="ItemsIndexTab" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mpems")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"InsetPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f5rst")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

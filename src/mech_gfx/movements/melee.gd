@@ -3,7 +3,7 @@ class_name MechMovementMelee
 
 const WEAPON_SWING_DURATION: float = 1
 const STEP_DURATION: float = 0.3
-const STEP_DISTANCE: float = 80
+const STEP_DISTANCE: float = 60
 const STEP_HEIGHT: float = 30
 
 
@@ -24,6 +24,8 @@ static func play(mech: MechGFX, speed: float, slot: MechBuild.Slot) -> void:
 	else:
 
 		await MechMovementMelee.tween_swing_weapon(mech, speed, slot).finished
+
+	mech.reorganize()
 
 
 static func tween_swing_weapon(mech: MechGFX, speed: float, slot: MechBuild.Slot) -> Tween:

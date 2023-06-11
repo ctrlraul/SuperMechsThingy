@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://g0lk6x30th21"]
+[gd_scene load_steps=9 format=3 uid="uid://g0lk6x30th21"]
 
-[ext_resource type="Script" path="res://mech_gfx/projectiles/rocket.gd" id="1_6sawo"]
-[ext_resource type="Texture2D" uid="uid://d2kw73k15jc6i" path="res://mech_gfx/projectiles/rocket_exhaust.png" id="2_0stcp"]
-[ext_resource type="Texture2D" uid="uid://rbdb7acu1ed" path="res://mech_gfx/projectiles/rocket.png" id="3_kg1cl"]
-[ext_resource type="Texture2D" uid="uid://dj8jcuekacr1l" path="res://mech_gfx/projectiles/nozzle_fire_yellow.png" id="4_grsdc"]
+[ext_resource type="Script" path="res://mech_gfx/projectiles/rocket.gd" id="1_h30ys"]
+[ext_resource type="Texture2D" uid="uid://dj8jcuekacr1l" path="res://mech_gfx/projectiles/nozzle_fire_yellow.png" id="2_sk6cc"]
+[ext_resource type="Texture2D" uid="uid://d2kw73k15jc6i" path="res://mech_gfx/projectiles/rocket_exhaust.png" id="3_hy7jm"]
+[ext_resource type="Texture2D" uid="uid://rbdb7acu1ed" path="res://mech_gfx/projectiles/rocket.png" id="4_y08ku"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4y6j3"]
+blend_mode = 1
 
 [sub_resource type="Animation" id="Animation_eshr3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Exhaust:scale")
+tracks/0/path = NodePath("ProjectileContainer/ProjectileGFX/Exhaust:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +53,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Exhaust:scale")
+tracks/0/path = NodePath("ProjectileContainer/ProjectileGFX/Exhaust:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,21 +94,26 @@ _data = {
 }
 
 [node name="Rocket" type="Node2D"]
-script = ExtResource("1_6sawo")
-
-[node name="Exhaust" type="Sprite2D" parent="."]
-texture = ExtResource("2_0stcp")
-offset = Vector2(-20, 0)
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_kg1cl")
-offset = Vector2(14, 0)
+script = ExtResource("1_h30ys")
 
 [node name="NozzleFireYellow" type="Sprite2D" parent="."]
-top_level = true
+material = SubResource("CanvasItemMaterial_4y6j3")
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_grsdc")
+texture = ExtResource("2_sk6cc")
 offset = Vector2(47, 0)
+
+[node name="ProjectileContainer" type="Node" parent="."]
+
+[node name="ProjectileGFX" type="Node2D" parent="ProjectileContainer"]
+unique_name_in_owner = true
+
+[node name="Exhaust" type="Sprite2D" parent="ProjectileContainer/ProjectileGFX"]
+texture = ExtResource("3_hy7jm")
+offset = Vector2(-20, 0)
+
+[node name="Sprite" type="Sprite2D" parent="ProjectileContainer/ProjectileGFX"]
+texture = ExtResource("4_y08ku")
+offset = Vector2(14.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

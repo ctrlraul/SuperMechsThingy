@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://clmqvuer8ehnq"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_hjsds"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_ux1nf"]
-[ext_resource type="PackedScene" uid="uid://d0081ywlqrldg" path="res://items_workshop/item_inspector/tabs/projectiles_list_item.tscn" id="3_ccdq6"]
-[ext_resource type="PackedScene" uid="uid://ca3snx5xdcqkj" path="res://items_workshop/item_inspector/tabs/ornaments_list_item.tscn" id="4_my3b0"]
-[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="5_0dbfm"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_cm10t"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/animations.gd" id="2_7fpjn"]
+[ext_resource type="PackedScene" uid="uid://d0081ywlqrldg" path="res://items_workshop/item_inspector/tabs/projectiles_list_item.tscn" id="3_ymwjg"]
+[ext_resource type="PackedScene" uid="uid://ca3snx5xdcqkj" path="res://items_workshop/item_inspector/tabs/ornaments_list_item.tscn" id="4_bqws5"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="5_t2r5e"]
 
 [node name="Animations" type="TabBar"]
 clip_contents = true
@@ -15,10 +15,10 @@ offset_right = -807.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_hjsds")
-script = ExtResource("2_ux1nf")
-projectiles_list_item_scene = ExtResource("3_ccdq6")
-ornaments_list_item_scene = ExtResource("4_my3b0")
+theme = ExtResource("1_cm10t")
+script = ExtResource("2_7fpjn")
+projectiles_list_item_scene = ExtResource("3_ymwjg")
+ornaments_list_item_scene = ExtResource("4_bqws5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,7 +49,7 @@ clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PointsEditor" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_0dbfm")]
+[node name="PointsEditor" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_t2r5e")]
 unique_name_in_owner = true
 layout_mode = 2
 

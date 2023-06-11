@@ -11,6 +11,7 @@ enum Type {
 	CHARGE_ENGINE,
 	TELEPORTER,
 	GRAPPLING_HOOK,
+	SHIELD,
 	MODULE,
 	PERK,
 }
@@ -19,7 +20,7 @@ enum Element {
 	PHYSICAL,
 	EXPLOSIVE,
 	ELECTRIC,
-	OTHER
+	OTHER,
 }
 
 enum Tier {
@@ -29,6 +30,47 @@ enum Tier {
 	LEGENDARY,
 	MYTHICAL,
 	DIVINE
+}
+
+enum Stat {
+	WEIGHT,
+	HIT_POINTS,
+	REPAIRING,
+	ENERGY_CAPACITY,
+	ENERGY_REGENERATION,
+	HEAT_CAPACITY,
+	COOLING,
+	BULLETS_CAPACITY,
+	ROCKETS_CAPACITY,
+	PHYSICAL_RESISTANCE,
+	EXPLOSIVE_RESISTANCE,
+	ELECTRIC_RESISTANCE,
+	PHYSICAL_DAMAGE,
+	PHYSICAL_RESISTANCE_DAMAGE,
+	ELECTRIC_DAMAGE,
+	ENERGY_DAMAGE,
+	ENERGY_CAPACITY_DAMAGE,
+	ENERGY_REGENERATION_DAMAGE,
+	ELECTRIC_RESISTANCE_DAMAGE,
+	EXPLOSIVE_DAMAGE,
+	HEAT_DAMAGE,
+	HEAT_CAPACITY_DAMAGE,
+	COOLING_DAMAGE,
+	EXPLOSIVE_RESISTANCE_DAMAGE,
+	WALKING_DISTANCE,
+	JUMPING_DISTANCE,
+	RANGE,
+	KNOCKBACK,
+	PULL,
+	RECOIL,
+	ADVANCE,
+	RETREAT,
+	USES,
+	BACKFIRE,
+	HEAT_GENERATION,
+	ENERGY_CONSUMPTION,
+	BULLETS_CONSUMPTION,
+	ROCKETS_CONSUMPTION,
 }
 
 enum PerkType {
@@ -137,12 +179,16 @@ func _init(source) -> void:
 	type = Type[source.type]
 	#perk_type
 	element = Element[source.element]
-	stats = source.stats
+	#stats
 	tier = Tier[source.tier]
 	#joints
 	#mech_movement
 	#projectiles
 	#ornaments
+
+	if source.has("stats"):
+		for key in source.stats:
+			stats[Stat[key]] = source.stats[key]
 
 	if type == Type.PERK:
 		perk_type = PerkType[source.perk_type]
@@ -174,13 +220,18 @@ func to_json() -> Dictionary:
 		"type": Type.find_key(type),
 		#"perk_type": ,
 		"element": Element.find_key(element),
-		"stats": stats,
+		#"stats": ,
 		"tier": Tier.find_key(tier),
 		#"joints": ,
 		#"mech_movement": ,
 		#"projectiles": ,
 		#"ornaments": ,
 	}
+
+	if stats.size() > 0:
+		result.stats = {}
+		for stat in stats:
+			result.stats[Stat.find_key(stat)] = stats[stat]
 
 	if perk_type != PerkType.NONE:
 		result.perk_type = PerkType.find_key(perk_type)

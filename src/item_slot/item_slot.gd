@@ -1,18 +1,27 @@
-extends Control
+@tool
+
 class_name ItemSlot
+extends Control
+
 signal item_equipped(item: ItemDef, slot_id: MechBuild.Slot)
 signal selected(slot: ItemSlot)
 
 
 
-@export var item_type: ItemDef.Type
+const GROUP: String = "ITEM_SLOTS"
+
+
+
+@onready var slot_display_item: Control = %SlotDisplayItem
+@onready var slot_symbol: TextureRect = %SlotSymbol
+
+
+
 @export var slot_id: MechBuild.Slot
-
-
-
-@onready var element_color: TextureRect = $ElementColor
-@onready var tier_border: TextureRect = $TierBorder
-@onready var display_item: Control = $DisplayItem
+@export var item_type: ItemDef.Type :
+	set(value):
+		item_type = value
+		__update_slot_symbol()
 
 
 
@@ -22,8 +31,9 @@ var pressing: bool = false
 
 
 func _ready() -> void:
-	__set_slot_symbol()
-	clear()
+	add_to_group(GROUP)
+	slot_display_item.visible = !Engine.is_editor_hint()
+
 
 
 func _get_drag_data(_position: Vector2):
@@ -65,27 +75,18 @@ func set_item(value: Item) -> void:
 		return
 
 	item = value
-
-	element_color.texture = Assets.get_slot_background_for_element(item.def.element)
-	tier_border.texture = Assets.get_slot_border_for_tier(item.def.tier)
-	display_item.set_item(item)
-
+	slot_display_item.set_item(item)
 	item_equipped.emit(item, slot_id)
 
 
 func clear() -> void:
-
 	item = null
-
-	element_color.texture = null
-	tier_border.texture = null
-	display_item.set_item(null)
-
+	slot_display_item.clear()
 	item_equipped.emit(null, slot_id)
 
 
 
-func __set_slot_symbol() -> void:
+func __update_slot_symbol() -> void:
 
 	$SlotSymbol.texture = Assets.get_slot_symbol_for_type(item_type)
 

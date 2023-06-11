@@ -2,7 +2,8 @@ extends TabBar
 
 
 
-@onready var display_item: Control = %DisplayItem
+@onready var slot_display_item: Control = %SlotDisplayItem
+#@onready var display_item: Control = %DisplayItem
 @onready var name_label: Label = %NameLabel
 @onready var id_label: Label = %IDLabel
 @onready var sprite_name_label: Label = %SpriteNameLabel
@@ -45,7 +46,7 @@ func set_item(value: ItemDef) -> void:
 	name_label.text = item.display_name
 	id_label.text = str(item.id)
 
-	display_item.set_item_def(item)
+	slot_display_item.set_item_def(item)
 	sprite_name_label.text = item.texture
 
 	stats_display.set_stats(item.stats)
@@ -61,8 +62,7 @@ func clear() -> void:
 
 	name_label.text = ""
 	stats_display.clear()
-
-	display_item.clear()
+	slot_display_item.clear()
 
 	type_options.select(-1)
 	element_options.select(-1)

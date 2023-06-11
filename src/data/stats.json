@@ -1,149 +1,115 @@
 [{
-	"id": "weight",
-	"name": "Weight",
+	"id": "WEIGHT",
 	"type": "number"
 }, {
-	"id": "health",
-	"name": "Health",
+	"id": "HIT_POINTS",
 	"type": "number"
 }, {
-	"id": "eneCap",
-	"name": "Energy Capacity",
+	"id": "REPAIRING",
 	"type": "number"
 }, {
-	"id": "eneReg",
-	"name": "Energy Regeneration",
+	"id": "ENERGY_CAPACITY",
 	"type": "number"
 }, {
-	"id": "heaCap",
-	"name": "Heat Capacity",
+	"id": "ENERGY_REGENERATION",
 	"type": "number"
 }, {
-	"id": "heaCol",
-	"name": "Cooling",
+	"id": "HEAT_CAPACITY",
 	"type": "number"
 }, {
-	"id": "bulletsCap",
-	"name": "Bullets Capacity",
+	"id": "COOLING",
 	"type": "number"
 }, {
-	"id": "rocketsCap",
-	"name": "Rockets Capacity",
+	"id": "BULLETS_CAPACITY",
 	"type": "number"
 }, {
-	"id": "phyRes",
-	"name": "Physical Resistance",
+	"id": "ROCKETS_CAPACITY",
 	"type": "number"
 }, {
-	"id": "expRes",
-	"name": "Explosive Resistance",
+	"id": "PHYSICAL_RESISTANCE",
 	"type": "number"
 }, {
-	"id": "eleRes",
-	"name": "Electric Resistance",
+	"id": "EXPLOSIVE_RESISTANCE",
 	"type": "number"
 }, {
-	"id": "phyDmg",
-	"name": "Physical Damage",
+	"id": "ELECTRIC_RESISTANCE",
+	"type": "number"
+}, {
+	"id": "PHYSICAL_DAMAGE",
 	"type": "range"
 }, {
-	"id": "phyResDmg",
-	"name": "Physical Resistance Damage",
+	"id": "PHYSICAL_RESISTANCE_DAMAGE",
 	"type": "number"
 }, {
-	"id": "eleDmg",
-	"name": "Electric Damage",
+	"id": "ELECTRIC_DAMAGE",
 	"type": "range"
 }, {
-	"id": "eneDmg",
-	"name": "Energy Damage",
+	"id": "ENERGY_DAMAGE",
 	"type": "number"
 }, {
-	"id": "eneCapDmg",
-	"name": "Energy Capacity Damage",
+	"id": "ENERGY_CAPACITY_DAMAGE",
 	"type": "number"
 }, {
-	"id": "eneRegDmg",
-	"name": "Energy Regeneration Damage",
+	"id": "ENERGY_REGENERATION_DAMAGE",
 	"type": "number"
 }, {
-	"id": "eleResDmg",
-	"name": "Electric Resistance Damage",
+	"id": "ELECTRIC_RESISTANCE_DAMAGE",
 	"type": "number"
 }, {
-	"id": "expDmg",
-	"name": "Explosive Damage",
+	"id": "EXPLOSIVE_DAMAGE",
 	"type": "range"
 }, {
-	"id": "heaDmg",
-	"name": "Heat Damage",
+	"id": "HEAT_DAMAGE",
 	"type": "number"
 }, {
-	"id": "heaCapDmg",
-	"name": "Heat Capacity Damage",
+	"id": "HEAT_CAPACITY_DAMAGE",
 	"type": "number"
 }, {
-	"id": "heaColDmg",
-	"name": "Cooling Damage",
+	"id": "COOLING_DAMAGE",
 	"type": "number"
 }, {
-	"id": "expResDmg",
-	"name": "Explosive Resistance Damage",
+	"id": "EXPLOSIVE_RESISTANCE_DAMAGE",
 	"type": "number"
 }, {
-	"id": "walk",
-	"name": "Walking Distance",
+	"id": "WALKING_DISTANCE",
 	"type": "number"
 }, {
-	"id": "jump",
-	"name": "Jumping Distance",
+	"id": "JUMPING_DISTANCE",
 	"type": "number"
 }, {
-	"id": "range",
-	"name": "Range",
+	"id": "RANGE",
 	"type": "range"
 }, {
-	"id": "push",
-	"name": "Knockback",
+	"id": "KNOCKBACK",
 	"type": "number"
 }, {
-	"id": "pull",
-	"name": "Pull",
+	"id": "PULL",
 	"type": "number"
 }, {
-	"id": "recoil",
-	"name": "Recoil",
+	"id": "RECOIL",
 	"type": "number"
 }, {
-	"id": "advance",
-	"name": "Advance",
+	"id": "ADVANCE",
 	"type": "number"
 }, {
-	"id": "retreat",
-	"name": "Retreat",
+	"id": "RETREAT",
 	"type": "number"
 }, {
-	"id": "uses",
-	"name": "Uses",
+	"id": "USES",
 	"type": "number"
 }, {
-	"id": "backfire",
-	"name": "Backfire",
+	"id": "BACKFIRE",
 	"type": "number"
 }, {
-	"id": "heaCost",
-	"name": "Heat Generation",
+	"id": "HEAT_GENERATION",
 	"type": "number"
 }, {
-	"id": "eneCost",
-	"name": "Energy Consumption",
+	"id": "ENERGY_CONSUMPTION",
 	"type": "number"
 }, {
-	"id": "bulletsCost",
-	"name": "Bullets Usage",
+	"id": "BULLETS_CONSUMPTION",
 	"type": "number"
 }, {
-	"id": "rocketsCost",
-	"name": "Rockets Usage",
+	"id": "ROCKETS_CONSUMPTION",
 	"type": "number"
 }]

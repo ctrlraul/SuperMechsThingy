@@ -1,25 +1,43 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxm2x6p0msmj2"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_dvgg4"]
-[ext_resource type="Script" path="res://common_scenes/stats_display/stats_display.gd" id="2_38akx"]
-[ext_resource type="PackedScene" uid="uid://c3lesinqnj7mm" path="res://common_scenes/stats_display/stat_display_block.tscn" id="3_l4qcx"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_fb7cl"]
+[ext_resource type="Script" path="res://common_scenes/stats_display/stats_display.gd" id="2_bwdik"]
+[ext_resource type="PackedScene" uid="uid://c3lesinqnj7mm" path="res://common_scenes/stats_display/stat_display_block.tscn" id="3_y1nlp"]
 
 [node name="StatsDisplay" type="GridContainer"]
-offset_right = 199.0
-offset_bottom = 72.0
-theme = ExtResource("1_dvgg4")
+offset_right = 300.0
+offset_bottom = 166.0
+theme = ExtResource("1_fb7cl")
 columns = 2
-script = ExtResource("2_38akx")
-block_scene = ExtResource("3_l4qcx")
+script = ExtResource("2_bwdik")
+block_scene = ExtResource("3_y1nlp")
 
-[node name="StatDisplayBlock" parent="." instance=ExtResource("3_l4qcx")]
+[node name="StatDisplayBlock" parent="." instance=ExtResource("3_y1nlp")]
 layout_mode = 2
 
-[node name="StatDisplayBlock2" parent="." instance=ExtResource("3_l4qcx")]
+[node name="StatDisplayBlock2" parent="." instance=ExtResource("3_y1nlp")]
 layout_mode = 2
 
-[node name="StatDisplayBlock3" parent="." instance=ExtResource("3_l4qcx")]
+[node name="StatDisplayBlock3" parent="." instance=ExtResource("3_y1nlp")]
 layout_mode = 2
 
-[node name="StatDisplayBlock4" parent="." instance=ExtResource("3_l4qcx")]
+[node name="StatDisplayBlock4" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock5" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock6" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock7" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock8" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock9" parent="." instance=ExtResource("3_y1nlp")]
+layout_mode = 2
+
+[node name="StatDisplayBlock10" parent="." instance=ExtResource("3_y1nlp")]
 layout_mode = 2

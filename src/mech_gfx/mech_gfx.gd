@@ -11,17 +11,17 @@ enum Movement {
 	STOMP,
 	FLOAT,
 	BACKFLIP,
+	STEP_FORWARD
 }
 
 enum Projectile {
 	ROCKET,
 	BIG_ROCKET,
 	BULLETS,
+	BEAM_BLUE,
+	BEAM_RED,
+	BEAM_PHYSICAL_FLAT,
 }
-
-
-
-const ProjectileRocketScene = preload("res://mech_gfx/projectiles/rocket.tscn")
 
 
 
@@ -112,6 +112,11 @@ func play_melee(slot: MechBuild.Slot) -> void:
 	animation_finished.emit()
 
 
+func play_step_forward() -> void:
+	await MechMovementStepForward.play(self, movement_speed)
+	animation_finished.emit()
+
+
 func play_for_slot(slot: MechBuild.Slot) -> void:
 
 	var item: ItemDef = build.get_item(slot).def
@@ -119,9 +124,14 @@ func play_for_slot(slot: MechBuild.Slot) -> void:
 	var target: Vector2 = part.global_position + Vector2(1000, 0)
 
 	match item.mech_movement:
+		Movement.NONE: pass
 		Movement.JUMP: play_jump()
 		Movement.MELEE: play_melee(slot)
 		Movement.BACKFLIP: play_backflip()
+		Movement.STEP_FORWARD: play_step_forward()
+		_:
+			assert(false, "Not implemented")
+
 
 	part.play_animation(target)
 

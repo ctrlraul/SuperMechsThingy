@@ -17,12 +17,14 @@ config/features=PackedStringArray("4.1", "GL Compatibility")
 [autoload]
 
 Config="*res://config.gd"
-Assets="*res://assets.gd"
+Assets="*res://common/assets.gd"
+StatsManager="*res://common/stats_manager.gd"
 
 [display]
 
 window/size/viewport_width=1200
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [filesystem]
 

@@ -6,6 +6,10 @@ const PIXELS_PER_SECOND: float = 1000
 
 
 
+@onready var projectile_gfx: Node2D = %ProjectileGFX
+
+
+
 var __initial_position: Vector2
 var __target_position: Vector2
 
@@ -14,18 +18,25 @@ var __progress_value: float = 0
 var __progress: float :
 	get:
 		return __progress_value
+
 	set(value):
 		__progress_value = value
-		position = lerp(__initial_position, __target_position, __progress_value)
+		projectile_gfx.position = lerp(
+			__initial_position,
+			__target_position,
+			__progress_value
+		)
 
 
 
 func fire(target: Vector2) -> void:
 
-	__initial_position = position
+	__initial_position = global_position
 	__target_position = target
 
-	$NozzleFireYellow.position = global_position
+	projectile_gfx.position = __initial_position
+	projectile_gfx.scale = global_scale
+
 	$AnimationPlayer.play("launch")
 
 	var distance = position.distance_to(target)

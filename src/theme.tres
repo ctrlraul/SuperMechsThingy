@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=20 format=3 uid="uid://cs33qvqc60ek3"]
 
-[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_mx3nn"]
+[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_g44iu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choan"]
 content_margin_left = 8.0
@@ -207,8 +207,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvkvi"]
-content_margin_left = 8.0
-content_margin_right = 8.0
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0, 0, 0, 0.419608)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -216,13 +216,15 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("1_mx3nn")
+default_font = ExtResource("1_g44iu")
 BoxContainer/constants/separation = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_choan")
 Button/styles/focus = SubResource("StyleBoxFlat_52yc0")
 Button/styles/hover = SubResource("StyleBoxFlat_2blga")
 Button/styles/normal = SubResource("StyleBoxFlat_52yc0")
 Button/styles/pressed = SubResource("StyleBoxFlat_680e7")
+GridContainer/constants/h_separation = 5
+GridContainer/constants/v_separation = 5
 HSeparator/styles/separator = SubResource("StyleBoxLine_7rg65")
 InsetPanel/base_type = &"Panel"
 InsetPanel/styles/panel = SubResource("StyleBoxFlat_wo3ph")

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cic8858u0jjeg"
-path="res://.godot/imported/retreat.svg-cbab9a21d42709372ee9e0cdd196ed00.ctex"
+path="res://.godot/imported/RETREAT.svg-f72d830b9386668759c43f1f25d3c60f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/stats/retreat.svg"
-dest_files=["res://.godot/imported/retreat.svg-cbab9a21d42709372ee9e0cdd196ed00.ctex"]
+source_file="res://assets/images/stats/RETREAT.svg"
+dest_files=["res://.godot/imported/RETREAT.svg-f72d830b9386668759c43f1f25d3c60f.ctex"]
 
 [params]
 

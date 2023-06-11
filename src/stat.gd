@@ -1,4 +1,4 @@
-class_name Stat
+class_name StatDef
 
 var id: String
 var display_name: String

@@ -7,6 +7,7 @@ class_name ItemsWorkshop
 
 
 @onready var mech_gfx: MechGFX = %MechGFX
+@onready var items_index: TabContainer = %ItemsIndex
 @onready var item_inspector: Control = %ItemInspector
 @onready var save_button: Button = %SaveButton
 
@@ -34,6 +35,8 @@ func _ready() -> void:
 	for slot in %SlotsContainer.get_children():
 		slot.item_equipped.connect(_on_item_equipped)
 		slot.selected.connect(_on_item_slot_selected)
+
+	items_index.set_items(Assets.items_list)
 
 
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuin3j7g775l3"
-path="res://.godot/imported/recoil.svg-e2160436698083e6243aa57474c7d7be.ctex"
+path="res://.godot/imported/RECOIL.svg-1db57107368e1775a09cfe9ecce07847.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/stats/recoil.svg"
-dest_files=["res://.godot/imported/recoil.svg-e2160436698083e6243aa57474c7d7be.ctex"]
+source_file="res://assets/images/stats/RECOIL.svg"
+dest_files=["res://.godot/imported/RECOIL.svg-1db57107368e1775a09cfe9ecce07847.ctex"]
 
 [params]
 

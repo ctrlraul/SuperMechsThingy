@@ -13,6 +13,7 @@ enum Slot {
 	CHARGE_ENGINE,
 	TELEPORTER,
 	GRAPPLING_HOOK,
+	SHIELD,
 	MODULE_1,
 	MODULE_2,
 	MODULE_3,
@@ -85,3 +86,11 @@ func has(item: ItemDef) -> bool:
 		if part && part.def == item:
 			return true
 	return false
+
+
+func get_items() -> Array[Item]:
+	var parts: Array[Item] = []
+	for part in __parts.values():
+		if part != null:
+			parts.append(part)
+	return parts

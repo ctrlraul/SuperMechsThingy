@@ -1,59 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3lesinqnj7mm"]
+[gd_scene load_steps=6 format=3 uid="uid://c3lesinqnj7mm"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_ynty1"]
-[ext_resource type="Script" path="res://common_scenes/stats_display/stat_display_block.gd" id="2_h5pmn"]
-[ext_resource type="Texture2D" uid="uid://nymr5mxy34q2" path="res://assets/images/stats/uses.svg" id="3_b5m6w"]
-[ext_resource type="Texture2D" uid="uid://b3cybq6auc480" path="res://assets/images/icons/trash_bin.png" id="4_8igpt"]
-[ext_resource type="Texture2D" uid="uid://h41lif2kri1h" path="res://assets/images/icons/pencil.png" id="5_6j7jc"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_l8os2"]
+[ext_resource type="Script" path="res://common_scenes/stats_display/stat_display_block.gd" id="2_koqul"]
+[ext_resource type="Texture2D" uid="uid://dp24hdhoar8qp" path="res://assets/images/missing.png" id="3_eiuwp"]
+[ext_resource type="Texture2D" uid="uid://b3cybq6auc480" path="res://assets/images/icons/trash_bin.png" id="4_5a4v7"]
+[ext_resource type="Texture2D" uid="uid://h41lif2kri1h" path="res://assets/images/icons/pencil.png" id="5_ssnfw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlc27"]
-bg_color = Color(0, 0, 0, 0.207843)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[node name="StatDisplayBlock" type="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer"]
 offset_right = 165.0
-offset_bottom = 30.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
-theme = ExtResource("1_ynty1")
-theme_override_styles/panel = SubResource("StyleBoxFlat_wlc27")
-script = ExtResource("2_h5pmn")
+theme = ExtResource("1_l8os2")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("2_koqul")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("3_b5m6w")
+texture = ExtResource("3_eiuwp")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Value" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="Value" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 text = "100"
 vertical_alignment = 1
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/DeleteButton"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/DeleteButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,17 +53,18 @@ offset_right = -2.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_8igpt")
+texture = ExtResource("4_5a4v7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EditButton" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/EditButton"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/EditButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,6 +75,6 @@ offset_right = -2.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_6j7jc")
+texture = ExtResource("5_ssnfw")
 expand_mode = 1
 stretch_mode = 5

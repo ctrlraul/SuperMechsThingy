@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr4d8tks7feyv"]
+
+[ext_resource type="Script" path="res://common_scenes/slot_display_item/slot_display_item.gd" id="1_boq1d"]
+[ext_resource type="Texture2D" uid="uid://ixp4qr2uq0sk" path="res://assets/images/slots/element_backgrounds/EXPLOSIVE.png" id="2_034au"]
+[ext_resource type="PackedScene" uid="uid://di4ho04jays15" path="res://common_scenes/display_item/display_item.tscn" id="3_cm8b3"]
+[ext_resource type="Texture2D" uid="uid://cefbgq8ad26t2" path="res://assets/images/slots/tier_borders/MYTHICAL.png" id="4_g3vsk"]
+
+[node name="SlotDisplayItem" type="Control"]
+layout_mode = 3
+anchor_right = 0.067
+anchor_bottom = 0.111
+offset_right = -0.400002
+offset_bottom = 0.0799942
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_boq1d")
+
+[node name="ElementColor" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_034au")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisplayItem" parent="." instance=ExtResource("3_cm8b3")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 0.0
+offset_right = 0.0
+margin = 35
+
+[node name="TierBorder" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_g3vsk")
+expand_mode = 1
+stretch_mode = 5
