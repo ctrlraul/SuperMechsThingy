@@ -36,6 +36,51 @@ func __setup_slots() -> void:
 
 
 func __fill_item_lists() -> void:
+
+	var torsos = []
+	var legs = []
+	var side_weapons = []
+	var top_weapons = []
+	var drones = []
+	var specials = []
+	var modules = []
+	var perks = []
+
+	for item_def in Assets.items_list:
+		match item_def.type:
+
+			ItemDef.Type.TORSO:
+				torsos.append(item_def)
+
+			ItemDef.Type.LEGS:
+				legs.append(item_def)
+
+			ItemDef.Type.SIDE_WEAPON:
+				side_weapons.append(item_def)
+
+			ItemDef.Type.TOP_WEAPON:
+				top_weapons.append(item_def)
+
+			ItemDef.Type.DRONE:
+				drones.append(item_def)
+
+			ItemDef.Type.CHARGE_ENGINE,\
+			ItemDef.Type.TELEPORTER,\
+			ItemDef.Type.GRAPPLING_HOOK,\
+			ItemDef.Type.SHIELD:
+				specials.append(item_def)
+
+			ItemDef.Type.PERK:
+				perks.append(item_def)
+
+			ItemDef.Type.MODULE:
+				modules.append(item_def)
+
+			_:
+				assert(false, "Not implemented")
+
+
+func ___fill_item_lists() -> void:
 	var body_items: Array[ItemDef] = []
 	var special_items: Array[ItemDef] = []
 	var module_items: Array[ItemDef] = []

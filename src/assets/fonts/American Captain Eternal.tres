@@ -1,8 +1,8 @@
 [gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bo5qt13y6gh74"]
 
-[ext_resource type="FontFile" uid="uid://cd4dvn4easj27" path="res://assets/fonts/American Captain Eternal.ttf" id="1_xutng"]
+[ext_resource type="FontFile" uid="uid://cd4dvn4easj27" path="res://assets/fonts/American Captain Eternal.ttf" id="1_2iwfq"]
 
 [resource]
-base_font = ExtResource("1_xutng")
+base_font = ExtResource("1_2iwfq")
 variation_transform = Transform2D(0.9, 0, 0, 1, 0, 0)
 spacing_bottom = -7

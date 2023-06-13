@@ -1,0 +1,156 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv6qpou5cqp1x"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_7ko48"]
+[ext_resource type="PackedScene" uid="uid://dr4d8tks7feyv" path="res://common_scenes/slot_display_item/slot_display_item.tscn" id="2_fnxjm"]
+
+[node name="SMItemsList" type="PanelContainer"]
+offset_right = 280.0
+offset_bottom = 720.0
+theme = ExtResource("1_7ko48")
+theme_type_variation = &"InsetPanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="SMItemsListItem" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Button" type="Button" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="SMItemsListItem2" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem2" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem3" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem3" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem4" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem4" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem5" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem5" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem6" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem6" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem7" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem7" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem8" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem8" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem9" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem9" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="SMItemsListItem10" type="Control" parent="ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="SlotDisplayItem" parent="ScrollContainer/MarginContainer/GridContainer/SMItemsListItem10" instance=ExtResource("2_fnxjm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
