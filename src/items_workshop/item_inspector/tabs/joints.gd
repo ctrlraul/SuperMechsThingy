@@ -1,4 +1,4 @@
-extends TabBar
+extends MarginContainer
 signal joint_changed(item: ItemDef)
 
 

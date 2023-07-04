@@ -1,4 +1,4 @@
-extends TabBar
+extends MarginContainer
 signal animation_preview_requested(item: ItemDef)
 signal ornament_changed(item: ItemDef)
 

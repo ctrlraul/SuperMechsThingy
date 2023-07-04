@@ -1,9 +1,8 @@
-extends TabBar
+extends MarginContainer
 
 
 
 @onready var slot_display_item: Control = %SlotDisplayItem
-#@onready var display_item: Control = %DisplayItem
 @onready var name_label: Label = %NameLabel
 @onready var id_label: Label = %IDLabel
 @onready var sprite_name_label: Label = %SpriteNameLabel

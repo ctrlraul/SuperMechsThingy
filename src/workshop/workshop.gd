@@ -8,9 +8,15 @@ const MAX_WEIGHT: int = 1000
 
 @onready var mech_gfx: Node2D = %MechGFX
 
-@onready var body_items_index: TabContainer = %BodyItemsIndex
-@onready var special_items_index: TabContainer = %SpecialItemsIndex
-@onready var module_items_index: TabContainer = %ModuleItemsIndex
+@onready var items_lists: Control = %ItemsLists
+
+@onready var torsos_and_legs_index: TabContainer = %TorsosAndLegsIndex
+@onready var side_weapons_index: TabContainer = %SideWeaponsIndex
+@onready var top_weapons_index: TabContainer = %TopWeaponsIndex
+@onready var drones_index: TabContainer = %DronesIndex
+@onready var specials_list_container: PanelContainer = %SpecialsListContainer
+@onready var specials_list: PanelContainer = %SMItemsList
+@onready var modules_index: TabContainer = %ModulesIndex
 
 @onready var weight_label: Label = %Weight
 @onready var stats_display: GridContainer = %StatsDisplay
@@ -37,23 +43,22 @@ func __setup_slots() -> void:
 
 func __fill_item_lists() -> void:
 
-	var torsos = []
-	var legs = []
-	var side_weapons = []
-	var top_weapons = []
-	var drones = []
-	var specials = []
-	var modules = []
-	var perks = []
+	var torsos_and_legs: Array[ItemDef] = []
+	var side_weapons: Array[ItemDef] = []
+	var top_weapons: Array[ItemDef] = []
+	var drones: Array[ItemDef] = []
+	var specials: Dictionary = {}
+	var modules: Array[ItemDef] = []
+	var perks: Array[ItemDef] = []
 
 	for item_def in Assets.items_list:
 		match item_def.type:
 
 			ItemDef.Type.TORSO:
-				torsos.append(item_def)
+				torsos_and_legs.append(item_def)
 
 			ItemDef.Type.LEGS:
-				legs.append(item_def)
+				torsos_and_legs.append(item_def)
 
 			ItemDef.Type.SIDE_WEAPON:
 				side_weapons.append(item_def)
@@ -68,7 +73,10 @@ func __fill_item_lists() -> void:
 			ItemDef.Type.TELEPORTER,\
 			ItemDef.Type.GRAPPLING_HOOK,\
 			ItemDef.Type.SHIELD:
-				specials.append(item_def)
+				if specials.has(item_def.type):
+					specials[item_def.type].append(item_def)
+				else:
+					specials[item_def.type] = [item_def]
 
 			ItemDef.Type.PERK:
 				perks.append(item_def)
@@ -79,44 +87,23 @@ func __fill_item_lists() -> void:
 			_:
 				assert(false, "Not implemented")
 
+	torsos_and_legs_index.set_item_defs(torsos_and_legs)
+	side_weapons_index.set_item_defs(side_weapons)
+	top_weapons_index.set_item_defs(top_weapons)
+	drones_index.set_item_defs(drones)
+	modules_index.set_item_defs(modules)
 
-func ___fill_item_lists() -> void:
-	var body_items: Array[ItemDef] = []
-	var special_items: Array[ItemDef] = []
-	var module_items: Array[ItemDef] = []
+	for type in specials:
+		var label = ItemDef.Type.find_key(type).capitalize()
+		specials_list.add_section(label)
 
-	for item_def in Assets.items_list:
-		match item_def.type:
-
-			ItemDef.Type.TORSO,\
-			ItemDef.Type.LEGS,\
-			ItemDef.Type.SIDE_WEAPON,\
-			ItemDef.Type.TOP_WEAPON:
-				body_items.append(item_def)
-
-			ItemDef.Type.DRONE,\
-			ItemDef.Type.CHARGE_ENGINE,\
-			ItemDef.Type.TELEPORTER,\
-			ItemDef.Type.GRAPPLING_HOOK,\
-			ItemDef.Type.SHIELD,\
-			ItemDef.Type.PERK:
-				special_items.append(item_def)
-
-			ItemDef.Type.MODULE:
-				module_items.append(item_def)
-
-			_:
-				assert(false, "Not implemented")
-
-	body_items_index.set_items(body_items)
-	special_items_index.set_items(special_items)
-	module_items_index.set_items(module_items)
+		for item in specials[type]:
+			specials_list.add_item(Item.new(item))
 
 
 func __hide_all() -> void:
-	body_items_index.visible = false
-	special_items_index.visible = false
-	module_items_index.visible = false
+	for list in items_lists.get_children():
+		list.visible = false
 
 
 func __clear() -> void:
@@ -130,7 +117,8 @@ func __clear() -> void:
 
 	__hide_all()
 	__set_weight_label(0)
-	_on_body_button_pressed()
+
+	torsos_and_legs_index.visible = true
 
 
 func __set_weight_label(weight: int) -> void:
@@ -151,24 +139,42 @@ func __auto_equip(item: Item) -> void:
 
 
 
-
 func _on_return_button_pressed() -> void:
 	pass # Replace with function body.
 
 
 func _on_body_button_pressed() -> void:
 	__hide_all()
-	body_items_index.visible = true
+	torsos_and_legs_index.visible = true
+
+
+func _on_side_weapons_button_pressed() -> void:
+	__hide_all()
+	side_weapons_index.visible = true
+
+
+func _on_top_weapons_button_pressed() -> void:
+	__hide_all()
+	top_weapons_index.visible = true
+
+
+func _on_drones_button_pressed() -> void:
+	__hide_all()
+	drones_index.visible = true
 
 
 func _on_specials_button_pressed() -> void:
 	__hide_all()
-	special_items_index.visible = true
+	specials_list_container.visible = true
 
 
 func _on_modules_button_pressed() -> void:
 	__hide_all()
-	module_items_index.visible = true
+	modules_index.visible = true
+
+
+func _on_perks_button_pressed() -> void:
+	__hide_all()
 
 
 func _on_item_equipped(item: Item, slot: MechBuild.Slot) -> void:

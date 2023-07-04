@@ -1,48 +1,39 @@
 [gd_scene load_steps=5 format=3 uid="uid://dubsnfnufbcw3"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_j8e85"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/joints.gd" id="2_hhqpd"]
-[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="3_b4nch"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/re_use_joints_drop_area.gd" id="4_lnx1b"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/joints.gd" id="1_726ln"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_nxcr5"]
+[ext_resource type="PackedScene" uid="uid://doo03nnqpthbc" path="res://items_workshop/item_inspector/points_editor/points_editor.tscn" id="2_8cq6e"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/re_use_joints_drop_area.gd" id="3_5cdbn"]
 
-[node name="Joints" type="TabBar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -797.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_j8e85")
-script = ExtResource("2_hhqpd")
+[node name="Joints" type="MarginContainer"]
+offset_right = 360.0
+offset_bottom = 720.0
+theme = ExtResource("1_nxcr5")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_726ln")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PointsEditor" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_b4nch")]
+[node name="PointsEditor" parent="VBoxContainer" instance=ExtResource("2_8cq6e")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="ReUseJointsDropArea" type="Panel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ReUseJointsDropArea" type="Panel" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_type_variation = &"InsetPanel"
-script = ExtResource("4_lnx1b")
+script = ExtResource("3_5cdbn")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/ReUseJointsDropArea"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/ReUseJointsDropArea"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,5 +43,3 @@ grow_vertical = 2
 text = "Drop an item here to re-use its joints"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="joints_copied" from="MarginContainer/VBoxContainer/VBoxContainer/ReUseJointsDropArea" to="." method="_on_re_use_joints_drop_area_joints_copied"]

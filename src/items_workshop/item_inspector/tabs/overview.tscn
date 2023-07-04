@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b06swf75jd67p"]
+[gd_scene load_steps=9 format=3 uid="uid://b06swf75jd67p"]
 
-[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_2n4b4"]
-[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_jncag"]
-[ext_resource type="PackedScene" uid="uid://dr4d8tks7feyv" path="res://common_scenes/slot_display_item/slot_display_item.tscn" id="3_1h3vg"]
-[ext_resource type="PackedScene" uid="uid://di4ho04jays15" path="res://common_scenes/display_item/display_item.tscn" id="4_rqleh"]
-[ext_resource type="FontVariation" uid="uid://bo5qt13y6gh74" path="res://assets/fonts/American Captain Eternal.tres" id="5_3t1ap"]
-[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://common_scenes/stats_display/stats_display.tscn" id="6_wm167"]
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_of1pf"]
+[ext_resource type="Script" path="res://items_workshop/item_inspector/tabs/overview.gd" id="2_8knnu"]
+[ext_resource type="PackedScene" uid="uid://dr4d8tks7feyv" path="res://common_scenes/slot_display_item/slot_display_item.tscn" id="3_8uwp3"]
+[ext_resource type="FontVariation" uid="uid://bo5qt13y6gh74" path="res://assets/fonts/American Captain Eternal.tres" id="5_nptdf"]
+[ext_resource type="PackedScene" uid="uid://dxm2x6p0msmj2" path="res://common_scenes/stats_display/stats_display.tscn" id="6_xefq7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc1pq"]
-font = ExtResource("5_3t1ap")
+font = ExtResource("5_nptdf")
 
 [sub_resource type="LabelSettings" id="LabelSettings_6g42o"]
 font_size = 12
@@ -25,65 +24,37 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="Overview" type="TabBar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -800.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_2n4b4")
-script = ExtResource("2_jncag")
+[node name="Overview" type="MarginContainer"]
+offset_right = 400.0
+offset_bottom = 720.0
+theme = ExtResource("1_of1pf")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("2_8knnu")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SlotDisplayItem" parent="MarginContainer/VBoxContainer/VBoxContainer/Header" instance=ExtResource("3_1h3vg")]
+[node name="SlotDisplayItem" parent="VBoxContainer/VBoxContainer/Header" instance=ExtResource("3_8uwp3")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(116, 116)
 layout_mode = 2
 
-[node name="SpriteContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header"]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_type_variation = &"InsetPanel"
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="DisplayItem" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer/MarginContainer" instance=ExtResource("4_rqleh")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-interpolation = 1
-
-[node name="MetaContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header"]
+[node name="MetaContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,26 +62,26 @@ text = "The Foo Item"
 label_settings = SubResource("LabelSettings_wc1pq")
 vertical_alignment = 1
 
-[node name="IDContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="IDContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Hashtag" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
+[node name="Hashtag" type="Label" parent="VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
 self_modulate = Color(1, 1, 1, 0.47451)
 layout_mode = 2
 text = "#"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IDLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
+[node name="IDLabel" type="Label" parent="VBoxContainer/VBoxContainer/Header/MetaContainer/IDContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpriteNameLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="SpriteNameLabel" type="Label" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -118,7 +89,7 @@ size_flags_vertical = 6
 text = "image.png"
 label_settings = SubResource("LabelSettings_6g42o")
 
-[node name="TierOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="TierOptions" type="OptionButton" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
@@ -135,7 +106,7 @@ selected = 0
 popup/item_0/text = "Tier"
 popup/item_0/id = 0
 
-[node name="ElementOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="ElementOptions" type="OptionButton" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
@@ -152,7 +123,7 @@ selected = 0
 popup/item_0/text = "Element"
 popup/item_0/id = 0
 
-[node name="TypeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer"]
+[node name="TypeOptions" type="OptionButton" parent="VBoxContainer/VBoxContainer/Header/MetaContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_tkfjs")
@@ -169,43 +140,33 @@ selected = 0
 popup/item_0/text = "Type"
 popup/item_0/id = 0
 
-[node name="Stats" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Stats" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"InsetPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Stats"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/Stats/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/Stats/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Stats"
 
-[node name="AddStatButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="AddStatButton" type="Button" parent="VBoxContainer/VBoxContainer/Stats/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "+"
 
-[node name="StatsDisplay" parent="MarginContainer/VBoxContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" instance=ExtResource("6_wm167")]
+[node name="StatsDisplay" parent="VBoxContainer/VBoxContainer/Stats/VBoxContainer" instance=ExtResource("6_xefq7")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="ExportButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ExportButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Export Item Data"
-
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer" to="." method="_on_sprite_container_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Header/SpriteContainer" to="." method="_on_sprite_container_mouse_exited"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/TierOptions" to="." method="_on_tier_selected"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/ElementOptions" to="." method="_on_element_selected"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/Header/MetaContainer/TypeOptions" to="." method="_on_type_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ExportButton" to="." method="_on_export_button_pressed"]

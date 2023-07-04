@@ -72,6 +72,10 @@ func set_items(items: Array[ItemDef]) -> void:
 				item_button.pressed.connect(func(): item_selected.emit(item_def))
 
 
+func set_item_defs(items: Array[ItemDef]) -> void:
+	set_items(items)
+
+
 func __sort_by_range(a: ItemDef, b: ItemDef) -> bool:
 
 	var range_stat: ItemDef.Stat = ItemDef.Stat.RANGE

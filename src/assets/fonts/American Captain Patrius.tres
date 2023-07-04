@@ -1,8 +1,8 @@
 [gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://d3wn65mjr1shq"]
 
-[ext_resource type="FontFile" uid="uid://b71wpbg7ysdhu" path="res://assets/fonts/American Captain Patrius.ttf" id="1_yrs68"]
+[ext_resource type="FontFile" uid="uid://b71wpbg7ysdhu" path="res://assets/fonts/American Captain Patrius.ttf" id="1_63s6x"]
 
 [resource]
-base_font = ExtResource("1_yrs68")
+base_font = ExtResource("1_63s6x")
 spacing_glyph = 1
 spacing_bottom = -5

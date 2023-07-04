@@ -8,7 +8,7 @@ extends GridContainer
 
 
 func _ready() -> void:
-	clear()
+	NodeUtils.clear(self)
 
 
 
@@ -31,5 +31,4 @@ func set_stats(stats: Dictionary) -> void:
 
 
 func clear() -> void:
-	for block in get_children():
-		block.queue_free()
+	NodeUtils.clear(self)

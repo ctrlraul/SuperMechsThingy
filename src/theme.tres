@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=20 format=3 uid="uid://cs33qvqc60ek3"]
 
-[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_qirrs"]
+[ext_resource type="FontVariation" uid="uid://d3wn65mjr1shq" path="res://assets/fonts/American Captain Patrius.tres" id="1_41iwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choan"]
 content_margin_left = 8.0
@@ -63,10 +63,10 @@ color = Color(0, 0.164063, 0.269531, 1)
 thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo3ph"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0, 0.0666667, 0.12549, 1)
 border_width_left = 4
 border_width_top = 4
@@ -112,6 +112,10 @@ shadow_size = 5
 shadow_offset = Vector2(0, 2.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxqmy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0, 0.117188, 0.199219, 1)
 border_width_left = 2
 border_width_top = 2
@@ -127,6 +131,10 @@ shadow_size = 5
 shadow_offset = Vector2(0, 2.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvjy5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0, 0.117188, 0.199219, 1)
 border_width_left = 2
 border_width_top = 2
@@ -220,7 +228,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("1_qirrs")
+default_font = ExtResource("1_41iwe")
 BoxContainer/constants/separation = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_choan")
 Button/styles/focus = SubResource("StyleBoxFlat_52yc0")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv6qpou5cqp1x"]
+
+[ext_resource type="Theme" uid="uid://cs33qvqc60ek3" path="res://theme.tres" id="1_nuxjd"]
+[ext_resource type="Script" path="res://common_scenes/sm_items_list/sm_items_list.gd" id="2_fiteu"]
+[ext_resource type="PackedScene" uid="uid://cnb0y1jgt34mr" path="res://common_scenes/sm_items_list/sm_items_list_item.tscn" id="3_rdt54"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rngrd"]
+content_margin_right = 5.0
+
+[node name="SMItemsList" type="PanelContainer"]
+offset_right = 280.0
+offset_bottom = 720.0
+theme = ExtResource("1_nuxjd")
+theme_type_variation = &"InsetPanel"
+script = ExtResource("2_fiteu")
+SMItemsListItemScene = ExtResource("3_rdt54")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rngrd")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemsContainer" type="GridContainer" parent="ScrollContainer/Container"]
+layout_mode = 2
+columns = 4
+
+[node name="SMItemsListItem" parent="ScrollContainer/Container/ItemsContainer" instance=ExtResource("3_rdt54")]
+layout_mode = 2
+
+[node name="SMItemsListItem2" parent="ScrollContainer/Container/ItemsContainer" instance=ExtResource("3_rdt54")]
+layout_mode = 2
+
+[node name="SMItemsListItem3" parent="ScrollContainer/Container/ItemsContainer" instance=ExtResource("3_rdt54")]
+layout_mode = 2
+
+[node name="SMItemsListItem4" parent="ScrollContainer/Container/ItemsContainer" instance=ExtResource("3_rdt54")]
+layout_mode = 2
+
+[node name="SMItemsListItem5" parent="ScrollContainer/Container/ItemsContainer" instance=ExtResource("3_rdt54")]
+layout_mode = 2
